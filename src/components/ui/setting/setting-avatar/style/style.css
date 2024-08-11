@@ -1,0 +1,24 @@
+.color-button {
+  width: 2rem;
+  height: 2rem;
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease,
+    outline 0.3s ease;
+}
+
+.color-button:hover {
+  transform: scale(1.4);
+  animation: scale 0.25s cubic-bezier(0.075, 0.82, 0.165, 1);
+  box-shadow: 0 0 2rem var(--color-primary);
+  border: 2px solid white;
+}
+
+@keyframes scale {
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(1.4);
+  }
+}

@@ -1,0 +1,111 @@
+{
+  "name": "socialmedia-website",
+  "version": "0.1.0",
+  "private": false,
+  "dependencies": {
+    "@cloudinary/react": "^1.11.2",
+    "@cloudinary/url-gen": "^1.10.1",
+    "@emoji-mart/data": "^1.1.2",
+    "@emoji-mart/react": "^1.1.1",
+    "@fortawesome/fontawesome-svg-core": "^6.2.1",
+    "@fortawesome/free-brands-svg-icons": "^6.4.0",
+    "@fortawesome/free-regular-svg-icons": "^6.2.1",
+    "@fortawesome/free-solid-svg-icons": "^6.2.1",
+    "@fortawesome/react-fontawesome": "^0.2.0",
+    "@iconscout/react-unicons": "^1.1.6",
+    "@iconscout/react-unicons-thinline": "^0.0.1",
+    "@reduxjs/toolkit": "^1.9.1",
+    "@testing-library/jest-dom": "^5.16.4",
+    "@testing-library/react": "^13.3.0",
+    "@testing-library/user-event": "^13.5.0",
+    "@uidotdev/usehooks": "^2.4.1",
+    "animate.css": "^4.1.1",
+    "axios": "^1.2.1",
+    "bootstrap": "^5.2.3",
+    "cloudinary-react": "^1.8.1",
+    "css-loader": "^6.10.0",
+    "dotenv": "^16.0.3",
+    "dotenv-safe": "^8.2.0",
+    "emoji-mart": "^5.5.2",
+    "eslint": "^8.56.0",
+    "get-youtube-id": "^1.0.1",
+    "lucide-react": "^0.330.0",
+    "million": "^3.0.6",
+    "moment": "^2.29.4",
+    "react": "^18.2.0",
+    "react-bootstrap": "^2.4.0",
+    "react-csv": "^2.2.2",
+    "react-device-detect": "^2.2.3",
+    "react-dom": "^18.2.0",
+    "react-fast-compare": "^3.2.2",
+    "react-google-recaptcha": "^3.1.0",
+    "react-hot-toast": "^2.4.1",
+    "react-icons": "^4.4.0",
+    "react-lazy-load-image-component": "^1.6.0",
+    "react-lite-youtube-embed": "^2.4.0",
+    "react-otp-input": "^3.1.1",
+    "react-redux": "^8.0.5",
+    "react-router-dom": "^6.3.0",
+    "react-scripts": "5.0.1",
+    "react-select": "^5.8.0",
+    "redux": "^4.2.0",
+    "redux-persist": "^6.0.0",
+    "socket.io-client": "^4.6.1",
+    "style-loader": "^3.3.4",
+    "timeago.js": "^4.0.0-beta.3",
+    "uid": "^2.0.0",
+    "wavesurfer.js": "^7.1.1",
+    "web-vitals": "^2.1.4",
+    "webpack": "^5.91.0",
+    "webpack-bundle-analyzer": "^4.10.1"
+  },
+  "scripts": {
+    "add-dev": "yarn add --dev --production=false",
+    "eject": "react-scripts eject",
+    "format": "prettier --write \"**/*.{js,jsx,tsx,ts,json,md,html,css,less,scss}\"",
+    "lint": "eslint --fix --ext .js,.jsx .",
+    "report": "npm run build --withReport true",
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "start:dev": "webpack-dev-server --mode development --open --hot",
+    "build:dev": "webpack --mode production",
+    "test": "react-scripts test"
+  },
+  "eslintConfig": {
+    "extends": []
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "@babel/core": "^7.24.3",
+    "@babel/preset-env": "^7.24.3",
+    "@babel/preset-react": "^7.24.1",
+    "husky": "^9.0.11",
+    "prettier": "^3.1.1"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged",
+      "pre-push": "npm test"
+    }
+  },
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx,json,css,scss,md}": [
+      "prettier --write",
+      "git add"
+    ]
+  },
+  "engines": {
+    "node": "20"
+  }
+}
