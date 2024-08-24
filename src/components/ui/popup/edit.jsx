@@ -198,7 +198,7 @@ const EditPopup = ({
               style={{ display: "none" }}
               ref={uploadImg}
               onChange={(e) => handleImageUpload(e)}
-              accept=".jpg, .jpeg, .webp, .png"
+              accept=".jpg, .jpeg, .webp, .png, .mp4"
             />
 
             <span>
