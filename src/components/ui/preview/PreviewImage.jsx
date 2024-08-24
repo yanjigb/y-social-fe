@@ -7,9 +7,11 @@ const PreviewImage = ({ imgSrc, width, heigth }) => {
     <img
       src={imgSrc}
       loading="lazy"
-      role="presentation"
+      role="img"
       decoding="async"
       alt="preview_image"
+      width={200}
+      height={200}
       style={{
         aspectRatio: "16/9",
         objectFit: "cover",
@@ -21,9 +23,11 @@ const PreviewImage = ({ imgSrc, width, heigth }) => {
     <img
       src={LOGO_YANJI_SOCIAL}
       loading="lazy"
-      role="presentation"
+      role="img"
       decoding="async"
       alt="preview_image"
+      width={200}
+      height={200}
       style={{
         aspectRatio: "16/9",
         objectFit: "cover",
