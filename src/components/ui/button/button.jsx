@@ -10,7 +10,7 @@ const Button = ({
   setActive,
   active = "",
   isReadNotification = false,
-  newtab = false,
+  newTab = false,
 }) => {
   return (
     <>
@@ -20,7 +20,7 @@ const Button = ({
           className={`menu-item hover-bg ${active === name ? "active" : ""}`}
           onClick={() => setActive(name)}
           title={label}
-          target={newtab ? "_blank" : ""}
+          target={newTab ? "_blank" : ""}
         >
           <span>
             {icon}

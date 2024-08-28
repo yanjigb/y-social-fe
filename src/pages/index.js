@@ -11,7 +11,6 @@ export { default as NetworkError } from "./network-error";
 export { default as NotificationPage } from "./notification";
 export { default as Personal } from "./personal";
 export { default as PostPreview } from "./post-preview";
-export { default as Admin } from "./admin/Admin";
 export { default as BookmarksPage } from "./bookmarks";
 
 // term

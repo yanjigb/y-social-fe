@@ -12,7 +12,6 @@ const PersonalPage = lazy(() => import("../pages/personal"));
 const NotificationPage = lazy(() => import("../pages/notification"));
 const BookmarkPage = lazy(() => import("../pages/bookmarks"));
 const PostPreview = lazy(() => import("../pages/post-preview"));
-const AdminPage = lazy(() => import("../pages/admin/Admin"));
 
 const RegisterPage = lazy(() => import("../pages/auth/RegisterPage"));
 const LoginPage = lazy(() => import("../pages/auth/LoginPage"));
@@ -31,8 +30,6 @@ const authProtectedRoutes = [
   },
   {
     path: RouteNames.ADMIN,
-    component: AdminPage,
-    isSocket: false,
   },
   {
     path: RouteNames.PERSONAL_PAGE,

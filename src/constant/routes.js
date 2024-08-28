@@ -1,7 +1,7 @@
 const RouteNames = {
   HOME: "/",
   MESSAGE_PAGE: "/messages",
-  ADMIN: "/admin",
+  ADMIN: "https://www.youtube.com/c/TheBrowserCompany",
   PERSONAL_PAGE: "/user/:userID",
   PERSONAL_PHOTOS: "/user/:userID/:photos",
   NOTIFICATION: "/notification",
