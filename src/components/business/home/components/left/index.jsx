@@ -210,14 +210,15 @@ const HomeLeft = ({ socket, isReadNotification }) => {
             />
           )}
           {currentUser?._id === Global.ADMIN_ID && (
-            <Button
-              path={RouteNames.ADMIN}
-              label="Admin Dashboard"
-              icon={<LayoutDashboard className="sidebar-icon" size={20} />}
+            <Link
+              to={RouteNames.ADMIN}
               name={"ADMIN"}
-              active={active}
-              setActive={setActive}
-            />
+              target="_blank"
+              className="menu-item hover-bg"
+            >
+              <LayoutDashboard className="sidebar-icon" size={20} />
+              <h3 className="ms-3 mb-0">Admin Dashboard</h3>
+            </Link>
           )}
         </div>
         {/* END OF SIDEBAR */}
