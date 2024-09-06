@@ -1,4 +1,4 @@
-const ThemeMap = {
+const BackgroundMap = {
   "bg-1": {
     "--dark-color-lightness": "17%",
     "--light-color-lightness": "95%",
@@ -24,32 +24,40 @@ const TextColorMap = {
   "color-5": { "--primary-color-hue": "152" },
 };
 
-const FontSizeMap = {
-  "fs-1": {
-    "--sticky-top-left": "8rem",
-    "--sticky-top-right": "8rem",
-    fontSize: "10px",
-  },
-  "fs-2": {
-    "--sticky-top-left": "8.4rem",
-    "--sticky-top-right": "8.4rem",
-    fontSize: "11.5px",
-  },
-  "fs-3": {
-    "--sticky-top-left": "8rem",
-    "--sticky-top-right": "8rem",
-    fontSize: "16px",
-  },
-  "fs-4": {
-    "--sticky-top-left": "8rem",
-    "--sticky-top-right": "8rem",
-    fontSize: "19px",
-  },
-  "fs-5": {
-    "--sticky-top-left": "8rem",
-    "--sticky-top-right": "8rem",
-    fontSize: "22px",
-  },
-};
+const FONT_SIZE_MAP = {
+  FS_1: 'fs-1',
+  FS_2: 'fs-2',
+  FS_3: 'fs-3',
+  FS_4: 'fs-4',
+  FS_5: 'fs-5'
+}
 
-export { ThemeMap, TextColorMap, FontSizeMap };
+// const FontSizeMap = {
+//   "fs-1": {
+//     "--sticky-top-left": "8rem",
+//     "--sticky-top-right": "8rem",
+//     fontSize: "10px",
+//   },
+//   "fs-2": {
+//     "--sticky-top-left": "8.4rem",
+//     "--sticky-top-right": "8.4rem",
+//     fontSize: "11.5px",
+//   },
+//   "fs-3": {
+//     "--sticky-top-left": "8rem",
+//     "--sticky-top-right": "8rem",
+//     fontSize: "16px",
+//   },
+//   "fs-4": {
+//     "--sticky-top-left": "8rem",
+//     "--sticky-top-right": "8rem",
+//     fontSize: "19px",
+//   },
+//   "fs-5": {
+//     "--sticky-top-left": "8rem",
+//     "--sticky-top-right": "8rem",
+//     fontSize: "22px",
+//   },
+// };
+
+export { BackgroundMap, TextColorMap, FONT_SIZE_MAP };
