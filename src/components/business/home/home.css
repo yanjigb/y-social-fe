@@ -17,7 +17,7 @@ main .container {
 
   width: 100%;
 
-  top: calc(6rem - 4.5rem);
+  top: var(--sticky-top-left);
 
   position: relative;
 }

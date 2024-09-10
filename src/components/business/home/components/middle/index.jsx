@@ -10,9 +10,11 @@ import { Avatar } from "../../../../../components";
 import PostPopup from "../../../../ui/popup/post";
 import { RouteNames } from "../../../../../constant/routes";
 import LoadingPage from "../../../../common/loading/loading-page";
+import clsx from "clsx";
+import InputStatus from "./components/input-status";
 const Posts = lazy(() => import("../../../../../components/ui/post/Posts"));
 
-const HomeMiddle = ({ socket }) => {
+const HomeMiddle = ({ socket, className }) => {
   const userDefaultValues = {
     _id: "",
     profilePicture: "",
@@ -55,55 +57,8 @@ const HomeMiddle = ({ socket }) => {
   };
 
   return (
-    <div className="middle animate__animated animate__fadeIn position-relative">
-      {/* STATUS */}
-      <div
-        className={`create-post align-items-center mb-4 ${
-          currentUser === undefined ? "d-none" : "d-flex"
-        }`}
-      >
-        <div className="create-post-wrapper w-100 d-flex align-items-center">
-          <Link
-            to={currentUser ? `/user/${user?._id}` : RouteNames.HOME}
-            className="profile-pic text-white"
-            aria-label="Avatar user"
-          >
-            <Avatar
-              imageSrc={user?.profilePicture}
-              label={user?.username}
-              userId={user?._id}
-            />
-          </Link>
-
-          <div
-            className="border-0 ps-3 me-3 ms-3 caption fs-4"
-            name="caption"
-            onClick={handlePopup}
-            id="caption"
-          >
-            What's in your mind, {currentUser?.username || " user"}?
-          </div>
-        </div>
-        
-        <div className="submit d-flex align-items-center" title="Đăng bài viết">
-          {currentUser ? (
-            <button
-              onClick={handlePopup}
-              type="submit"
-              className="btn btn-primary"
-            >
-              Post
-            </button>
-          ) : (
-            <Link to={RouteNames.LOGIN} className="btn btn-primary">
-              Post
-            </Link>
-          )}
-        </div>
-        {renderPostPopup()}
-      </div>
-      {/* END STATUS */}
-
+    <div className={clsx("middle animate__animated animate__fadeIn position-relative", className)}>
+      <InputStatus currentUser={currentUser} user={user} onPopup={handlePopup} renderPostPopup={renderPostPopup} />
       <Suspense fallback={<LoadingPage />}>
         <Posts socket={socket} />
       </Suspense>

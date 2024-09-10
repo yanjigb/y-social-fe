@@ -14,8 +14,6 @@ import {
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import isEqual from "react-fast-compare";
 
-import { ToastProvider } from "../../../context/toast";
-
 import "./styles/personal.css";
 
 import { getUserByID, updateUser } from "../../../redux/request/userRequest";
@@ -322,7 +320,6 @@ const Personal = ({ socket }) => {
 
       {renderUpdateBioPopup()}
       {renderUpdateIntroducePopup()}
-      <ToastProvider />
     </div>
   ) : (
     <_404Page />

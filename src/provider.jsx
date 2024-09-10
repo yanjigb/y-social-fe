@@ -4,6 +4,7 @@ import { Provider } from "react-redux";
 
 import { persistor, store } from "./redux/store";
 import { ThemeProvider as ThemeCustomProvider } from "./providers/theme-provider";
+import { ToastProvider } from "./context/toast";
 
 import "./index.css";
 
@@ -13,7 +14,9 @@ function MainProvider({ children }) {
             <ThemeCustomProvider>
                 <PersistGate loading={null} persistor={persistor}>
                     <Router>
-                        {children}
+                        <ToastProvider>
+                            {children}
+                        </ToastProvider>
                     </Router>
                 </PersistGate>
             </ThemeCustomProvider>

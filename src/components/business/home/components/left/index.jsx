@@ -2,42 +2,29 @@ import { Link } from "react-router-dom";
 import { useState, useEffect, memo } from "react";
 import { useDispatch } from "react-redux";
 import {
-  Home,
-  Bell,
-  MessageSquare,
-  Bookmark,
-  Video,
-  Palette,
-  Bolt,
   CheckCircle2,
-  LayoutDashboard,
 } from "lucide-react";
 import isEqual from "react-fast-compare";
 
 import { getUserByID } from "../../../../../redux/request/userRequest";
-import Global from "../../../../../constant/global";
 
 import { LOGO_YANJI_SOCIAL } from "../../../../../assets";
 
 // SETTINGS
 import { Avatar, CustomTheme, Setting } from "../../../../ui";
 import PostPopup from "../../../../ui/popup/post";
-import Button from "../../../../ui/button/button";
 import { useCurrentUser } from "../../../../../hooks";
 import { RouteNames } from "../../../../../constant/routes";
 import { LocalStorageKeys } from "../../../../../constant/local-storage-key";
 import Sidebar from "../../../../layouts/sidebar";
+import { UserInitialize } from "../../constant/initialize";
+import { MENU_NAME } from "../../constant/menu";
 
 const HomeLeft = ({ socket, isReadNotification }) => {
-  const [active, setActive] = useState("HOME");
+  const [active, setActive] = useState(MENU_NAME.HOME);
   const [avatar, setAvatar] = useState("");
   const [popup, setPopup] = useState(false);
-  const [user, setUser] = useState({
-    _id: "",
-    profilePicture: "",
-    username: "",
-    isVerify: false,
-  });
+  const [user, setUser] = useState(UserInitialize);
   const dispatch = useDispatch();
   const currentUser = useCurrentUser();
 
@@ -76,8 +63,8 @@ const HomeLeft = ({ socket, isReadNotification }) => {
     return (
       <div
         className="customize-theme"
-        hidden={active !== "THEME"}
-        onClick={() => setActive("HOME")}
+        hidden={active !== MENU_NAME.THEME}
+        onClick={() => setActive(MENU_NAME.HOME)}
       >
         <CustomTheme />
       </div>
@@ -92,8 +79,8 @@ const HomeLeft = ({ socket, isReadNotification }) => {
     return (
       <div
         className="customize-theme"
-        hidden={active !== "SETTINGS"}
-        onClick={() => setActive("HOME")}
+        hidden={active !== MENU_NAME.SETTINGS}
+        onClick={() => setActive(MENU_NAME.HOME)}
       >
         <Setting close={handleClosePopup} />
       </div>
@@ -147,7 +134,7 @@ const HomeLeft = ({ socket, isReadNotification }) => {
         </Link>
 
         {/* SIDEBAR */}
-        <Sidebar active={active} setActive={setActive} isReadNotification={isReadNotification}/>
+        <Sidebar active={active} setActive={setActive} isReadNotification={isReadNotification} />
         {/* END OF SIDEBAR */}
 
         <label
