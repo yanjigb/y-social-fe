@@ -26,6 +26,7 @@ import Button from "../../../../ui/button/button";
 import { useCurrentUser } from "../../../../../hooks";
 import { RouteNames } from "../../../../../constant/routes";
 import { LocalStorageKeys } from "../../../../../constant/local-storage-key";
+import Sidebar from "../../../../layouts/sidebar";
 
 const HomeLeft = ({ socket, isReadNotification }) => {
   const [active, setActive] = useState("HOME");
@@ -86,6 +87,7 @@ const HomeLeft = ({ socket, isReadNotification }) => {
   const handleClosePopup = () => {
     setActive("");
   };
+
   const renderSettingPopup = () => {
     return (
       <div
@@ -145,87 +147,12 @@ const HomeLeft = ({ socket, isReadNotification }) => {
         </Link>
 
         {/* SIDEBAR */}
-        <div className="sidebar mt-3">
-          <Button
-            path={RouteNames.HOME}
-            label="Home"
-            icon={<Home className="sidebar-icon" size={20} />}
-            name={"HOME"}
-            active={active}
-            setActive={setActive}
-          />
-
-          {currentUser && (
-            <>
-              <Button
-                path={RouteNames.NOTIFICATION}
-                label="Notification"
-                icon={<Bell className="sidebar-icon" size={20} />}
-                name={"NOTIFICATION"}
-                isReadNotification={isReadNotification}
-                active={active}
-                setActive={setActive}
-              />
-              <Button
-                path={RouteNames.MESSAGE_PAGE}
-                label="Messages"
-                icon={<MessageSquare className="sidebar-icon" size={20} />}
-                name={"MESSAGES"}
-                active={active}
-                setActive={setActive}
-              />
-              <Button
-                path={RouteNames.BOOKMARKS}
-                label="Bookmarks"
-                icon={<Bookmark className="sidebar-icon" size={20} />}
-                name={"BOOKMARKS"}
-                active={active}
-                setActive={setActive}
-              />
-            </>
-          )}
-          <Button
-            label="Meeting"
-            path="https://meet-with-us.netlify.app/"
-            icon={<Video className="sidebar-icon" size={20} />}
-            name={"MEETING"}
-            active={active}
-            setActive={setActive}
-            newtab={true}
-          />
-          <Button
-            label="Theme"
-            icon={<Palette className="sidebar-icon" size={20} />}
-            name={"THEME"}
-            active={active}
-            setActive={setActive}
-          />
-          {currentUser && (
-            <Button
-              label="Settings"
-              icon={<Bolt className="sidebar-icon" size={20} />}
-              name={"SETTINGS"}
-              active={active}
-              setActive={setActive}
-            />
-          )}
-          {currentUser?._id === Global.ADMIN_ID && (
-            <Link
-              to={RouteNames.ADMIN}
-              name={"ADMIN"}
-              target="_blank"
-              className="menu-item hover-bg"
-            >
-              <LayoutDashboard className="sidebar-icon" size={20} />
-              <h3 className="ms-3 mb-0">Admin Dashboard</h3>
-            </Link>
-          )}
-        </div>
+        <Sidebar active={active} setActive={setActive} isReadNotification={isReadNotification}/>
         {/* END OF SIDEBAR */}
 
         <label
           htmlFor="create-post"
-          className="btn btn-primary mt-3 py-3"
+          className="btn btn-primary mt-3 py-3 d-none d-lg-block"
           onClick={handlePopup}
         >
           Create Post

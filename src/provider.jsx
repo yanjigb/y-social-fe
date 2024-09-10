@@ -1,22 +1,22 @@
 import { PersistGate } from "redux-persist/integration/react";
 import { BrowserRouter as Router } from "react-router-dom";
-
-import { persistor, store } from "./redux/store";
 import { Provider } from "react-redux";
 
+import { persistor, store } from "./redux/store";
+import { ThemeProvider as ThemeCustomProvider } from "./providers/theme-provider";
+
 import "./index.css";
-import { ThemeProvider } from "./providers/theme-provider";
 
 function MainProvider({ children }) {
     return (
         <Provider store={store}>
-            <ThemeProvider>
+            <ThemeCustomProvider>
                 <PersistGate loading={null} persistor={persistor}>
                     <Router>
                         {children}
                     </Router>
                 </PersistGate>
-            </ThemeProvider>
+            </ThemeCustomProvider>
         </Provider>
     )
 }

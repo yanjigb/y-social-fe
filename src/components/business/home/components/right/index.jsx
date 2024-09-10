@@ -54,7 +54,7 @@ const HomeRight = () => {
   }, [fetchFollowingList]);
 
   return (
-    <div>
+    <div className="right">
       <h4 className="border-bottom pb-3 mb-3 px-0">Following</h4>
 
       {currentUser && (

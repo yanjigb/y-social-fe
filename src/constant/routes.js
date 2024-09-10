@@ -2,6 +2,7 @@ const RouteNames = {
   HOME: "/",
   MESSAGE_PAGE: "/messages",
   ADMIN: "https://www.youtube.com/c/TheBrowserCompany",
+  MEETING: "https://meet-with-us.netlify.app/",
   PERSONAL_PAGE: "/user/:userID",
   PERSONAL_PHOTOS: "/user/:userID/:photos",
   NOTIFICATION: "/notification",

@@ -1,17 +1,17 @@
-@media screen and (max-width: 360px) {
-  .header-navbar {
+@media screen and (max-width: 425px) {
+  /* .header-navbar {
     display: flex;
     justify-content: center;
     align-items: center;
-  }
+  } */
 
-  .header-navbar .logo {
+  /* .header-navbar .logo {
     display: none !important;
-  }
-
+  } */
+/* 
   .header-navbar span {
     display: none;
-  }
+  } */
 
   .header-navbar .container {
     width: 100%;

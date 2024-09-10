@@ -17,16 +17,9 @@ main .container {
 
   width: 100%;
 
-  margin-top: 5%;
+  top: calc(6rem - 4.5rem);
 
   position: relative;
-}
-
-main .container .right {
-  height: max-content;
-
-  top: var(--sticky-top-right);
-  position: sticky;
 }
 
 .middle {
@@ -40,7 +33,7 @@ img {
   object-fit: cover;
 }
 
-main .container .left {
+main .container .left, main .container .right {
   height: max-content;
 
   top: var(--sticky-top-left);

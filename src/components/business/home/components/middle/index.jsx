@@ -84,6 +84,7 @@ const HomeMiddle = ({ socket }) => {
             What's in your mind, {currentUser?.username || " user"}?
           </div>
         </div>
+        
         <div className="submit d-flex align-items-center" title="Đăng bài viết">
           {currentUser ? (
             <button
