@@ -15,6 +15,23 @@ const RouteNames = {
   COOKIE_POLICY: "/cookie-policy",
   PRIVACY_POLICY: "/privacy-policy",
   EXPLORE: "/explore",
+  INSTAGRAM: "https://www.instagram.com/",
+  FACEBOOK: "URL_ADDRESS",
+  TWITTER: "https://twitter.com/",
+  YOUTUBE: "https://www.youtube.com/channel/@",
+  GITHUB: "https://github.com/",
+  LINKEDIN: "https://www.linkedin.com/in/",
+  PINTEREST: "https://www.pinterest.com/",
+  TIKTOK: "URL_ADDRESS",
+  WEIBO: "URL_ADDRESS",
+  WECHAT: "URL_ADDRESS",
+  QQ: "URL_ADDRESS",
+  TWITCH: "https://www.twitch.tv/",
+  TELEGRAM: "URL_ADDRESS",
+  DISCORD: "URL_ADDRESS",
+  SKYPE: "URL_ADDRESS",
+  WHATSAPP: "URL_ADDRESS",
+  FACEBOOK_MESSENGER: "URL_ADDRESS",
 };
 
 export { RouteNames };

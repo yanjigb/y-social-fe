@@ -206,7 +206,7 @@ const PersonalFollow = ({ userInfo, socket }) => {
 
     return (
       <div
-        className="add-stories text-white py-1 px-4 d-flex justify-content-center align-items-center"
+        className="add-stories text-white py-1 px-4 d-flex justify-content-center align-items-center rounded-3"
         onClick={handleClick}
       >
         {label}

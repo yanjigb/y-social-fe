@@ -25,6 +25,8 @@ main .container {
 .middle {
   grid-column-start: 2;
   grid-column-end: 4;
+
+  max-width: 100%;
 }
 
 img {

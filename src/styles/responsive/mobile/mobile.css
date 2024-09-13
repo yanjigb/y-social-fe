@@ -1,7 +1,7 @@
 @import "./home.css";
 @import "./layout/navbar.css";
 
-@media screen and (max-width: 360px) {
+@media screen and (max-width: 445px) {
   .navbar {
     width: 130%;
   }
@@ -13,5 +13,10 @@
 
   .customize-theme .card {
     width: 120vw !important;
+  }
+
+  .header-title .header-title-container .avatar {
+    width: 6.25rem !important;
+    height: 6.25rem !important;
   }
 }

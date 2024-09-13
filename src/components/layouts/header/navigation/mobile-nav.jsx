@@ -29,6 +29,8 @@ import { useCurrentUser } from "../../../../hooks";
 import { RouteNames } from "../../../../constant/routes";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Sidebar from "../../sidebar";
+import MobileCustomTheme from "../components/mobile-custom-theme";
+import MobileSidebar from "../components/mobile-sidebar";
 
 const MobileNav = ({ title, link, isSearch = true }) => {
     const [users, setUsers] = useState([]);
@@ -110,49 +112,11 @@ const MobileNav = ({ title, link, isSearch = true }) => {
 
                         <Button type="button" onClick={toggleMenu} className="rounded-0 btn-focus-none border-0 shadow-none bg-transparent fs-3 text-white"><FontAwesomeIcon icon="fa-solid fa-bars" /></Button>
                     </div>
+                    
+                    <MobileSidebar show={value} onToggleMenu={toggleMenu} onToggleTheme={handleToggleTheme} />
+                    <MobileCustomTheme toggleTheme={toggleTheme} onToggleTheme={handleToggleTheme} />
 
-                    <Offcanvas show={value} onHide={toggleMenu} className="text-dark">
-                        <Offcanvas.Header closeButton >
-                            <Offcanvas.Title>Yanji Social</Offcanvas.Title>
-                        </Offcanvas.Header>
-
-                        <Offcanvas.Body>
-                            <ListGroup>
-                                <ListGroup.Item className="my-3 border-0 shadow-sm d-flex align-items-center gap-4" action href={RouteNames.HOME}>
-                                    <Home className="sidebar-icon" size={20} />
-                                    <h3 className="mb-0">Home</h3>
-                                </ListGroup.Item>
-                                <ListGroup.Item className="my-3 border-0 shadow-sm d-flex align-items-center gap-4" action href={RouteNames.NOTIFICATION}>
-                                    <Bell className="sidebar-icon" size={20} />
-                                    <h3 className="mb-0">Notification</h3>
-                                </ListGroup.Item>
-                                <ListGroup.Item className="my-3 border-0 shadow-sm d-flex align-items-center gap-4" action href={RouteNames.MESSAGE_PAGE}>
-                                    <MessageSquare className="sidebar-icon" size={20} />
-                                    <h3 className="mb-0">Message</h3>
-                                </ListGroup.Item>
-                                <ListGroup.Item className="my-3 border-0 shadow-sm d-flex align-items-center gap-4" action href={RouteNames.BOOKMARKS}>
-                                    <Bookmark className="sidebar-icon" size={20} />
-                                    <h3 className="mb-0">Bookmarks</h3>
-                                </ListGroup.Item>
-                                <ListGroup.Item className="my-3 border-0 shadow-sm d-flex align-items-center gap-4" action href={RouteNames.MEETING} target="_blank">
-                                    <Video className="sidebar-icon" size={20} />
-                                    <h3 className="mb-0">Meeting</h3>
-                                </ListGroup.Item>
-                                <ListGroup.Item className="my-3 border-0 shadow-sm d-flex align-items-center gap-4" onClick={handleToggleTheme}>
-                                    <Palette className="sidebar-icon" size={20} />
-                                    <h3 className="mb-0">Theme</h3>
-                                </ListGroup.Item>
-                                {currentUser?._id === Global.ADMIN_ID && (
-                                    <ListGroup.Item className="my-3 border-0 shadow-sm d-flex align-items-center gap-4" action href={RouteNames.ADMIN}>
-                                        <LayoutDashboard className="sidebar-icon" size={20} />
-                                        <h3 className="mb-0">Admin Dashboard</h3>
-                                    </ListGroup.Item>
-                                )}
-                            </ListGroup>
-                        </Offcanvas.Body>
-                    </Offcanvas>
-
-                    <Offcanvas show={toggleTheme} onHide={handleToggleTheme} placement="bottom">
+                    {/* <Offcanvas show={toggleTheme} onHide={handleToggleTheme} placement="bottom" className="text-dark">
                         <Offcanvas.Header closeButton>
                             <Offcanvas.Title>Offcanvas</Offcanvas.Title>
                         </Offcanvas.Header>
@@ -160,7 +124,7 @@ const MobileNav = ({ title, link, isSearch = true }) => {
                             Some text as placeholder. In real life you can have the elements you
                             have chosen. Like, text, images, lists, etc.
                         </Offcanvas.Body>
-                    </Offcanvas>
+                    </Offcanvas> */}
 
                     {/* {isSearch && (
                         <div className="search-bar d-flex align-items-center position-relative">

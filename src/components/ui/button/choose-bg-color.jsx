@@ -8,7 +8,7 @@ const ChooseBgBtn = ({ bgName, bgTheme, content, onBackgroundChange }) => {
       className={bgName + (bgTheme === bgName ? " active" : "")}
       onClick={() => onBackgroundChange(bgName)}
     >
-      <span></span>
+      <span className="d-none d-md-block"></span>
       <h5 htmlFor={bgName}>{content}</h5>
     </div>
   );

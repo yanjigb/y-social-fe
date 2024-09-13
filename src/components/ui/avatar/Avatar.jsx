@@ -3,14 +3,16 @@ import { LOGO_YANJI_SOCIAL } from "../../../assets";
 import Global from "../../../constant/global";
 import { getUserByID } from "../../../redux/request/userRequest";
 import { useDispatch } from "react-redux";
+import clsx from "clsx";
 
 const Avatar = ({
   imageSrc = "",
   label = "",
-  customClass = "",
   customAttrs,
   fontSize,
   userId = "",
+  size = "",
+  className
 }) => {
   const dispatch = useDispatch();
   const [styleAvatar, setStyleAvatar] = useState("");
@@ -23,10 +25,13 @@ const Avatar = ({
 
   return (
     <div
-      className={`
-        profile-pic text-white 
-        ${userId === Global.ADMIN_ID && "border border-3 border-danger"} 
-        ${fontSize || "fs-5"} text-uppercase w-100 h-100 ${customClass}`}
+      className={clsx(
+        'text-white text-uppercase w-100 h-100 d-flex justify-content-center align-items-center',
+        userId === Global.ADMIN_ID && 'border border-3 border-danger',
+        fontSize || 'fs-5',
+        size || "profile-pic",
+        className
+      )}
       style={{
         border: `2px solid ${styleAvatar ? `${styleAvatar}` : "white"}`,
       }}
@@ -40,6 +45,8 @@ const Avatar = ({
           src={imageSrc || LOGO_YANJI_SOCIAL}
           alt={label}
           className="w-100"
+          width="180"
+          height="180"
         />
       ) : (
         <>{label.split("")[0]}</>

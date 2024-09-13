@@ -14,12 +14,12 @@ import isEqual from "react-fast-compare";
 
 import "../styles/personalIntroduce.css";
 
-import { PersonalGallery } from "../components";
 import { getUserByID } from "../../../../redux/request/userRequest";
 import { SocialBio } from "../../../../components";
 import SocketEvent from "../../../../constant/socket-event";
 import Global from "../../../../constant/global";
 import { useCurrentUser } from "../../../../hooks";
+import { RouteNames } from "../../../../constant/routes";
 
 const PersonalIntroduce = ({
   onUpdateBioPopup,
@@ -64,43 +64,43 @@ const PersonalIntroduce = ({
       id: 1,
       username: socialBio?.insta,
       icon: faInstagram,
-      href: "https://www.instagram.com/" + socialBio?.insta,
+      href: RouteNames.INSTAGRAM + socialBio?.insta,
     },
     {
       id: 2,
       username: socialBio?.linkedin,
       icon: faLinkedin,
-      href: "https://www.linkedin.com/in/" + socialBio?.linkedin,
+      href: RouteNames.LINKEDIN + socialBio?.linkedin,
     },
     {
       id: 3,
       username: socialBio?.github,
       icon: faGithub,
-      href: "https://github.com/" + socialBio?.github,
+      href: RouteNames.GITHUB + socialBio?.github,
     },
     {
       id: 4,
       username: socialBio?.pinterest,
       icon: faPinterest,
-      href: "https://www.pinterest.com/" + socialBio?.pinterest,
+      href: RouteNames.PINTEREST + socialBio?.pinterest,
     },
     {
       id: 5,
       username: socialBio?.youtube,
       icon: faYoutube,
-      href: "https://www.youtube.com/channel/@" + socialBio?.youtube,
+      href: RouteNames.YOUTUBE + socialBio?.youtube,
     },
     {
       id: 6,
       username: socialBio?.twitter,
       icon: faTwitter,
-      href: "https://twitter.com/" + socialBio?.twitter,
+      href: RouteNames.TWITTER + socialBio?.twitter,
     },
     {
       id: 7,
       username: socialBio?.twitch,
       icon: faTwitch,
-      href: "https://www.twitch.tv/" + socialBio?.twitch,
+      href: RouteNames.TWITCH + socialBio?.twitch,
     },
   ];
 
@@ -149,8 +149,6 @@ const PersonalIntroduce = ({
           Edit Details
         </button>
       )}
-
-      <PersonalGallery />
     </>
   );
 };

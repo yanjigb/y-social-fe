@@ -70,7 +70,7 @@ const PersonalGeneralInfo = ({ userInfo, socket }) => {
   return (
     <>
       <div className="px-5 header-title">
-        <div className="d-flex align-items-center justify-content-between header-title-container w-100 h-100">
+        <div className="d-flex flex-column flex-md-row align-items-md-center justify-content-md-between header-title-container w-100 h-100">
           <div
             className="position-relative"
             onClick={() => userInfo?._id === currentUser?._id && handlePopup()}
@@ -83,11 +83,12 @@ const PersonalGeneralInfo = ({ userInfo, socket }) => {
                 label={userInfo?.username}
                 userId={userInfo?._id}
                 fontSize={"fs-1"}
-                customClass="fw-bold"
+                size="avatar"
+                className="fw-bold"
               />
             </div>
             {userInfo?._id === currentUser?._id && (
-              <span className="position-absolute border border-primary rounded-circle p-3 edit-avatar">
+              <span className="position-absolute border border-primary rounded-circle p-3 edit-avatar d-none d-md-block">
                 <Camera size={20} />
               </span>
             )}
@@ -95,7 +96,7 @@ const PersonalGeneralInfo = ({ userInfo, socket }) => {
 
           <div
             data-title="information"
-            className="w-100 ms-4 mt-5 d-flex justify-content-between"
+            className="w-100 ms-4 mt-md-5 d-flex flex-column justify-content-between"
           >
             <span>
               <div className="d-flex align-items-center">

@@ -47,7 +47,7 @@ const PersonalHeader = ({ userInfo, socket }) => {
           />
         )}
       </span>
-
+{/* 
       <div
         ref={snackBar}
         id="snackbar"
@@ -57,7 +57,7 @@ const PersonalHeader = ({ userInfo, socket }) => {
         className="fw-bold"
       >
         Update cover successfully
-      </div>
+      </div> */}
     </div>
   );
 };
