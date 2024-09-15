@@ -1,8 +1,9 @@
 import { memo } from "react";
 import { LOGO_YANJI_SOCIAL } from "../../../assets";
 import isEqual from "react-fast-compare";
+import clsx from "clsx";
 
-const PreviewImage = ({ imgSrc, width, heigth }) => {
+const PreviewImage = ({ imgSrc, width, heigth, className }) => {
   return imgSrc ? (
     <img
       src={imgSrc}
@@ -14,10 +15,10 @@ const PreviewImage = ({ imgSrc, width, heigth }) => {
       height={200}
       style={{
         aspectRatio: "16/9",
-        objectFit: "cover",
         width: width,
         height: heigth,
       }}
+      className={clsx("object-fit-cover", className)}
     />
   ) : (
     <img
@@ -30,10 +31,10 @@ const PreviewImage = ({ imgSrc, width, heigth }) => {
       height={200}
       style={{
         aspectRatio: "16/9",
-        objectFit: "cover",
         width: width,
         height: heigth,
       }}
+      className={clsx("object-fit-cover", className)}
     />
   );
 };

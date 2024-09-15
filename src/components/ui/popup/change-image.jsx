@@ -11,6 +11,7 @@ import { updateUser } from "../../../redux/request/userRequest";
 import { useCurrentUser, useUploadImage } from "../../../hooks";
 import Global from "../../../constant/global";
 import isEqual from "react-fast-compare";
+import clsx from "clsx";
 
 const ChangeImagePopup = ({
   title = "Title",
@@ -19,7 +20,7 @@ const ChangeImagePopup = ({
   isCover = false,
   imgSrc = "imgSrc",
   onClose,
-  message,
+  className,
   socket,
 }) => {
   const [avatar, setAvatar] = useState("");
@@ -99,7 +100,7 @@ const ChangeImagePopup = ({
   return (
     !isSuccess && (
       <>
-        <div className="change-img__popup d-flex justify-content-center align-items-center animate__animated animate__fadeIn">
+        <div className={clsx("change-img__popup d-flex justify-content-center align-items-center animate__animated animate__fadeIn", className)}>
           <div
             className="change-img__popup-container d-flex justify-content-center align-items-center flex-column p-4 mt-5"
             data-change-image-popup

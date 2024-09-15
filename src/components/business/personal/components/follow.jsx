@@ -1,10 +1,9 @@
 import { io } from "socket.io-client";
 import { useDispatch } from "react-redux";
 import { useState, useEffect, useCallback, memo } from "react";
-import { useNavigate } from "react-router-dom";
 import isEqual from "react-fast-compare";
 
-import { followUser, getUserByID } from "../../../../redux/request/userRequest";
+import { getUserByID } from "../../../../redux/request/userRequest";
 import { createRoom } from "../../../../redux/request/roomRequest";
 import { NotiType } from "../../../../constant/notification";
 import { pushNewNotification } from "../../../../redux/request/notificationRequest";
@@ -13,7 +12,10 @@ import { PersonalSendMsgBtn } from "./index";
 import SocketEvent from "../../../../constant/socket-event";
 import Global from "../../../../constant/global";
 import { useCurrentUser } from "../../../../hooks";
-import { RouteNames } from "../../../../constant/routes";
+import clsx from "clsx";
+import FollowBtn from "./follow-btn";
+import UpdateAvatarBtn from "./update-avatar.btn";
+import { Button } from "react-bootstrap";
 
 const PersonalFollow = ({ userInfo, socket }) => {
   const [active, setActive] = useState("");
@@ -21,37 +23,7 @@ const PersonalFollow = ({ userInfo, socket }) => {
   const [isApprover, setIsApprover] = useState(false);
   const dispatch = useDispatch();
   const currentUser = useCurrentUser();
-  const navigate = useNavigate();
-
-  const handleFollow = () => {
-    if (currentUser) {
-      const updatedUser = {
-        userID: userInfo?._id,
-        newFollower: currentUser?._id,
-      };
-
-      followUser(updatedUser, dispatch)
-        .then((data) => {
-          if (data) {
-            const { userAccept, userRequest } = data.data;
-
-            socket = io(Global.SOCKET_URL);
-
-            socket.emit("follow", {
-              // add author of current account to update friendRequests list
-              sender: userRequest?._id,
-              // add user route page to checking is this user send request?
-              userRoute: userAccept?._id,
-            });
-          }
-        })
-        .catch((err) => {
-          console.error("Failed to follow", err);
-        });
-    } else {
-      navigate(RouteNames.LOGIN);
-    }
-  };
+  const [modalShow, setModalShow] = useState(false);
 
   const handleUserGotFollowed = (sender, userRoute) => {
     getUserByID(userRoute, dispatch).then((data) => {
@@ -127,6 +99,8 @@ const PersonalFollow = ({ userInfo, socket }) => {
     });
   };
 
+  const handleOpenSetting = () => setActive("SETTINGS");
+
   const handleSocket = {
     follow: useCallback(
       (data) => {
@@ -180,40 +154,6 @@ const PersonalFollow = ({ userInfo, socket }) => {
     };
   }, [currentUser?._id, dispatch, userInfo?._id]);
 
-  const renderFollowBtn = () => {
-    const isCurrentUser = userInfo?._id === currentUser?._id;
-
-    let label, handleClick;
-
-    // author of current account who can accept friend request
-    if (isApprover) {
-      label = "Follow back";
-      handleClick = handleFollow;
-    }
-    // user who author of current account
-    else if (isCurrentUser) {
-      label = "Edit profile";
-      handleClick = () => setActive("SETTINGS");
-    } else if (isFollow) {
-      label = "Following";
-      handleClick = handleFollow;
-    }
-    // user who not friend
-    else {
-      label = "Follow";
-      handleClick = handleFollow;
-    }
-
-    return (
-      <div
-        className="add-stories text-white py-1 px-4 d-flex justify-content-center align-items-center rounded-3"
-        onClick={handleClick}
-      >
-        {label}
-      </div>
-    );
-  };
-
   const createNewMsg = () => {
     const roomInfo = {
       sender: currentUser?._id,
@@ -231,8 +171,7 @@ const PersonalFollow = ({ userInfo, socket }) => {
   const renderSettingPopup = () => {
     return (
       <div
-        className="customize-theme"
-        hidden={active !== "SETTINGS"}
+        className={clsx("customize-theme", active !== "SETTINGS" && "d-none")}
         onClick={() => setActive("")}
       >
         <Setting close={handleClosePopup} />
@@ -240,13 +179,27 @@ const PersonalFollow = ({ userInfo, socket }) => {
     );
   };
 
+  const handleToggleModal = () => {
+        setModalShow(!modalShow);
+  }
+
   return (
     <div className="w-100 d-flex justify-content-between align-items-center flex-wrap">
-      <div className="d-flex align-items-center">
+      <div className="d-flex align-items-center gap-3">
         {userInfo?._id !== currentUser?._id && (
           <PersonalSendMsgBtn onClick={createNewMsg} />
         )}
-        {renderFollowBtn()}
+        
+        <div className="row gap-4">
+          <FollowBtn userInfo={userInfo} socket={socket} isApprover={isApprover} isFollow={isFollow} onOpenSetting={handleOpenSetting} className="col-6" />
+          {userInfo?._id === currentUser?._id && <UpdateAvatarBtn userInfo={userInfo} socket={socket} dispatch={dispatch} title="Update Avatar" className="col-6" show={modalShow} onShow={handleToggleModal} >
+              <Button variant="primary" onClick={handleToggleModal} className="add-stories bg-transparent py-3 px-4 d-flex justify-content-center align-items-center rounded-3" style={{
+                  color: 'var(--color-dark)'
+              }}>
+                  Update Avatar
+              </Button>
+          </UpdateAvatarBtn>}
+        </div>
       </div>
 
       {renderSettingPopup()}
