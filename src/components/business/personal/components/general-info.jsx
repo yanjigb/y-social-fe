@@ -75,7 +75,7 @@ const PersonalGeneralInfo = ({ userInfo, socket }) => {
             <div
               className="position-relative"
             >
-              <UpdateAvatarBtn userInfo={userInfo} socket={socket} dispatch={dispatch} show={openPopup} onShow={handlePopup}>
+              <UpdateAvatarBtn userInfo={userInfo} socket={socket} dispatch={dispatch} show={openPopup} onShow={handlePopup} isAvatar={true}>
                   <div
                     className={`avatar d-flex justify-content-center align-items-center text-white ${userInfo?._id === Global.ADMIN_ID && ""}`}
                     onClick={handlePopup}

@@ -1,48 +1,46 @@
 import { memo } from "react";
 import Comments from "../comment/Comments";
 import isEqual from "react-fast-compare";
+import { Modal } from "react-bootstrap";
 
 const DetailsPost = ({
-  onPopup = () => {},
-  extendClass,
   children,
   author,
   postID,
   socket,
+
+  show,
+  onHide
 }) => {
   return (
-    <div
-      onClick={(e) => onPopup(e)}
-      className={
-        "d-flex justify-content-center align-items-center post-popup__container text-white " +
-        extendClass
-      }
-    >
-      <div
-        className="d-flex align-items-center flex-column h-75 w-50 py-3 px-4"
-        onClick={(e) => e.stopPropagation()}
-        style={{
-          borderRadius: "1rem",
-          background: "var(--color-primary-light)",
-          color: "var(--color-dark)",
-        }}
-        data-detail-post
+    <>
+
+      <Modal
+        show={show}
+        onHide={onHide}
+        size="lg"
+        aria-labelledby="contained-modal-title-vcenter"
+        centered
+        className="text-black"
       >
-        <p className="fs-3 fw-bold mb-1 text-white">
-          Bài viết từ {author.username}
-        </p>
-        <div
-          className="p-2 w-100 h-100"
+        <Modal.Header closeButton onClick={(e) => e.stopPropagation()}>
+          <p className="fs-3 fw-bold mb-1">
+            Bài viết từ {author.username}
+          </p>
+        </Modal.Header>
+
+        <Modal.Body onClick={(e) => e.stopPropagation()} 
           style={{
-            overflowY: "scroll",
-            borderRadius: "1rem",
+            background: "var(--color-white)",
+            color: "var(--color-dark)",
           }}
-        >
+          >
           {children}
+
           <Comments postID={postID} author={author} socket={socket} />
-        </div>
-      </div>
-    </div>
+        </Modal.Body>
+      </Modal>
+    </>
   );
 };
 

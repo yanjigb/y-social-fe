@@ -192,7 +192,7 @@ const PersonalFollow = ({ userInfo, socket }) => {
         
         <div className="row gap-4">
           <FollowBtn userInfo={userInfo} socket={socket} isApprover={isApprover} isFollow={isFollow} onOpenSetting={handleOpenSetting} className="col-6" />
-          {userInfo?._id === currentUser?._id && <UpdateAvatarBtn userInfo={userInfo} socket={socket} dispatch={dispatch} title="Update Avatar" className="col-6" show={modalShow} onShow={handleToggleModal} >
+          {userInfo?._id === currentUser?._id && <UpdateAvatarBtn userInfo={userInfo} socket={socket} dispatch={dispatch} title="Update Avatar" className="col-6" show={modalShow} onShow={handleToggleModal} isAvatar={true}>
               <Button variant="primary" onClick={handleToggleModal} className="add-stories bg-transparent py-3 px-4 d-flex justify-content-center align-items-center rounded-3" style={{
                   color: 'var(--color-dark)'
               }}>

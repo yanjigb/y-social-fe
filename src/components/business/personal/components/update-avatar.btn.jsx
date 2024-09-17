@@ -9,12 +9,12 @@ import toast from "react-hot-toast";
 import { io } from "socket.io-client";
 import UpdateAvatarModal from "./update-avatar-modal";
 
-function UpdateAvatarBtn({ userInfo, socket, dispatch, children, show, onShow }) {
+function UpdateAvatarBtn({ userInfo, socket, dispatch, children, show, onShow, isCover = false, isAvatar = false }) {
     const currentUser = useCurrentUser();
-    const { _id, profilePicture } = userInfo
+    const { _id, profilePicture, coverPicture } = userInfo
     const isCurrentUser = _id === currentUser?._id;
     const [previewImg, setPreviewImg] = useState("");
-    const [avatar, setAvatar] = useState("");
+    const [media, setMedia] = useState("");
     const [isLoading, setIsLoading] = useState(false);
     const cloudStorage = useUploadImage;
 
@@ -27,13 +27,20 @@ function UpdateAvatarBtn({ userInfo, socket, dispatch, children, show, onShow })
     const onUpdate = async () => {
         setIsLoading(true);
 
-        const result = await cloudStorage(avatar);
-        const newAvatar = result?.secure_url;
+        const result = await cloudStorage(media);
+        const newMedia = result?.secure_url;
 
         const newUpdateUser = {
             userID: currentUser._id,
-            profilePicture: newAvatar
         };
+
+        if(isCover) {
+            newUpdateUser.coverPicture = newMedia
+        }
+
+        if(isAvatar) {
+            newUpdateUser.profilePicture = newMedia
+        }
 
         updateUser(newUpdateUser, dispatch)
             .then((data) => {
@@ -63,18 +70,18 @@ function UpdateAvatarBtn({ userInfo, socket, dispatch, children, show, onShow })
             });
     }
 
-    const handleUploadAvatar = (e) => {
+    const handleUploadMedia = (e) => {
         const file = e.target.files[0];
 
         const previewImgURL = URL.createObjectURL(file);
 
         setPreviewImg(previewImgURL);
-        setAvatar(file);
+        setMedia(file);
     };
 
     return <>
         {children}
-        {isCurrentUser && <UpdateAvatarModal title="Update Avatar" previewImg={previewImg} profilePicture={profilePicture} onUpdate={onUpdate} onToggle={onShow} isLoading={isLoading} show={show} onUploadAvatar={handleUploadAvatar} />}
+        {isCurrentUser && <UpdateAvatarModal title={isAvatar ? "Update Avatar" : "Update Cover"} previewImg={previewImg} userMedia={isAvatar ? profilePicture : coverPicture} onUpdate={onUpdate} onToggle={onShow} isLoading={isLoading} show={show} onUploadAvatar={handleUploadMedia} />}
     </>
 }
 

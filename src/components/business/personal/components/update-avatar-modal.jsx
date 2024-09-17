@@ -3,7 +3,7 @@ import isEqual from "react-fast-compare";
 import { PreviewImage } from "../../../ui";
 import { Button, Modal } from "react-bootstrap";
 
-function UpdateAvatarModal({ previewImg, profilePicture, title, onUploadAvatar, onUpdate, onToggle, isLoading, show }) {
+function UpdateAvatarModal({ previewImg, userMedia, title, onUploadAvatar, onUpdate, onToggle, isLoading, show }) {
     const avatarImg = useRef(null);
     
     return (
@@ -22,7 +22,7 @@ function UpdateAvatarModal({ previewImg, profilePicture, title, onUploadAvatar, 
             </Modal.Header>
             <Modal.Body>
                 <div className="d-flex justify-content-center">
-                    <PreviewImage imgSrc={previewImg || profilePicture} width={200} heigth={200} className="ratio-1x1 border border-4 rounded-circle" />
+                    <PreviewImage imgSrc={previewImg || userMedia} width={200} heigth={200} className="ratio-1x1 border border-4 rounded-circle" />
                 </div>
 
                 <Button
