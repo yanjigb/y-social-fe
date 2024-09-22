@@ -2,19 +2,22 @@ import { memo, useEffect, useRef, useState } from "react";
 import { UilSetting } from "@iconscout/react-unicons";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { CSVLink } from "react-csv";
-import { X } from "lucide-react";
 import isEqual from "react-fast-compare";
 
 import { logout } from "../../../redux/request/authRequest";
 import { getUserByID, updateUser } from "../../../redux/request/userRequest";
 import { useCurrentUser } from "../../../hooks";
+import { Button, Modal } from "react-bootstrap";
+import PublicInformation from "./public-information";
+import toast from "react-hot-toast";
+import ManagerAccount from "./manager-account";
+import SecurityAndData from "./security-and-data";
+import Logout from "./logout";
 
 // TODO CHANGE BG DANGER OF POPUP WHEN UPDATE USER FAILED
 
-const Setting = ({ close }) => {
-  const [active, setActive] = useState("PUBLIC");
-  const exportData = useRef(null);
+const Setting = ({ close, onHide, show }) => {
+  const [active, setActive] = useState("");
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [userInfo, setUserInfo] = useState({
@@ -27,15 +30,6 @@ const Setting = ({ close }) => {
   });
   const [isChange, setIsChange] = useState(false);
   const currentUser = useCurrentUser();
-
-  const csvData = [
-    ["username", "password", "email"],
-    [currentUser?.username, currentUser?.password, currentUser?.email],
-  ];
-
-  const handleExportData = () => {
-    exportData.current.link.click();
-  };
 
   useEffect(() => {
     getUserByID(currentUser?._id, dispatch).then((data) => {
@@ -51,6 +45,7 @@ const Setting = ({ close }) => {
         if (data) {
           const { username, firstName, lastName, email, password, bio } =
             data.user;
+
           if (
             username !== userInfo.username ||
             firstName !== userInfo.firstName ||
@@ -60,6 +55,7 @@ const Setting = ({ close }) => {
             bio !== userInfo.bio
           ) {
             setIsChange(true);
+
           }
         }
       });
@@ -68,11 +64,12 @@ const Setting = ({ close }) => {
   const snackBar = useRef(null);
 
   const handleUpdateUser = () => {
+    if (!isChange) return;
+
     getUserByID(currentUser?._id, dispatch).then((data) => {
       if (data) {
         const { username, firstName, lastName, email, password, bio } =
           data.user;
-
         if (
           username !== userInfo.username ||
           firstName !== userInfo.firstName ||
@@ -92,232 +89,20 @@ const Setting = ({ close }) => {
           };
 
           updateUser(updatedUser, dispatch)
-            .then(() => {
-              if (snackBar.current) {
-                const sb = snackBar.current;
-                sb.className = "show";
-
-                setTimeout(() => {
-                  sb.className = sb.className.replace("show", "");
-                }, 3000);
-              }
+            .then((data) => {
+              toast.success("Update successfully");
             })
             .catch((err) => {
               console.error("Failed to update", err);
+              toast.error("Something went wrong");
+            }).finally(() => {
+              setActive("");
               setIsChange(false);
-            });
+            }
+            );
         }
       }
     });
-  };
-
-  const renderPublicInfoContent = () => {
-    return (
-      <div
-        className="w-100"
-        style={{
-          paddingRight: "7rem",
-        }}
-      >
-        <div className="d-flex justify-content-between">
-          <div className="d-flex flex-column align-items-start">
-            <label htmlFor="firstname" className="mb-2 fw-light">
-              Firstname
-            </label>
-            <input
-              type="text"
-              id="firstname"
-              className="p-2 px-3"
-              style={{
-                borderRadius: "0.5rem",
-              }}
-              defaultValue={userInfo?.firstName}
-              placeholder="Your firstname"
-              onChange={(e) =>
-                setUserInfo((prevUser) => ({
-                  ...prevUser,
-                  firstName: e.target.value,
-                }))
-              }
-              maxLength={100}
-            />
-          </div>
-          <div className="d-flex flex-column align-items-start">
-            <label htmlFor="lastname" className="mb-2 fw-light">
-              Lastname
-            </label>
-            <input
-              type="text"
-              id="lastname"
-              className="p-2 px-3"
-              style={{
-                borderRadius: "0.5rem",
-              }}
-              defaultValue={userInfo?.lastName}
-              placeholder="Your lastname"
-              onChange={(e) =>
-                setUserInfo((prevUser) => ({
-                  ...prevUser,
-                  lastName: e.target.value,
-                }))
-              }
-              maxLength={100}
-            />
-          </div>
-        </div>
-        <div className="d-flex flex-column align-items-start mt-2">
-          <label htmlFor="bio" className="mb-2 fw-light">
-            Bio
-          </label>
-          <textarea
-            type="text"
-            id="bio"
-            className="w-100 p-2 px-3"
-            style={{
-              borderRadius: "0.5rem",
-              height: "7rem",
-              resize: "none",
-            }}
-            defaultValue={userInfo?.bio}
-            onChange={(e) =>
-              setUserInfo((prevUser) => ({
-                ...prevUser,
-                bio: e.target.value,
-              }))
-            }
-          ></textarea>
-        </div>
-        <div className="mt-2 d-flex flex-column align-items-start">
-          <label htmlFor="nickname" className="fw-light mb-2">
-            Nickname ( @{userInfo?.username} )
-          </label>
-          <input
-            type="text"
-            id="nickname"
-            className="w-100 p-2 px-3"
-            style={{
-              borderRadius: "0.5rem",
-            }}
-            defaultValue={userInfo?.username}
-            onChange={(e) =>
-              setUserInfo((prevUser) => ({
-                ...prevUser,
-                username: e.target.value,
-              }))
-            }
-            maxLength={20}
-          />
-        </div>
-      </div>
-    );
-  };
-
-  const pwd = useRef(null);
-
-  const showPwd = () => {
-    if (pwd.current) {
-      if (pwd.current.type === "password") {
-        pwd.current.type = "text";
-      } else {
-        pwd.current.type = "password";
-      }
-    }
-  };
-
-  const renderManagerAccountContent = () => {
-    return (
-      <>
-        <div className="d-flex flex-column align-items-start mb-4">
-          <label className="mb-2" htmlFor="email">
-            Email (private)
-          </label>
-          <input
-            type="email"
-            placeholder="Email"
-            id="email"
-            className="p-2 px-3 w-100"
-            style={{
-              borderRadius: "0.5rem",
-            }}
-            defaultValue={userInfo?.email}
-            onChange={(e) =>
-              setUserInfo((prevUser) => ({
-                ...prevUser,
-                email: e.target.value,
-              }))
-            }
-          />
-        </div>
-
-        <div className="d-flex flex-column align-items-start">
-          <label className="mb-2" htmlFor="Password">
-            Password
-          </label>
-          <input
-            type="password"
-            id="Password"
-            className="p-2 px-3 w-100"
-            style={{
-              borderRadius: "0.5rem",
-            }}
-            defaultValue={userInfo?.password}
-            ref={pwd}
-            onChange={(e) =>
-              setUserInfo((prevUser) => ({
-                ...prevUser,
-                password: e.target.value,
-              }))
-            }
-            maxLength={100}
-          />
-          <div className="d-flex align-items-center mt-2 mb-3">
-            <input
-              id="show-pwd"
-              type="checkbox"
-              onClick={showPwd}
-              className="me-2"
-              style={{
-                cursor: "pointer",
-              }}
-            />
-            <label
-              htmlFor="show-pwd"
-              style={{
-                cursor: "pointer",
-              }}
-            >
-              Show Password
-            </label>
-          </div>
-        </div>
-      </>
-    );
-  };
-
-  const renderSecureContent = () => {
-    return (
-      <div className="d-flex flex-column align-items-end">
-        <>
-          <div className="fs-3 fw-bold mb-2 w-100">Download your data</div>
-          <p className="text-start">
-            Bạn có thể yêu cầu tải xuống thông tin Yanji Social của mình bất kỳ
-            lúc nào. Yêu cầu của bạn sẽ được nhà cung cấp bên thứ ba của chúng
-            tôi là Yanji Auth xác minh.
-          </p>
-        </>
-        <div
-          role="button"
-          className="p-3 text-white hover-bg"
-          style={{
-            background: "var(--color-primary)",
-            borderRadius: "0.5rem",
-          }}
-          onClick={() => handleExportData()}
-        >
-          Download your data
-        </div>
-      </div>
-    );
   };
 
   const handleLogout = () => {
@@ -325,165 +110,119 @@ const Setting = ({ close }) => {
     close();
   };
 
-  const renderLogoutContent = () => {
-    return (
-      <div className="d-flex flex-column align-items-center">
-        <h2 className="fw-bold">Logout now ?</h2>
-        <div
-          role="button"
-          className="mt-4 bg-danger p-3 px-4 text-white hover-bg"
-          style={{
-            width: "max-content",
-            borderRadius: "0.5rem",
-          }}
-          onClick={() => handleLogout()}
-        >
-          Logout
-        </div>
-      </div>
-    );
-  };
+  // const renderLogoutContent = () => {
+  //   return (
+  //     <div className="d-flex flex-column align-items-center">
+  //       <h2 className="fw-bold">Logout now ?</h2>
+  //       <div
+  //         role="button"
+  //         className="mt-4 bg-danger p-3 px-4 text-white hover-bg"
+  //         style={{
+  //           width: "max-content",
+  //           borderRadius: "0.5rem",
+  //         }}
+  //         onClick={() => handleLogout()}
+  //       >
+  //         Logout
+  //       </div>
+  //     </div>
+  //   );
+  // };
+
+  const handleCloseModal = () => setActive("");
 
   return (
     <>
-      <div
-        className="card animate__animated animate__fadeInLeft d-grid w-50"
-        onClick={(e) => {
-          if (e.currentTarget.classList.contains("card")) {
-            e.stopPropagation();
-          }
-        }}
+      <Modal
+        show={show}
+        onHide={onHide}
+        centered
+        aria-labelledby="contained-modal-title-vcenter"
       >
-        <div
-          className="mb-4 d-flex align-items-center justify-content-between"
-          data-setting
-        >
-          <div className="fs-3 text-uppercase d-flex align-items-center">
-            <UilSetting /> <span className="ms-2">Setting</span>
+        <Modal.Header closeButton>
+          <div className="fs-3 text-black text-uppercase d-flex align-items-center fs-2">
+            <UilSetting /> <h2 className="ms-2 mb-0">Setting</h2>
           </div>
-          <div
-            role="button"
-            className="p-2 px-3 hover-bg text-danger"
-            onClick={() => {
-              close();
-              setActive("PUBLIC");
-            }}
-          >
-            <X size={20} />
-          </div>
-        </div>
+        </Modal.Header>
 
-        <div className="row h-100">
-          <div
-            className="col"
-            style={{
-              borderRight: "1px solid",
-            }}
-            data-public-info
-          >
-            <div
-              role="button"
-              className="d-flex align-items-center p-3 hover-bg"
+        <Modal.Body
+          style={{
+            background: "var(--color-white)",
+            color: "var(--color-dark)"
+          }}
+          className="p-5"
+        >
+          <div className="row gap-4">
+            <Button
               style={{
-                height: "5rem",
-                borderRadius: "0.5rem",
-                background: active === "PUBLIC" && "var(--color-primary)",
-                color: active === "PUBLIC" && "white",
+                background: "var(--color-white)",
+                color: "var(--color-dark)"
               }}
+              className="rounded-3 py-4 fs-3 col"
               onClick={() => setActive("PUBLIC")}
             >
               Public information
-            </div>
-            <div
-              role="button"
-              className="d-flex align-items-center p-3 hover-bg"
+            </Button>
+
+            <Button
               style={{
-                height: "5rem",
-                borderRadius: "0.5rem",
-                background: active === "MANAGER" && "var(--color-primary)",
-                color: active === "MANAGER" && "white",
+                background: "var(--color-white)",
+                color: "var(--color-dark)"
               }}
+              className="rounded-3 py-4 fs-3 col"
               onClick={() => setActive("MANAGER")}
-              data-manager-account
             >
               Manager account
-            </div>
-            <div
-              role="button"
-              className="d-flex align-items-center p-3 hover-bg"
+            </Button>
+
+            <Button
               style={{
-                height: "5rem",
-                borderRadius: "0.5rem",
-                background: active === "TERMS" && "var(--color-primary)",
-                color: active === "TERMS" && "white",
+                background: "var(--color-white)",
+                color: "var(--color-dark)"
               }}
-              onClick={() => setActive("TERMS")}
-              data-secure
+              className="rounded-3 py-4 fs-3"
+              onClick={() => setActive("SECURE")}
             >
               Security and Data
-            </div>
-            <div
-              role="button"
-              className="d-flex align-items-center p-3 hover-bg"
+            </Button>
+
+            <Button
               style={{
-                height: "5rem",
-                borderRadius: "0.5rem",
-                background: active === "LOGOUT" && "var(--color-primary)",
-                color: active === "LOGOUT" && "white",
+                background: "var(--color-white)",
+                color: "var(--color-dark)"
               }}
               onClick={() => setActive("LOGOUT")}
-              data-logout
+              className="rounded-3 py-4 mt-5 fs-3 bg-danger border-0 text-white"
             >
               Logout
-            </div>
+            </Button>
           </div>
-          <div
-            className="col-8 ms-5"
-            style={{
-              height: "25rem",
-              overflowY: "auto",
-            }}
-          >
-            {active === "PUBLIC" && renderPublicInfoContent()}
-            {active === "MANAGER" && renderManagerAccountContent()}
-            {active === "TERMS" && renderSecureContent()}
-            {active === "LOGOUT" && renderLogoutContent()}
-          </div>
-        </div>
 
-        <div className="d-flex justify-content-end">
-          <span
-            role="button"
-            className="me-3 p-2 text-danger"
-            onClick={() => {
-              close();
-              setActive("PUBLIC");
-            }}
-          >
-            Cancel
-          </span>
-          <button
-            className="p-2 border-0"
-            style={{
-              background: isChange && "var(--color-primary)",
-              color: isChange && "white",
-              borderRadius: "0.5rem",
-            }}
-            onClick={() => isChange && handleUpdateUser()}
-          >
-            Save change
-          </button>
-        </div>
-
-        {/* Export user data */}
-        <CSVLink
-          ref={exportData}
-          data={csvData}
-          filename={`${currentUser?.username}-data.csv`}
-          target="_blank"
-          style={{ display: "none" }}
-        />
-      </div>
+          <PublicInformation
+            show={active === "PUBLIC"}
+            onHide={handleCloseModal}
+            userInfo={userInfo}
+            onSetUserInfo={setUserInfo}
+            onUpdateUser={handleUpdateUser}
+          />
+          <ManagerAccount
+            show={active === "MANAGER"}
+            onHide={handleCloseModal}
+            userInfo={userInfo}
+            onSetUserInfo={setUserInfo}
+            onUpdateUser={handleUpdateUser}
+          />
+          <SecurityAndData
+            show={active === "SECURE"}
+            onHide={handleCloseModal}
+          />
+          <Logout
+            show={active === "LOGOUT"}
+            onHide={handleCloseModal}
+            onLogout={handleLogout}
+          />
+        </Modal.Body>
+      </Modal>
 
       <div
         ref={snackBar}

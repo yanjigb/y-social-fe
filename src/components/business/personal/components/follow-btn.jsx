@@ -69,7 +69,7 @@ function FollowBtn({ userInfo, socket, isApprover, isFollow, onOpenSetting, clas
 
     return (
         <div
-            className={clsx("add-stories text-white py-3 px-4 d-flex justify-content-center align-items-center rounded-3", className)}
+            className={clsx("add-stories text-white py-3 px-4 d-flex justify-content-center align-items-center rounded-3 flex-grow-1", className)}
             onClick={handleClick}
         >
             {label}

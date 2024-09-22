@@ -33,7 +33,6 @@ const Personal = ({ socket }) => {
   const [isValid, setIsValid] = useState(true);
   const [active, setActive] = useState("");
   const dispatch = useDispatch();
-  const [isLoading, setIsLoading] = useState(false);
   const currentUser = useCurrentUser();
   const toggleModal = () => setActive("");
 
@@ -69,7 +68,6 @@ const Personal = ({ socket }) => {
         twitter,
         twitch,
       } = data.user;
-      setIsLoading(true);
 
       if (bio !== userInfo.bio) {
         let updatedUser = {
@@ -99,7 +97,7 @@ const Personal = ({ socket }) => {
         }
 
         updateUser(updatedUser, dispatch)
-          .then((data) => {
+          .then(() => {
             socket = io(Global.SOCKET_URL);
             socket.emit("update-user", updatedUser);
           })
@@ -109,7 +107,6 @@ const Personal = ({ socket }) => {
       }
 
       setTimeout(() => {
-        setIsLoading(false);
         setActive("");
       }, 1500);
     });
@@ -127,7 +124,6 @@ const Personal = ({ socket }) => {
         twitch,
         bio,
       } = data.user;
-      setIsLoading(true);
 
       if (
         insta !== userInfo.insta ||
@@ -175,7 +171,6 @@ const Personal = ({ socket }) => {
       }
 
       setTimeout(() => {
-        setIsLoading(false);
         setActive("");
       }, 1500);
     });

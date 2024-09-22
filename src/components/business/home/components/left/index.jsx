@@ -70,20 +70,20 @@ const HomeLeft = ({ socket, isReadNotification }) => {
       </div>
     );
   };
-
-  const handleClosePopup = () => {
+  const handleOpenSettingProfile = () => {
     setActive("");
   };
 
   const renderSettingPopup = () => {
     return (
-      <div
-        className="customize-theme"
-        hidden={active !== MENU_NAME.SETTINGS}
-        onClick={() => setActive(MENU_NAME.HOME)}
-      >
-        <Setting close={handleClosePopup} />
-      </div>
+      // <div
+      //   className="customize-theme"
+      //   hidden={active !== MENU_NAME.SETTINGS}
+      //   onClick={() => setActive(MENU_NAME.HOME)}
+      // >
+      //   <Setting close={handleClosePopup} />
+      // </div>
+      <Setting onHide={handleOpenSettingProfile} show={active === MENU_NAME.SETTINGS} />
     );
   };
 

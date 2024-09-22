@@ -12,7 +12,6 @@ import { PersonalSendMsgBtn } from "./index";
 import SocketEvent from "../../../../constant/socket-event";
 import Global from "../../../../constant/global";
 import { useCurrentUser } from "../../../../hooks";
-import clsx from "clsx";
 import FollowBtn from "./follow-btn";
 import UpdateAvatarBtn from "./update-avatar.btn";
 import { Button } from "react-bootstrap";
@@ -168,17 +167,6 @@ const PersonalFollow = ({ userInfo, socket }) => {
     setActive("");
   };
 
-  const renderSettingPopup = () => {
-    return (
-      <div
-        className={clsx("customize-theme", active !== "SETTINGS" && "d-none")}
-        onClick={() => setActive("")}
-      >
-        <Setting close={handleClosePopup} />
-      </div>
-    );
-  };
-
   const handleToggleModal = () => {
         setModalShow(!modalShow);
   }
@@ -193,7 +181,7 @@ const PersonalFollow = ({ userInfo, socket }) => {
         <div className="row gap-4">
           <FollowBtn userInfo={userInfo} socket={socket} isApprover={isApprover} isFollow={isFollow} onOpenSetting={handleOpenSetting} className="col-6" />
           {userInfo?._id === currentUser?._id && <UpdateAvatarBtn userInfo={userInfo} socket={socket} dispatch={dispatch} title="Update Avatar" className="col-6" show={modalShow} onShow={handleToggleModal} isAvatar={true}>
-              <Button variant="primary" onClick={handleToggleModal} className="add-stories bg-transparent py-3 px-4 d-flex justify-content-center align-items-center rounded-3" style={{
+              <Button variant="primary" onClick={handleToggleModal} className="add-stories flex-grow-1 bg-transparent py-3 px-4 d-flex justify-content-center align-items-center rounded-3" style={{
                   color: 'var(--color-dark)'
               }}>
                   Update Avatar
@@ -202,7 +190,7 @@ const PersonalFollow = ({ userInfo, socket }) => {
         </div>
       </div>
 
-      {renderSettingPopup()}
+      <Setting close={handleClosePopup} show={active === "SETTINGS"} onHide={() => setActive("")} />
     </div>
   );
 };
