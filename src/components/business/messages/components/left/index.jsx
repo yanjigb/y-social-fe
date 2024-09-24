@@ -14,8 +14,10 @@ import { useCurrentUser } from "../../../../../hooks";
 import Conversation from "../conversation";
 
 import "../../styles/messageLeft.css";
+import { Button, Offcanvas } from "react-bootstrap";
+import clsx from "clsx";
 
-const MessageLeft = ({ socket = {} }) => {
+const MessageLeft = ({ socket = {}, className }) => {
   const [rooms, setRooms] = useState([]);
   const [currentChat, setCurrentChat] = useState(null);
   const [friendID, setFriendID] = useState(null);
@@ -123,23 +125,53 @@ const MessageLeft = ({ socket = {} }) => {
     setFilterMessages(e.target.value);
   };
 
+  const [isExpanded, setIsExpanded] = useState(false);
+
+  const onExpandMenuRoom = () => {
+    setIsExpanded(!isExpanded)
+  };
+
   return (
     <>
-      <div className="left-msg-page overflow-hidden">
-        <div className="left-container">
-          <div className="left-container-main">
-            <input
-              type="text"
-              placeholder="Finding someone?"
-              className="fs-3 rounded border-0 mb-4"
-              onChange={handleFilterMessages}
-            />
+      <div className={clsx("left-msg-page overflow-hidden", className)}>
+        <Button variant="primary" onClick={onExpandMenuRoom} className="w-100 px-2 rounded-3 fs-3"
+          style={{
+            background: "var(--color-primary)",
+            color: "var(--color-dark)"
+          }}
+        >
+          More room
+        </Button>
 
-            <div className="messages-wrapperr overflow-auto h-100">
-              {renderRooms()}
+        <Offcanvas show={isExpanded} onHide={onExpandMenuRoom}>
+          <Offcanvas.Header closeButton className="text-black">
+            <Offcanvas.Title>
+              <h3>Rooms</h3>
+            </Offcanvas.Title>
+          </Offcanvas.Header>
+
+          <Offcanvas.Body
+            style={{
+              background: "var(--color-white)",
+              color: "var(--color-dark)"
+            }}
+          >
+            <div className="left-container">
+              <div className="left-container-main">
+                <input
+                  type="text"
+                  placeholder="Finding someone?"
+                  className="fs-3 rounded border-0 mb-4 w-100 p-3"
+                  onChange={handleFilterMessages}
+                />
+
+                <div className="messages-wrapperr overflow-auto h-100">
+                  {renderRooms()}
+                </div>
+              </div>
             </div>
-          </div>
-        </div>
+          </Offcanvas.Body>
+        </Offcanvas>
       </div>
     </>
   );

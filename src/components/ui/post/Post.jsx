@@ -34,6 +34,7 @@ import Avatar from "../avatar/Avatar";
 import Global from "../../../constant/global";
 import ActionBtn from "./ActionBtn";
 import ConfirmDialog from "../dialog/confirm-dialog";
+import Lightbox from "yet-another-react-lightbox";
 const DetailsPost = lazy(() => import("./DetailsPost"));
 
 // TODO CHECK SPAM IN LIKE, SHARE, COMMENT
@@ -66,6 +67,8 @@ const Post = ({
   const [active, setActive] = useState("");
   const formatTime = useTimeAgo;
   const currentUser = useCurrentUser();
+  const [openPreviewImage, setOpenPreviewImage] = useState(false);
+
 
   useEffect(() => {
     const handleClickOutside = () => {
@@ -390,6 +393,10 @@ const Post = ({
     );
   };
 
+  const onOpenPreviewImage = () => {
+    setOpenPreviewImage(!openPreviewImage);
+  }
+
   const renderPost = () => {
     return (
       <div key={postID} className="post mb-4 position-relative">
@@ -403,7 +410,9 @@ const Post = ({
           <ParagraphWithLink text={desc} />
         </div>
         {image && (
-          <Photo postID={postID} imageSrc={image} label="Media of post" />
+          <button onClick={onOpenPreviewImage} className="bg-transparent border-0">
+            <Photo postID={postID} imageSrc={image} link="#" label="Media of post" />
+          </button>
         )}
         {video && <Photo videoSrc={video} isVideo={true} />}
         <ActionBtn
@@ -459,6 +468,14 @@ const Post = ({
       {renderPost()}
       {renderDetailsPost()}
       {renderEditPostPopup()}
+
+      <Lightbox
+        open={openPreviewImage}
+        close={onOpenPreviewImage}
+        slides={[
+          { src: image },
+        ]}
+      />
     </>
   );
 };
