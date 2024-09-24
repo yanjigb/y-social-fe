@@ -50,7 +50,7 @@ const PersonalNavbarProfile = () => {
   const handleClosePopup = () => {
     setActive("");
   };
-  const handleClosePopup1 = () => {
+  const handleClosePopupCustomBorderAvatar = () => {
     setActive1("");
   };
 
@@ -68,13 +68,7 @@ const PersonalNavbarProfile = () => {
 
   const renderSettingAvatar = () => {
     return (
-      <div
-        className="customize-theme"
-        hidden={active1 !== "CustomBorderAvatarSetting"}
-        onClick={() => setActive1("")}
-      >
-        <CustomBorderAvatarSetting close={handleClosePopup1} />
-      </div>
+      <CustomBorderAvatarSetting show={active1 === "CustomBorderAvatarSetting"} onHide={handleClosePopupCustomBorderAvatar} />
     );
   };
 
@@ -101,7 +95,7 @@ const PersonalNavbarProfile = () => {
     return (
       currentUser._id === userRoute && (
         <span
-          className="btn btn-dots text-light d-flex align-items-center py-1 px-3 me-2"
+          className="btn btn-dots d-none d-md-flex text-light align-items-center py-1 px-3 me-2"
           onClick={(e) => handleSettingPersonalPage(e)}
         >
           <MoreHorizontal size={20} />

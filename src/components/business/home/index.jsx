@@ -12,7 +12,6 @@ import { getAllNotificationsByUser } from "../../../redux/request/notificationRe
 import SocketEvent from "../../../constant/socket-event";
 import Global from "../../../constant/global";
 import { RouteNames } from "../../../constant/routes";
-import { ToastProvider } from "../../../context/toast";
 
 import "./home.css";
 
@@ -66,7 +65,6 @@ function Home({ socket }) {
 
   return (
     <>
-      <ToastProvider />
       <Header title="Login" link={RouteNames.LOGIN} />
 
       <main>

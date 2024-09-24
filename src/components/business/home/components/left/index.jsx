@@ -2,41 +2,29 @@ import { Link } from "react-router-dom";
 import { useState, useEffect, memo } from "react";
 import { useDispatch } from "react-redux";
 import {
-  Home,
-  Bell,
-  MessageSquare,
-  Bookmark,
-  Video,
-  Palette,
-  Bolt,
   CheckCircle2,
-  LayoutDashboard,
 } from "lucide-react";
 import isEqual from "react-fast-compare";
 
 import { getUserByID } from "../../../../../redux/request/userRequest";
-import Global from "../../../../../constant/global";
 
 import { LOGO_YANJI_SOCIAL } from "../../../../../assets";
 
 // SETTINGS
 import { Avatar, CustomTheme, Setting } from "../../../../ui";
 import PostPopup from "../../../../ui/popup/post";
-import Button from "../../../../ui/button/button";
 import { useCurrentUser } from "../../../../../hooks";
 import { RouteNames } from "../../../../../constant/routes";
 import { LocalStorageKeys } from "../../../../../constant/local-storage-key";
+import Sidebar from "../../../../layouts/sidebar";
+import { UserInitialize } from "../../constant/initialize";
+import { MENU_NAME } from "../../constant/menu";
 
 const HomeLeft = ({ socket, isReadNotification }) => {
-  const [active, setActive] = useState("HOME");
+  const [active, setActive] = useState(MENU_NAME.HOME);
   const [avatar, setAvatar] = useState("");
   const [popup, setPopup] = useState(false);
-  const [user, setUser] = useState({
-    _id: "",
-    profilePicture: "",
-    username: "",
-    isVerify: false,
-  });
+  const [user, setUser] = useState(UserInitialize);
   const dispatch = useDispatch();
   const currentUser = useCurrentUser();
 
@@ -75,26 +63,27 @@ const HomeLeft = ({ socket, isReadNotification }) => {
     return (
       <div
         className="customize-theme"
-        hidden={active !== "THEME"}
-        onClick={() => setActive("HOME")}
+        hidden={active !== MENU_NAME.THEME}
+        onClick={() => setActive(MENU_NAME.HOME)}
       >
         <CustomTheme />
       </div>
     );
   };
-
-  const handleClosePopup = () => {
+  const handleOpenSettingProfile = () => {
     setActive("");
   };
+
   const renderSettingPopup = () => {
     return (
-      <div
-        className="customize-theme"
-        hidden={active !== "SETTINGS"}
-        onClick={() => setActive("HOME")}
-      >
-        <Setting close={handleClosePopup} />
-      </div>
+      // <div
+      //   className="customize-theme"
+      //   hidden={active !== MENU_NAME.SETTINGS}
+      //   onClick={() => setActive(MENU_NAME.HOME)}
+      // >
+      //   <Setting close={handleClosePopup} />
+      // </div>
+      <Setting onHide={handleOpenSettingProfile} show={active === MENU_NAME.SETTINGS} />
     );
   };
 
@@ -145,87 +134,12 @@ const HomeLeft = ({ socket, isReadNotification }) => {
         </Link>
 
         {/* SIDEBAR */}
-        <div className="sidebar mt-3">
-          <Button
-            path={RouteNames.HOME}
-            label="Home"
-            icon={<Home className="sidebar-icon" size={20} />}
-            name={"HOME"}
-            active={active}
-            setActive={setActive}
-          />
-
-          {currentUser && (
-            <>
-              <Button
-                path={RouteNames.NOTIFICATION}
-                label="Notification"
-                icon={<Bell className="sidebar-icon" size={20} />}
-                name={"NOTIFICATION"}
-                isReadNotification={isReadNotification}
-                active={active}
-                setActive={setActive}
-              />
-              <Button
-                path={RouteNames.MESSAGE_PAGE}
-                label="Messages"
-                icon={<MessageSquare className="sidebar-icon" size={20} />}
-                name={"MESSAGES"}
-                active={active}
-                setActive={setActive}
-              />
-              <Button
-                path={RouteNames.BOOKMARKS}
-                label="Bookmarks"
-                icon={<Bookmark className="sidebar-icon" size={20} />}
-                name={"BOOKMARKS"}
-                active={active}
-                setActive={setActive}
-              />
-            </>
-          )}
-          <Button
-            label="Meeting"
-            path="https://meet-with-us.netlify.app/"
-            icon={<Video className="sidebar-icon" size={20} />}
-            name={"MEETING"}
-            active={active}
-            setActive={setActive}
-            newtab={true}
-          />
-          <Button
-            label="Theme"
-            icon={<Palette className="sidebar-icon" size={20} />}
-            name={"THEME"}
-            active={active}
-            setActive={setActive}
-          />
-          {currentUser && (
-            <Button
-              label="Settings"
-              icon={<Bolt className="sidebar-icon" size={20} />}
-              name={"SETTINGS"}
-              active={active}
-              setActive={setActive}
-            />
-          )}
-          {currentUser?._id === Global.ADMIN_ID && (
-            <Link
-              to={RouteNames.ADMIN}
-              name={"ADMIN"}
-              target="_blank"
-              className="menu-item hover-bg"
-            >
-              <LayoutDashboard className="sidebar-icon" size={20} />
-              <h3 className="ms-3 mb-0">Admin Dashboard</h3>
-            </Link>
-          )}
-        </div>
+        <Sidebar active={active} setActive={setActive} isReadNotification={isReadNotification} />
         {/* END OF SIDEBAR */}
 
         <label
           htmlFor="create-post"
-          className="btn btn-primary mt-3 py-3"
+          className="btn btn-primary mt-3 py-3 d-none d-lg-block"
           onClick={handlePopup}
         >
           Create Post

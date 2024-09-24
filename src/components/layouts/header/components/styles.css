@@ -1,0 +1,9 @@
+@import "../../../../styles/constants/constant.css";
+
+.mobile-sidebar,
+.custom-theme,
+.mobile-sidebar-item,
+.custom-theme-item {
+    background: var(--color-white);
+    color: var(--color-dark);
+}

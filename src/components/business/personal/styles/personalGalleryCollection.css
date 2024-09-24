@@ -14,8 +14,8 @@
   background: var(--color-primary);
   border-radius: var(--card-border-radius);
 
-  width: 14rem;
-  height: 14rem;
+  max-width: 14rem;
+  max-height: 14rem;
 
   overflow: hidden;
 }
@@ -27,6 +27,7 @@
   transition: all 1s ease;
 
   object-fit: cover;
+  aspect-ratio: 1 / 1;
 }
 
 .gallery-grid .gallery-image img:hover {

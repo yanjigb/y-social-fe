@@ -4,16 +4,18 @@ import isEqual from "react-fast-compare";
 
 import "../styles/personalHeader.css";
 
-import ChangeImagePopup from "../../../../components/ui/popup/change-image";
 import { useCurrentUser } from "../../../../hooks";
 import Banner from "./banner";
+import UpdateAvatarBtn from "./update-avatar.btn";
+import { useDispatch } from "react-redux";
 
 const PersonalHeader = ({ userInfo, socket }) => {
   const [openPopup, setOpenPopup] = useState(false);
   const currentUser = useCurrentUser();
+  const dispatch = useDispatch();
 
   const handlePopup = () => {
-    setOpenPopup((openPopup) => !openPopup);
+    userInfo?._id === currentUser?._id && setOpenPopup(!openPopup);
   };
 
   const snackBar = useRef(null);
@@ -25,29 +27,17 @@ const PersonalHeader = ({ userInfo, socket }) => {
           <Banner bannerUrl={userInfo?.coverPicture} />
         </div>
 
-        {userInfo?._id === currentUser?._id && (
-          <div
-            className="edit-cover d-flex align-items-center justify-content-center"
-            onClick={handlePopup}
-          >
-            <Camera size={20} className="me-2" />
-            Edit cover
-          </div>
-        )}
-
-        {openPopup && (
-          <ChangeImagePopup
-            title="Cập nhật ảnh bìa"
-            imgSrc={userInfo.coverPicture}
-            isCircle={false}
-            isCover={true}
-            onClose={() => setOpenPopup("")}
-            message="Update cover successfully"
-            socket={socket}
-          />
-        )}
+        <UpdateAvatarBtn userInfo={userInfo} socket={socket} dispatch={dispatch} show={openPopup} onShow={handlePopup} isCover={true}>
+            <div
+              className="edit-cover d-flex align-items-center justify-content-center"
+              onClick={handlePopup}
+            >
+              <Camera size={20} className="me-2" />
+              Edit cover
+            </div>
+        </UpdateAvatarBtn>
       </span>
-
+{/* 
       <div
         ref={snackBar}
         id="snackbar"
@@ -57,7 +47,7 @@ const PersonalHeader = ({ userInfo, socket }) => {
         className="fw-bold"
       >
         Update cover successfully
-      </div>
+      </div> */}
     </div>
   );
 };

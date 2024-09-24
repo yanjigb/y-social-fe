@@ -2,8 +2,6 @@
 
 .middle-msg-page {
   border: 0.5px solid var(--color-border);
-
-  grid-column: 2 / 4;
   height: 100%;
 }
 

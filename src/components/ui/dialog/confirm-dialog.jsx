@@ -14,7 +14,7 @@ const ConfirmDialog = ({
 }) => {
   return (
     <div
-      className="customize-theme top-0 position-fixed w-100 h-100 d-flex justify-content-center align-items-center "
+      className="customize-theme top-0 position-fixed w-100 h-100 d-flex justify-content-center align-items-center"
       onClick={onClose}
       style={{
         left: 0,

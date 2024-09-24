@@ -4,14 +4,14 @@
 
 .cover .cover-picture {
   width: 100%;
-  height: 40em;
-
+  max-height: 37.5rem;
+  
   border-radius: 1rem;
   overflow: hidden;
 }
 
 .cover .cover-picture img {
-  width: 100%;
+  object-position: top;
   object-fit: cover;
 }
 
@@ -30,9 +30,10 @@
   background: #fff;
 
   bottom: 5%;
-  right: 2%;
+  right: 4%;
 
   cursor: pointer;
 
   position: absolute;
 }
+

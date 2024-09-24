@@ -4,8 +4,9 @@ import "./style/color.css";
 import { useTheme } from "../../../hooks";
 import ChooseColorBtn from "../../ui/button/choose-color";
 import { LocalStorageKeys } from "../../../constant/local-storage-key";
+import clsx from "clsx";
 
-const ColorTheme = () => {
+const ColorTheme = ({ className = "" }) => {
   const { setTextColors } = useTheme();
   const textColorTheme = localStorage.getItem(LocalStorageKeys.TEXT_COLOR);
 
@@ -47,7 +48,7 @@ const ColorTheme = () => {
   };
 
   return (
-    <div className="color">
+    <div className={clsx("color", className)}>
       <h4>Color</h4>
       {renderColorThemeMenu()}
     </div>

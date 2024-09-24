@@ -32,13 +32,13 @@ function App() {
 
   return (
     <>
-      {isMobile || isTablet ? (
+      {/* {isMobile || isTablet ? (
         <InvalidScreen />
-      ) : (
+      ) : ( */}
         <div className="App">
           {isNetworkWorking ? <Route /> : <NetworkError />}
         </div>
-      )}
+      {/* )} */}
     </>
   );
 }

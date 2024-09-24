@@ -161,16 +161,17 @@ const PersonalBody = ({
         </div>
         <div className="col-7" data-posts>
           {currentUser?._id === userInfo?._id && (
-            <div className="row d-flex border-bottom pb-4 mb-4">
-              <div className="profile-pic p-0 rounded-circle overflow-hidden text-white">
+            <div className="row d-flex border-bottom pb-4 mb-4 gap-3">
+              <div className="profile-pic p-0 rounded-circle overflow-hidden text-white d-none d-md-flex">
                 <Avatar
                   imageSrc={userInfo.profilePicture}
                   label={userInfo.username}
                   userId={userInfo._id}
                 />
               </div>
+
               <button
-                className="ms-3 btn btn-light col-sm d-flex align-items-center text-muted text-center"
+                className="btn btn-light col-sm d-flex align-items-center text-muted text-center"
                 onClick={handlePopup}
               >
                 What are you thinking, {userInfo.username || "user"} ?

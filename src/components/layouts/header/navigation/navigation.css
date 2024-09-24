@@ -98,3 +98,7 @@ nav .nav__btn:hover {
 .logo:hover {
   color: white;
 }
+
+.btn-focus-none:focus {
+  outline: none;
+}

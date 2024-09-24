@@ -18,6 +18,7 @@ const PhotosUser = ({ userInfo }) => {
   const [active, setActive] = useState("");
 
   const handlePreviewImage = (imgSrc) => {
+    setActive("PREVIEW_IMAGE");
     setImgSrc(imgSrc);
   };
 
@@ -51,9 +52,8 @@ const PhotosUser = ({ userInfo }) => {
 
   return (
     <div
-      className="d-grid gap-3 py-4 position-relative"
+      className="row position-relative"
       style={{
-        gridTemplateColumns: "repeat(auto-fit, minmax(20rem, 1fr))",
         height: "max-content",
       }}
     >
@@ -61,24 +61,20 @@ const PhotosUser = ({ userInfo }) => {
         gallery.map((i) => (
           <div
             key={i._id}
-            style={{
-              height: "20rem",
-            }}
-            onClick={() => {
-              setActive("PREVIEW_IMAGE");
-              handlePreviewImage(i.imageUrl);
-            }}
+            className="col-4 p-3"
           >
             <img
               src={i.imageUrl}
               alt="user photos"
               loading="lazy"
-              role="presentation"
               decoding="async"
               className="w-100"
               style={{
                 objectFit: "cover",
                 cursor: "pointer",
+              }}
+              onClick={() => {
+                handlePreviewImage(i.imageUrl);
               }}
             />
           </div>

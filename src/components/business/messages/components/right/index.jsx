@@ -9,8 +9,9 @@ import "../../styles/messageRight.css";
 import { getUserByID } from "../../../../../redux/request/userRequest";
 import { Avatar } from "../../../../../components";
 import { useCurrentRoom, useCurrentUser } from "../../../../../hooks";
+import clsx from "clsx";
 
-const MessageRight = () => {
+const MessageRight = ({ className }) => {
   const [currentConversation, setCurrentConversation] = useState(null);
   const [friend, setFriend] = useState({
     id: "",
@@ -73,19 +74,20 @@ const MessageRight = () => {
   const renderVisitProfile = () => {
     return (
       <div
-        className="right-container-body fs-5"
+        className="fs-5"
         style={{
           width: "max-content",
         }}
       >
         <Link
           to={`/user/${friend.id}`}
-          className="d-flex flex-column align-items-center"
+          className="d-flex flex-column align-items-center text-white"
           data-profile
         >
           <span
             className="p-3 text-center icon d-flex align-items-center"
             style={{
+              background: "var(--color-primary)",
               borderRadius: "0.5rem",
             }}
           >
@@ -99,7 +101,7 @@ const MessageRight = () => {
 
   return (
     currentConversation && (
-      <div className="right-msg-page p-4">
+      <div className={clsx("right-msg-page p-4", className)}>
         <div className="right-container d-flex flex-column align-items-center">
           {renderAvatarUser()}
           {renderVisitProfile()}

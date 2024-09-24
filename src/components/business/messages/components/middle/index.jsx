@@ -31,13 +31,14 @@ import Footer from "../footer";
 import { Avatar } from "../../../../../components";
 import Message from "../message";
 import ConfirmDialog from "../../../../ui/dialog/confirm-dialog";
+import clsx from "clsx";
 
 const friendDefaultValues = {
   name: "",
   avatar: "",
 };
 
-const MessageMiddle = ({ socket }) => {
+const MessageMiddle = ({ socket, className }) => {
   const [edit, setEdit] = useState(false);
   const [message, setMessage] = useState("");
   const [active, setActive] = useState("");
@@ -589,7 +590,7 @@ const MessageMiddle = ({ socket }) => {
 
   return (
     <>
-      <div className="middle-msg-page position-relative">
+      <div className={clsx("middle-msg-page position-relative", className)}>
         {renderPopupConfirmDeleteMsg()}
         {renderConversation()}
         {renderPopupConfirmUploadImg()}

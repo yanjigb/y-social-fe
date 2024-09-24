@@ -10,11 +10,11 @@ import PersonalFollow from "./follow";
 import "../styles/personalGeneralInfo.css";
 
 import { Avatar } from "../../../../components";
-import ChangeImagePopup from "../../../ui/popup/change-image";
 import { getUserByID } from "../../../../redux/request/userRequest";
 import { useCurrentUser } from "../../../../hooks";
 import Global from "../../../../constant/global";
 import FollowerList from "../../../ui/follower-list";
+import UpdateAvatarBtn from "./update-avatar.btn";
 
 const PersonalGeneralInfo = ({ userInfo, socket }) => {
   const [active, setActive] = useState("");
@@ -26,7 +26,8 @@ const PersonalGeneralInfo = ({ userInfo, socket }) => {
   const currentUser = useCurrentUser();
 
   const handlePopup = () => {
-    setOpenPopup((openPopup) => !openPopup);
+    userInfo?._id === currentUser?._id && 
+    setOpenPopup(!openPopup);
   };
 
   useEffect(() => {
@@ -70,32 +71,35 @@ const PersonalGeneralInfo = ({ userInfo, socket }) => {
   return (
     <>
       <div className="px-5 header-title">
-        <div className="d-flex align-items-center justify-content-between header-title-container w-100 h-100">
-          <div
-            className="position-relative"
-            onClick={() => userInfo?._id === currentUser?._id && handlePopup()}
-          >
+        <div className="d-flex flex-column flex-md-row align-items-md-center justify-content-md-between header-title-container w-100 h-100">
             <div
-              className={`avatar d-flex justify-content-center align-items-center text-white ${userInfo?._id === Global.ADMIN_ID && ""}`}
+              className="position-relative"
             >
-              <Avatar
-                imageSrc={userInfo?.profilePicture}
-                label={userInfo?.username}
-                userId={userInfo?._id}
-                fontSize={"fs-1"}
-                customClass="fw-bold"
-              />
+              <UpdateAvatarBtn userInfo={userInfo} socket={socket} dispatch={dispatch} show={openPopup} onShow={handlePopup} isAvatar={true}>
+                  <div
+                    className={`avatar d-flex justify-content-center align-items-center text-white ${userInfo?._id === Global.ADMIN_ID && ""}`}
+                    onClick={handlePopup}
+                  >
+                    <Avatar
+                      imageSrc={userInfo?.profilePicture}
+                      label={userInfo?.username}
+                      userId={userInfo?._id}
+                      fontSize={"fs-1"}
+                      size="avatar"
+                      className="fw-bold"
+                    />
+                  </div>
+                  {userInfo?._id === currentUser?._id && (
+                    <span className="position-absolute border border-primary rounded-circle p-3 edit-avatar d-none d-md-block">
+                      <Camera size={20} />
+                    </span>
+                  )}
+              </UpdateAvatarBtn>
             </div>
-            {userInfo?._id === currentUser?._id && (
-              <span className="position-absolute border border-primary rounded-circle p-3 edit-avatar">
-                <Camera size={20} />
-              </span>
-            )}
-          </div>
 
           <div
             data-title="information"
-            className="w-100 ms-4 mt-5 d-flex justify-content-between"
+            className="w-100 ms-md-4 mt-md-5 d-flex flex-column justify-content-between"
           >
             <span>
               <div className="d-flex align-items-center">
@@ -130,18 +134,6 @@ const PersonalGeneralInfo = ({ userInfo, socket }) => {
             </div>
           </div>
         </div>
-
-        {openPopup && (
-          <ChangeImagePopup
-            title="Cập nhật ảnh đại diện"
-            imgSrc={userInfo.profilePicture}
-            isAvatar={true}
-            onClose={() => setOpenPopup("")}
-            message="Update avatar successfully"
-            socket={socket}
-            handleUpdatePopup={handleUpdatePopup}
-          />
-        )}
 
         <div
           ref={snackBar}

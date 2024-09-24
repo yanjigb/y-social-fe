@@ -41,6 +41,7 @@ const Photo = ({
   videoSrc = "",
   isVideo = false,
   postID = "",
+  link = `/post/${postID}`
 }) => {
   return (
     <>
@@ -54,7 +55,7 @@ const Photo = ({
           </LazyLoadComponent>
         </div>
       ) : (
-        <Link to={`/post/${postID}`} className="photo" style={photoStyles}>
+        <Link to={link} className="photo" style={photoStyles}>
           <LazyLoadImage {...lazyLoadImageProps(label, imageSrc)} />
         </Link>
       )}

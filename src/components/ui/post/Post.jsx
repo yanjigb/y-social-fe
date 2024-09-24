@@ -34,6 +34,7 @@ import Avatar from "../avatar/Avatar";
 import Global from "../../../constant/global";
 import ActionBtn from "./ActionBtn";
 import ConfirmDialog from "../dialog/confirm-dialog";
+import Lightbox from "yet-another-react-lightbox";
 const DetailsPost = lazy(() => import("./DetailsPost"));
 
 // TODO CHECK SPAM IN LIKE, SHARE, COMMENT
@@ -66,6 +67,8 @@ const Post = ({
   const [active, setActive] = useState("");
   const formatTime = useTimeAgo;
   const currentUser = useCurrentUser();
+  const [openPreviewImage, setOpenPreviewImage] = useState(false);
+
 
   useEffect(() => {
     const handleClickOutside = () => {
@@ -136,13 +139,8 @@ const Post = ({
     }
   };
 
-  const handleDetailsPost = (e) => {
-    e.stopPropagation();
-    if (popup !== "DETAILS") {
-      setPopup("DETAILS");
-    } else {
-      setPopup("");
-    }
+  const handleDetailsPost = () => {
+    setPopup(popup === "DETAILS" ? "" : "DETAILS");
   };
 
   const handleEditPost = () => {
@@ -256,6 +254,11 @@ const Post = ({
     deletePost: (postID) => handleDeletePost(postID),
   };
 
+  const handleCopyPostUrl = (e) => {
+    e.stopPropagation()
+    useCopyUrl(Global.DEPLOY_URL + "post/" + postID);
+  };
+
   const renderEditPost = () => {
     return (
       <div className="edit-post" hidden={popup !== "SETTING"}>
@@ -287,10 +290,7 @@ const Post = ({
             </>
           )}
           <li
-            onClick={(e) => {
-              e.stopPropagation();
-              useCopyUrl(Global.DEPLOY_URL + "post/" + postID);
-            }}
+            onClick={handleCopyPostUrl}
             style={{
               borderRadius:
                 currentUser?._id === userID ? "" : "var(--card-border-radius)",
@@ -393,6 +393,10 @@ const Post = ({
     );
   };
 
+  const onOpenPreviewImage = () => {
+    setOpenPreviewImage(!openPreviewImage);
+  }
+
   const renderPost = () => {
     return (
       <div key={postID} className="post mb-4 position-relative">
@@ -406,7 +410,9 @@ const Post = ({
           <ParagraphWithLink text={desc} />
         </div>
         {image && (
-          <Photo postID={postID} imageSrc={image} label="Media of post" />
+          <button onClick={onOpenPreviewImage} className="bg-transparent border-0">
+            <Photo postID={postID} imageSrc={image} link="#" label="Media of post" />
+          </button>
         )}
         {video && <Photo videoSrc={video} isVideo={true} />}
         <ActionBtn
@@ -414,7 +420,7 @@ const Post = ({
           currentUser={currentUser}
           onShare={() => handlePost["sharePost"]()}
           onLike={() => handlePost["likePost"]()}
-          onDetailPost={(e) => handleDetailsPost(e)}
+          onDetailPost={() => setPopup("DETAILS")}
           comments={comments}
           likes={likes}
           shares={shares}
@@ -428,16 +434,14 @@ const Post = ({
 
   const renderDetailsPost = () => {
     return (
-      popup === "DETAILS" && (
         <DetailsPost
-          onPopup={handleDetailsPost}
-          extendClass="animate__animated animate__fadeIn"
           children={renderPost()}
           author={user}
           postID={postID}
           socket={socket}
+          show={popup === "DETAILS"}
+          onHide={handleDetailsPost}
         />
-      )
     );
   };
 
@@ -464,6 +468,14 @@ const Post = ({
       {renderPost()}
       {renderDetailsPost()}
       {renderEditPostPopup()}
+
+      <Lightbox
+        open={openPreviewImage}
+        close={onOpenPreviewImage}
+        slides={[
+          { src: image },
+        ]}
+      />
     </>
   );
 };

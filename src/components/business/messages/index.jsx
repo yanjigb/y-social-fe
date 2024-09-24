@@ -13,10 +13,10 @@ function Messages({ socket }) {
   return (
     <>
       <Header title="Login" link={RouteNames.REGISTER} />
-      <div className="messages">
-        <Left socket={socket} />
-        <Middle socket={socket} />
-        <Right socket={socket} />
+      <div className="messages row px-0">  
+        <Left socket={socket} className="col-lg-2" />
+        <Middle socket={socket} className="col-12 col-lg-8" />
+        <Right socket={socket} className="col-md-2" />
       </div>
     </>
   );
