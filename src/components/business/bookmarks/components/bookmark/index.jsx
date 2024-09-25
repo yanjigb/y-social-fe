@@ -16,19 +16,21 @@ import {
 import { BG_DEFAULT_WALLPAPER_USER } from "../../../../../assets";
 import Avatar from "../../../../ui/avatar/Avatar";
 import Global from "../../../../../constant/global";
+import { Post } from "../../../../ui";
+import { Modal } from "react-bootstrap";
 
 const Bookmark = ({
   postID,
   createdAt,
   socket,
-  handleDeletePopup = () => {},
+  handleDeletePopup = () => { },
 }) => {
   const dispatch = useDispatch();
   const [post, setPost] = useState({
-    desc: "",
-    likes: 0,
-    img: "",
-    video: "",
+    // desc: "",
+    // likes: 0,
+    // img: "",
+    // video: "",
     isExisting: false,
   });
   const [author, setAuthor] = useState({
@@ -39,6 +41,7 @@ const Bookmark = ({
   const formatTime = useTimeAgo;
   const navigate = useNavigate();
   const currentUser = useCurrentUser();
+  const [isOpenPreviewPost, setIsOpenPreviewPost] = useState(false)
 
   const handleVisitLink = (link) => {
     navigate(link);
@@ -60,16 +63,13 @@ const Bookmark = ({
 
   const handlePost = useMemo(
     () => ({
-      getAuthor: (userID, desc, likes, img, video) => {
+      getAuthor: (userID) => {
         getUserByID(userID, dispatch).then((data) => {
-          const { username, _id, profilePicture } = data.user;
-          setPost({
-            desc: desc,
-            likes: likes.length,
-            img: img,
-            video: video,
+          const { username, _id, profilePicture } = data?.user;
+          setPost(prev => ({
+            ...prev,
             isExisting: true,
-          });
+          }));
           setAuthor({
             username: username,
             avatar: profilePicture,
@@ -93,9 +93,9 @@ const Bookmark = ({
   useEffect(() => {
     getPostByID(postID, dispatch).then((data) => {
       if (data) {
-        const { desc, likes, img, video, userID } = data.data;
-
-        handlePost.getAuthor(userID, desc, likes, img, video);
+        const { desc, likes, img, video, userID } = data.data
+        setPost({ desc, likes, img, video, userID, ...data.data })
+        handlePost.getAuthor(userID);
       } else {
         setAuthor({
           avatar: BG_DEFAULT_WALLPAPER_USER,
@@ -106,106 +106,134 @@ const Bookmark = ({
     });
   }, [postID, dispatch, handlePost]);
 
+  const onOpenPreviewPost = () => {
+    setIsOpenPreviewPost(!isOpenPreviewPost)
+  }
+
   return (
-    <div className="card shadow-sm bg-body-tertiary text-black h-100 w-100">
-      <div
-        className="card-body d-flex flex-column justify-content-between"
-        style={{
-          height: "28rem",
-        }}
-      >
-        {author.authorID ? (
-          <div className="h-100 d-flex flex-column justify-content-between">
-            <div
-              className="card-title fs-4 fw-bold d-flex align-items-center justify-content-between w-100"
-              style={{
-                color: "var(--color-primary)",
-                width: "max-content",
-              }}
-              data-title
-            >
+    <>
+      <div className="card shadow-sm bg-body-tertiary text-black h-100 w-100">
+        <div
+          className="card-body d-flex flex-column justify-content-between"
+          style={{
+            height: "28rem",
+          }}
+          onClick={onOpenPreviewPost}
+        >
+          {author.authorID ? (
+            <div className="h-100 d-flex flex-column justify-content-between">
               <div
-                className="d-flex align-items-center"
-                onClick={() => handleVisitLink(`/user/${author.authorID}`)}
+                className="card-title fs-4 fw-bold d-flex align-items-center justify-content-between w-100"
+                style={{
+                  color: "var(--color-primary)",
+                  width: "max-content",
+                }}
+                data-title
               >
                 <div
-                  className="profile-pic bg-black text-white me-2"
-                  style={{
-                    cursor: "pointer",
-                  }}
+                  className="d-flex align-items-center"
+                  onClick={() => handleVisitLink(`/user/${author.authorID}`)}
                 >
-                  <Avatar
-                    imageSrc={author.avatar}
-                    label={author.username}
-                    userId={author.authorID}
-                  />
-                </div>
-                <span className="link-underline ">{author.username}</span>
-              </div>
-
-              <BookmarkCheck
-                size={20}
-                cursor="pointer"
-                onClick={() => handleDeletePostSaved(postID)}
-              />
-            </div>
-
-            {post.isExisting ? (
-              <div
-                className="caption overflow-hidden fw-light fs-4 d-flex flex-column link-underline"
-                style={{
-                  height: "20rem",
-                  color: "unset",
-                }}
-                onClick={() => handleVisitLink(`/post/${postID}`)}
-                data-content
-              >
-                {post.desc}
-                {post.img && (
-                  <img
-                    src={post.img}
-                    alt="post_image"
-                    className="w-100"
+                  <div
+                    className="profile-pic bg-black text-white me-2"
                     style={{
-                      objectFit: "cover",
+                      cursor: "pointer",
                     }}
-                  />
-                )}
-                {post.video && <video src={post.video}></video>}
+                  >
+                    <Avatar
+                      imageSrc={author.avatar}
+                      label={author.username}
+                      userId={author.authorID}
+                    />
+                  </div>
+                  <span className="link-underline ">{author.username}</span>
+                </div>
+
+                <BookmarkCheck
+                  size={20}
+                  cursor="pointer"
+                  onClick={() => handleDeletePostSaved(postID)}
+                />
               </div>
-            ) : (
-              <div
-                className="fs-3 d-flex justify-content-center align-items-center"
-                style={{
-                  height: "20rem",
-                }}
-              >
-                <button
-                  className="p-2 border-0 bg-danger text-white"
+
+              {post.isExisting ? (
+                <div
+                  className="caption overflow-hidden fw-light fs-4 d-flex flex-column link-underline"
                   style={{
-                    borderRadius: "0.5rem",
+                    height: "20rem",
+                    color: "unset",
                   }}
-                  onClick={() => {
-                    handleDeletePostSaved(postID);
-                    handleDeletePopup();
+                  data-content
+                >
+                  {post.desc}
+                  {post.img && (
+                    <img
+                      src={post.img}
+                      alt="post_image"
+                      className="w-100"
+                      style={{
+                        objectFit: "cover",
+                      }}
+                    />
+                  )}
+                  {post.video && <video src={post.video}></video>}
+                </div>
+              ) : (
+                <div
+                  className="fs-3 d-flex justify-content-center align-items-center"
+                  style={{
+                    height: "20rem",
                   }}
                 >
-                  Delete this post ?
-                </button>
-              </div>
-            )}
+                  <button
+                    className="p-2 border-0 bg-danger text-white"
+                    style={{
+                      borderRadius: "0.5rem",
+                    }}
+                    onClick={() => {
+                      handleDeletePostSaved(postID);
+                      handleDeletePopup();
+                    }}
+                  >
+                    Delete this post ?
+                  </button>
+                </div>
+              )}
 
-            <p data-time className="card-text mt-3">
-              <small className="text-body-secondary">
-                Saved {formatTime(createdAt)}
-              </small>
-            </p>
-          </div>
-        ) : (
-          <LoadingPage />
-        )}
+              <p data-time className="card-text mt-3">
+                <small className="text-body-secondary">
+                  Saved {formatTime(createdAt)}
+                </small>
+              </p>
+            </div>
+          ) : (
+            <LoadingPage />
+          )}
+        </div>
       </div>
-    </div>
+
+      <Modal
+        show={isOpenPreviewPost}
+        onHide={onOpenPreviewPost}
+        size="lg"
+        aria-labelledby="contained-modal-title-vcenter"
+        centered
+        className="text-black"
+      >
+        <Modal.Header closeButton>
+          <Modal.Title>Preview Post</Modal.Title>
+        </Modal.Header>
+
+        <Modal.Body
+          style={{
+            background: "var(--color-white)",
+            color: "var(--color-dark)",
+          }}
+        >
+          <Post {...post} postID={post._id} image={post.img} />
+        </Modal.Body>
+      </Modal>
+    </>
   );
 };
 
