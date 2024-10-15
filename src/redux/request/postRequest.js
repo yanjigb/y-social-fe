@@ -22,6 +22,7 @@ export const uploadPost = async (post, dispatch) => {
     return res.data;
   } catch (error) {
     console.log("[UPLOAD_POST]", error);
+    console.log(error);
     dispatch(uploadPostFailed());
   }
 };
@@ -34,6 +35,7 @@ export const getPostByID = async (postID, dispatch) => {
     return res.data;
   } catch (error) {
     dispatch(getPostFailed());
+    console.log(error);
   }
 };
 
@@ -45,6 +47,7 @@ export const getAllPostsByUser = async (userID, dispatch) => {
     return res.data;
   } catch (error) {
     dispatch(getPostFailed());
+    console.log(error);
   }
 };
 
@@ -56,6 +59,7 @@ export const getAllPosts = async (dispatch) => {
     return res.data;
   } catch (error) {
     dispatch(getPostFailed());
+    console.log(error);
   }
 };
 
@@ -67,6 +71,7 @@ export const deletePost = async (postID, dispatch) => {
     return res.data;
   } catch (error) {
     dispatch(deletePostFailed());
+    console.log(error);
   }
 };
 
@@ -77,6 +82,7 @@ export const deleteAllPosts = async (userID, dispatch) => {
     dispatch(deletePostSuccess());
   } catch (error) {
     dispatch(deletePostFailed());
+    console.log(error);
   }
 };
 
@@ -89,6 +95,7 @@ export const updatePost = async (updatePost, dispatch) => {
     return res.data;
   } catch (error) {
     dispatch(updatePostFailed());
+    console.log(error);
   }
 };
 
@@ -101,6 +108,7 @@ export const likePost = async (post, dispatch) => {
     return res.data;
   } catch (error) {
     dispatch(updatePostFailed());
+    console.log(error);
   }
 };
 
@@ -113,6 +121,7 @@ export const sharePost = async (post, dispatch) => {
     return res.data;
   } catch (error) {
     dispatch(updatePostFailed());
+    console.log(error);
   }
 };
 
@@ -125,5 +134,6 @@ export const commentPost = async (post, dispatch) => {
     return res.data;
   } catch (error) {
     dispatch(updatePostFailed());
+    console.log(error);
   }
 };

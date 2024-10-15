@@ -23,7 +23,7 @@
     "cloudinary-react": "^1.8.1",
     "clsx": "^2.1.1",
     "emoji-mart": "^5.5.2",
-    "eslint": "^8.56.0",
+    "eslint": "^9.12.0",
     "get-youtube-id": "^1.0.1",
     "lucide-react": "^0.330.0",
     "moment": "^2.29.4",
@@ -54,18 +54,32 @@
   "scripts": {
     "add-dev": "yarn add --dev --production=false",
     "eject": "react-scripts eject",
-    "format": "prettier --write \"**/*.{js,jsx,tsx,ts,json,md,html,css,less,scss}\"",
-    "lint": "eslint --fix --ext .js,.jsx .",
     "report": "npm run build --withReport true",
-    "start": "react-scripts start",
+    "dev": "react-scripts start",
     "build": "react-scripts build",
     "start:dev": "webpack-dev-server --mode development --open --hot",
     "build:dev": "webpack --mode production",
     "test": "react-scripts test",
-    "analyze": "source-map-explorer 'build/static/js/*.js'"
+    "analyze": "source-map-explorer 'build/static/js/*.js'",
+    "lint": "eslint --ignore-pattern .gitignore .",
+    "lint:fix": "npm run lint -- --fix",
+    "prettier": "npx prettier src --check",
+    "prettier:fix": "npm run prettier -- --write",
+    "format": "npm run prettier:fix && npm run lint:fix"
   },
   "eslintConfig": {
-    "extends": []
+    "extends": [
+      "airbnb-base",
+      "eslint:recommended",
+      "plugin:react/recommended",
+      "prettier"
+    ],
+    "rules": {
+      "no-console": "off",
+      "react/prop-types": "off",
+      "no-useless-escape": "off",
+      "react/react-in-jsx-scope": "off"
+    }
   },
   "browserslist": {
     "production": [
@@ -81,10 +95,17 @@
   },
   "devDependencies": {
     "@babel/core": "^7.24.3",
+    "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
     "@babel/preset-env": "^7.24.3",
     "@babel/preset-react": "^7.24.1",
+    "@eslint/js": "^9.12.0",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-prettier": "^5.2.1",
+    "eslint-plugin-react": "^7.37.1",
+    "globals": "^15.11.0",
     "husky": "^9.0.11",
-    "prettier": "^3.1.1"
+    "nano-staged": "^0.8.0",
+    "prettier": "^3.3.3"
   },
   "husky": {
     "hooks": {

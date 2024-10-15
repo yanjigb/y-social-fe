@@ -17,6 +17,7 @@ export const sendAudio = async (audio, dispatch) => {
     return res.data;
   } catch (error) {
     dispatch(sendAudioFailed());
+    console.error(error);
   }
 };
 
@@ -30,6 +31,7 @@ export const getAudioByID = async (audioID, dispatch) => {
     return res.data;
   } catch (error) {
     dispatch(getAudioFailed());
+    console.error(error);
   }
 };
 
@@ -43,5 +45,6 @@ export const getAllAudiosByUser = async (userID, dispatch) => {
     return res.data;
   } catch (error) {
     dispatch(getAudioFailed());
+    console.error(error);
   }
 };

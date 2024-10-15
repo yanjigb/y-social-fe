@@ -1,16 +1,11 @@
-import React, { memo, useEffect, useState } from "react";
+/* eslint-disable react/prop-types */
+import React, { memo, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import isEqual from "react-fast-compare";
 
 import { getUserByID } from "../../../redux/request/userRequest";
 
 const UserInfoPopup = ({ userID }) => {
-  const userInfo = useState({
-    username: "",
-    profilePicture: "",
-    followers: 0,
-    followings: 0,
-  });
   const dispatch = useDispatch();
 
   useEffect(() => {

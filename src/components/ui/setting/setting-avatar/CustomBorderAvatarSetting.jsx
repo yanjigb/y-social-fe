@@ -1,4 +1,5 @@
-import { memo, useEffect, useRef, useState } from "react";
+/* eslint-disable react/prop-types */
+import React, { memo, useEffect, useRef, useState } from "react";
 import { useDispatch } from "react-redux";
 import toast from "react-hot-toast";
 import isEqual from "react-fast-compare";
@@ -18,7 +19,7 @@ const saveBtnStye = {
   background: "var(--color-primary)",
 };
 
-const CustomBorderAvatarSetting = ({ close, show, onHide }) => {
+const CustomBorderAvatarSetting = ({ show, onHide }) => {
   const [borderColor, setBorderColor] = useState("");
   const [choosedColor, setChoosedColor] = useState("");
 
@@ -85,29 +86,29 @@ const CustomBorderAvatarSetting = ({ close, show, onHide }) => {
       <Modal.Header closeButton className="text-black">
         <div className="fs-2">Choose your avatar style</div>
       </Modal.Header>
-        <Modal.Body
-          onClick={e => e.stopPropagation()}
+      <Modal.Body onClick={(e) => e.stopPropagation()}>
+        <div className="d-flex justify-content-center gap-3 my-2">
+          {renderColorMenu()}
+        </div>
+      </Modal.Body>
+
+      <Modal.Footer className="flex align-items-center gap-2">
+        <Button
+          className="py-2 px-5 rounded-3 fs-3 bg-body text-black"
+          // onClick={close}
+          onClick={onHide}
         >
-          <div className="d-flex justify-content-center gap-3 my-2">{renderColorMenu()}</div>
-        </Modal.Body>
+          Close
+        </Button>
 
-        <Modal.Footer className="flex align-items-center gap-2">
-            <Button
-              className="py-2 px-5 rounded-3 fs-3 bg-body text-black"
-              // onClick={close}
-              onClick={onHide}
-            >
-              Close
-            </Button>
-
-            <Button
-              className="py-2 px-5 rounded-3 fs-3 text-white"
-              style={saveBtnStye}
-              onClick={handleSave}
-            >
-              Save
-            </Button>
-        </Modal.Footer>
+        <Button
+          className="py-2 px-5 rounded-3 fs-3 text-white"
+          style={saveBtnStye}
+          onClick={handleSave}
+        >
+          Save
+        </Button>
+      </Modal.Footer>
     </Modal>
   );
 };

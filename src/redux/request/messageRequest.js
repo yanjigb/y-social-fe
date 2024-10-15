@@ -22,6 +22,7 @@ export const sendMessage = async (message, dispatch) => {
     return res.data;
   } catch (error) {
     dispatch(sendMessageFailed());
+    console.error(error);
   }
 };
 
@@ -33,6 +34,7 @@ export const getMessagesByRoomID = async (roomID, dispatch) => {
     return res.data;
   } catch (error) {
     dispatch(getMessageFailed());
+    console.error(error);
   }
 };
 
@@ -43,6 +45,7 @@ export const deleteMessage = async (msgID, dispatch) => {
     dispatch(deleteMessageSuccess());
   } catch (error) {
     dispatch(deleteMessageFailed());
+    console.error(error);
   }
 };
 
@@ -55,6 +58,7 @@ export const getMessageByID = async (msgID, dispatch) => {
     return res.data;
   } catch (error) {
     dispatch(getMessageFailed());
+    console.error(error);
   }
 };
 
@@ -67,6 +71,7 @@ export const updateMessage = async (msgID, dispatch) => {
     return res.data;
   } catch (error) {
     dispatch(updateMessageFailed());
+    console.error(error);
   }
 };
 
@@ -80,5 +85,6 @@ export const markMessageSeen = async (msg, dispatch) => {
     return res.data;
   } catch (error) {
     dispatch(updateMessageFailed());
+    console.error(error);
   }
 };

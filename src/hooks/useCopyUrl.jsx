@@ -2,7 +2,7 @@ const useCopyUrl = (url) => {
   navigator.clipboard
     .writeText(url)
     .then(() => {
-      setIsCopied(true);
+      // setIsCopied(true);
     })
     .catch((error) => {
       console.error("[COPY_POST_URL]", error);

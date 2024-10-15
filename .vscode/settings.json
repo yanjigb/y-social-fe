@@ -2,5 +2,12 @@
   "conventionalCommits.scopes": [
     "ui"
   ],
-  "editor.formatOnSave": true,
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": "always",
+    "source.formatDocument": "always",
+  },
+  "eslint.ignoreUntitled": true,
+  "eslint.validate": ["javascript", "typescript"],
+  "eslint.format.enable": true,
+  "eslint.run": "onSave",
 }

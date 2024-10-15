@@ -57,7 +57,7 @@ const messageSlice = createSlice({
     deleteMessageStart: (state) => {
       state.message.isFetching = true;
     },
-    deleteMessageSuccess: (state, action) => {
+    deleteMessageSuccess: (state) => {
       state.message.isFetching = false;
       state.message.success = true;
     },

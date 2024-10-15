@@ -1,14 +1,15 @@
-import { Link } from "react-router-dom";
-import { Suspense, lazy, memo, useEffect, useState } from "react";
+/* eslint-disable react/prop-types */
+// import { Link } from "react-router-dom";
+import React, { Suspense, lazy, memo, useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import isEqual from "react-fast-compare";
 
 import { getUserByID } from "../../../../../redux/request/userRequest";
 
 import { useCurrentUser } from "../../../../../hooks";
-import { Avatar } from "../../../../../components";
+// import { Avatar } from "../../../../../components";
 import PostPopup from "../../../../ui/popup/post";
-import { RouteNames } from "../../../../../constant/routes";
+// import { RouteNames } from "../../../../../constant/routes";
 import LoadingPage from "../../../../common/loading/loading-page";
 import clsx from "clsx";
 import InputStatus from "./components/input-status";
@@ -57,8 +58,18 @@ const HomeMiddle = ({ socket, className }) => {
   };
 
   return (
-    <div className={clsx("middle animate__animated animate__fadeIn position-relative", className)}>
-      <InputStatus currentUser={currentUser} user={user} onPopup={handlePopup} renderPostPopup={renderPostPopup} />
+    <div
+      className={clsx(
+        "middle animate__animated animate__fadeIn position-relative",
+        className,
+      )}
+    >
+      <InputStatus
+        currentUser={currentUser}
+        user={user}
+        onPopup={handlePopup}
+        renderPostPopup={renderPostPopup}
+      />
       <Suspense fallback={<LoadingPage />}>
         <Posts socket={socket} />
       </Suspense>

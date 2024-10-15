@@ -1,3 +1,5 @@
+/* eslint-disable react/prop-types */
+import React from "react";
 import Picker from "@emoji-mart/react";
 import data from "@emoji-mart/data";
 import { Laugh } from "lucide-react";

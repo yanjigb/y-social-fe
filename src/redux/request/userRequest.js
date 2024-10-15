@@ -22,6 +22,7 @@ export const getUserByID = async (userID, dispatch) => {
       return res.data;
     } catch (error) {
       dispatch(getUserFailed());
+      console.error(error);
     }
   }
 };
@@ -35,6 +36,7 @@ export const getPostsShared = async (userID, dispatch) => {
     return res.data;
   } catch (error) {
     dispatch(getUserFailed());
+    console.error(error);
   }
 };
 
@@ -47,6 +49,7 @@ export const getPostsSaved = async (userID, dispatch) => {
     return res.data;
   } catch (error) {
     dispatch(getUserFailed());
+    console.error(error);
   }
 };
 
@@ -59,6 +62,7 @@ export const updateUser = async (updatedUser, dispatch) => {
     return res.data;
   } catch (error) {
     dispatch(updateUserFailed());
+    console.error(error);
   }
 };
 
@@ -70,6 +74,7 @@ export const checkIsUserExists = async (username, dispatch) => {
     return res.data;
   } catch (error) {
     dispatch(getUserFailed());
+    console.error(error);
   }
 };
 
@@ -82,6 +87,7 @@ export const followUser = async (updatedUser, dispatch) => {
     return res.data;
   } catch (error) {
     dispatch(updateUserFailed());
+    console.error(error);
   }
 };
 
@@ -94,6 +100,7 @@ export const fetchUserSpecificImageQuantity = async (userInfo, dispatch) => {
     return res.data;
   } catch (error) {
     dispatch(getUserFailed());
+    console.error(error);
   }
 };
 
@@ -106,5 +113,6 @@ export const deleteUser = async (userID, dispatch) => {
     return res.data;
   } catch (error) {
     dispatch(deleteUserFailed());
+    console.error(error);
   }
 };

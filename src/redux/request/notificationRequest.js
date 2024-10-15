@@ -23,6 +23,7 @@ export const getAllNotificationsByUser = async (userID, dispatch) => {
     return res.data;
   } catch (error) {
     dispatch(getNotificationFailed());
+    console.error(error);
   }
 };
 
@@ -35,6 +36,7 @@ export const getNotificationByID = async (notificationID, dispatch) => {
     return res.data;
   } catch (error) {
     dispatch(getNotificationFailed());
+    console.error(error);
   }
 };
 
@@ -47,6 +49,7 @@ export const pushNewNotification = async (notication, dispatch) => {
     return res.data;
   } catch (error) {
     dispatch(newNotificationFailed());
+    console.error(error);
   }
 };
 
@@ -58,6 +61,7 @@ export const markSeenNotification = async (updateNotification, dispatch) => {
     dispatch(markSeenNotificationSuccess(res.data));
   } catch (error) {
     dispatch(markSeenNotificationFailed());
+    console.error(error);
   }
 };
 
@@ -69,5 +73,6 @@ export const deleteNotification = async (notificationID, dispatch) => {
     dispatch(deleteNotificationSuccess(res.data));
   } catch (error) {
     dispatch(deleteNotificationFailed());
+    console.error(error);
   }
 };

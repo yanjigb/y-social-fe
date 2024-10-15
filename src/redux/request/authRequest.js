@@ -26,6 +26,7 @@ export const loginUser = async (user, dispatch, navigate) => {
     return res.data;
   } catch (error) {
     dispatch(loginFailed());
+    console.error(error);
   }
 };
 
@@ -35,8 +36,9 @@ export const registerUser = async (user, dispatch) => {
     const res = await userService.createUser(user);
     dispatch(registerSuccess(res.data));
     return res.data;
-  } catch (err) {
+  } catch (error) {
     dispatch(registerFailed());
+    console.error(error);
   }
 };
 
@@ -45,7 +47,8 @@ export const logout = async (dispatch, navigate) => {
   try {
     dispatch(logoutSuccess());
     navigate("/");
-  } catch (err) {
+  } catch (error) {
     dispatch(logoutFailed());
+    console.error(error);
   }
 };

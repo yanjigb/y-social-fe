@@ -1,9 +1,10 @@
+/* eslint-disable no-unsafe-optional-chaining */
+/* eslint-disable react/prop-types */
+import React from "react";
 import { Link } from "react-router-dom";
 import { useState, useEffect, memo } from "react";
 import { useDispatch } from "react-redux";
-import {
-  CheckCircle2,
-} from "lucide-react";
+import { CheckCircle2 } from "lucide-react";
 import isEqual from "react-fast-compare";
 
 import { getUserByID } from "../../../../../redux/request/userRequest";
@@ -83,7 +84,10 @@ const HomeLeft = ({ socket, isReadNotification }) => {
       // >
       //   <Setting close={handleClosePopup} />
       // </div>
-      <Setting onHide={handleOpenSettingProfile} show={active === MENU_NAME.SETTINGS} />
+      <Setting
+        onHide={handleOpenSettingProfile}
+        show={active === MENU_NAME.SETTINGS}
+      />
     );
   };
 
@@ -134,7 +138,11 @@ const HomeLeft = ({ socket, isReadNotification }) => {
         </Link>
 
         {/* SIDEBAR */}
-        <Sidebar active={active} setActive={setActive} isReadNotification={isReadNotification} />
+        <Sidebar
+          active={active}
+          setActive={setActive}
+          isReadNotification={isReadNotification}
+        />
         {/* END OF SIDEBAR */}
 
         <label

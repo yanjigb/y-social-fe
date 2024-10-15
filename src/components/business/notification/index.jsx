@@ -1,4 +1,5 @@
-import { memo, useCallback, useEffect, useRef, useState } from "react";
+/* eslint-disable react/prop-types */
+import React, { memo, useCallback, useEffect, useRef, useState } from "react";
 import { useDispatch } from "react-redux";
 import { io } from "socket.io-client";
 import { Link } from "react-router-dom";
@@ -139,7 +140,7 @@ const Notification = ({ socket }) => {
       >
         {isEmpty ? (
           <div className="fw-bold fs-2 h-100 d-flex justify-content-center align-items-center">
-            You don't have any notification ¯\_(ツ)_/¯
+            You don&apos;t have any notification ¯\_(ツ)_/¯
           </div>
         ) : (
           <div

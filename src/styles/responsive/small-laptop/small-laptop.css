@@ -1,17 +1,17 @@
 @media screen and (max-width: 768px) {
   .left {
-      /* width: 5rem; */
-  
-      /* z-index: 5; */
-    }
-  
-    main .container .left .profile {
-      display: none !important;
-    }
-  
-    .sidebar h3 {
-      display: none !important;
-    }
+    /* width: 5rem; */
+
+    /* z-index: 5; */
+  }
+
+  main .container .left .profile {
+    display: none !important;
+  }
+
+  .sidebar h3 {
+    display: none !important;
+  }
 }
 
 @media screen and (max-width: 1200px) {

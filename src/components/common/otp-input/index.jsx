@@ -1,4 +1,5 @@
-import { memo, useEffect, useState } from "react";
+/* eslint-disable react/prop-types */
+import React, { memo, useEffect, useState } from "react";
 import OtpInput from "react-otp-input";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";

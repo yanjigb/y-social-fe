@@ -1,4 +1,4 @@
-import { faWifi } from "@fortawesome/free-solid-svg-icons";
+import React, { faWifi } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { memo } from "react";
 import isEqual from "react-fast-compare";

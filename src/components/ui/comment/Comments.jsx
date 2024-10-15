@@ -1,4 +1,5 @@
-import { useCallback, useEffect, useState } from "react";
+/* eslint-disable react/prop-types */
+import React, { useCallback, useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { io } from "socket.io-client";
 import { Send } from "lucide-react";

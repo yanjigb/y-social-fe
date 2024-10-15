@@ -1,4 +1,5 @@
-import { memo } from "react";
+/* eslint-disable react/prop-types */
+import React, { memo } from "react";
 import { LOGO_YANJI_SOCIAL } from "../../../assets";
 import isEqual from "react-fast-compare";
 import clsx from "clsx";

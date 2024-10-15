@@ -1,3 +1,5 @@
+/* eslint-disable no-constant-binary-expression */
+/* eslint-disable react/prop-types */
 import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
@@ -24,6 +26,7 @@ const Comment = ({
     username: "",
     profilePicture: "",
   });
+  // eslint-disable-next-line no-unused-vars
   const [isActive, setIsActive] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const dispatch = useDispatch();

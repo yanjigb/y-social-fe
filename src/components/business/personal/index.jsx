@@ -180,9 +180,8 @@ const Personal = ({ socket }) => {
     setUserInfo((prevUser) => ({
       ...prevUser,
       bio: e.target.value,
-      })
-    )
-  }
+    }));
+  };
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -212,8 +211,22 @@ const Personal = ({ socket }) => {
         )}
       </div>
 
-      <EditBioModal onUpdate={handleUpdateBio} title="Update Bio" onToggle={toggleModal} onChangeUserInfo={handleChangeUserInfo} userInfo={userInfo} show={active === "UPDATE_BIO"} />
-      <EditIntroduceModal onUpdate={handleUpdateIntroduce} title="Update Introduce" onToggle={toggleModal} userInfo={userInfo} show={active === "UPDATE_INTRODUCE"} onChangeSocialLink={handleInputChange}/>
+      <EditBioModal
+        onUpdate={handleUpdateBio}
+        title="Update Bio"
+        onToggle={toggleModal}
+        onChangeUserInfo={handleChangeUserInfo}
+        userInfo={userInfo}
+        show={active === "UPDATE_BIO"}
+      />
+      <EditIntroduceModal
+        onUpdate={handleUpdateIntroduce}
+        title="Update Introduce"
+        onToggle={toggleModal}
+        userInfo={userInfo}
+        show={active === "UPDATE_INTRODUCE"}
+        onChangeSocialLink={handleInputChange}
+      />
     </div>
   ) : (
     <_404Page />

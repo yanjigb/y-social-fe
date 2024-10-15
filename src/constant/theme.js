@@ -25,12 +25,12 @@ const TextColorMap = {
 };
 
 const FONT_SIZE_MAP = {
-  FS_1: 'fs-1',
-  FS_2: 'fs-2',
-  FS_3: 'fs-3',
-  FS_4: 'fs-4',
-  FS_5: 'fs-5'
-}
+  FS_1: "fs-1",
+  FS_2: "fs-2",
+  FS_3: "fs-3",
+  FS_4: "fs-4",
+  FS_5: "fs-5",
+};
 
 // const FontSizeMap = {
 //   "fs-1": {

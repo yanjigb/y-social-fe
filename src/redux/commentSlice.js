@@ -43,7 +43,7 @@ const commentSlice = createSlice({
     deleteCommentStart: (state) => {
       state.comment.isFetching = true;
     },
-    deleteCommentSuccess: (state, action) => {
+    deleteCommentSuccess: (state) => {
       state.comment.isFetching = false;
       state.comment.success = true;
     },

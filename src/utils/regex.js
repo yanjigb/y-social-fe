@@ -1,3 +1,5 @@
+/* eslint-disable no-irregular-whitespace */
+/* eslint-disable no-useless-escape */
 const USER_REGEX = /^[a-zA-Z][a-zA-Z0-9-_]{3,23}$/;
 const PSW_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,}$/;
 const PSW_STRENGTH_REGEX =

@@ -1,4 +1,6 @@
-import { useEffect, useState, memo } from "react";
+/* eslint-disable no-unsafe-optional-chaining */
+/* eslint-disable react/prop-types */
+import React, { useEffect, useState, memo } from "react";
 import { useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import {

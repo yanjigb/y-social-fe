@@ -56,7 +56,7 @@ const postSlice = createSlice({
     deletePostStart: (state) => {
       state.post.isFetching = true;
     },
-    deletePostSuccess: (state, action) => {
+    deletePostSuccess: (state) => {
       state.post.isFetching = false;
       state.post.success = true;
     },

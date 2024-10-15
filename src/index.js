@@ -1,3 +1,4 @@
+import React from "react";
 import ReactDOM from "react-dom/client";
 
 import { library } from "@fortawesome/fontawesome-svg-core";
@@ -14,7 +15,7 @@ const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <MainProvider>
     <App />
-  </MainProvider>
+  </MainProvider>,
 );
 
 library.add(fab, fas, far);

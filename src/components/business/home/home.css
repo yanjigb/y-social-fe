@@ -35,7 +35,8 @@ img {
   object-fit: cover;
 }
 
-main .container .left, main .container .right {
+main .container .left,
+main .container .right {
   height: max-content;
 
   top: var(--sticky-top-left);

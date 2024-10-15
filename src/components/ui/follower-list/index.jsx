@@ -1,4 +1,5 @@
-import { memo, useEffect, useState } from "react";
+/* eslint-disable react/prop-types */
+import React, { memo, useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { X } from "lucide-react";
 import isEqual from "react-fast-compare";

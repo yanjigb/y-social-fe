@@ -1,4 +1,4 @@
-import { lazy, Suspense, useEffect, useRef } from "react";
+import React, { lazy, Suspense, useEffect, useRef } from "react";
 import { io } from "socket.io-client";
 
 import { authProtectedRoutes, publicRoutes } from "./all-routes";

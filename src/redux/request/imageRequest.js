@@ -17,6 +17,7 @@ export const sendImage = async (image, dispatch) => {
     return res.data;
   } catch (error) {
     dispatch(sendImageFailed());
+    console.error(error);
   }
 };
 
@@ -30,6 +31,7 @@ export const getImageByID = async (imageID, dispatch) => {
     return res.data;
   } catch (error) {
     dispatch(getImageFailed());
+    console.error(error);
   }
 };
 
@@ -43,5 +45,6 @@ export const getAllImagesByUser = async (userID, dispatch) => {
     return res.data;
   } catch (error) {
     dispatch(getImageFailed());
+    console.error(error);
   }
 };
