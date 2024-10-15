@@ -1,3 +1,5 @@
+/* eslint-disable react/prop-types */
+/* eslint-disable react/no-children-prop */
 import React, { memo, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import isEqual from "react-fast-compare";
@@ -59,10 +61,7 @@ const PhotosUser = ({ userInfo }) => {
     >
       {gallery.length > 0 ? (
         gallery.map((i) => (
-          <div
-            key={i._id}
-            className="col-4 p-3"
-          >
+          <div key={i._id} className="col-4 p-3">
             <img
               src={i.imageUrl}
               alt="user photos"
@@ -89,7 +88,7 @@ const PhotosUser = ({ userInfo }) => {
             background: "var(--bg-container-popup)",
           }}
         >
-          {userInfo.username} don't have any photos ¯\_(ツ)_/¯
+          {userInfo.username} don&apos;t have any photos ¯\_(ツ)_/¯
         </div>
       )}
 

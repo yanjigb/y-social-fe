@@ -1,4 +1,5 @@
-import { memo } from "react";
+/* eslint-disable react/prop-types */
+import React, { memo } from "react";
 import isEqual from "react-fast-compare";
 import { SquarePen, Trash } from "lucide-react";
 
@@ -14,7 +15,6 @@ const Message = ({
   media,
   createdAt,
   updatedAt,
-  loadingMsg,
 }) => {
   const formatTime = useTimeAgo;
 

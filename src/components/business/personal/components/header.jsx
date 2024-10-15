@@ -1,4 +1,5 @@
-import { useRef, useState, memo } from "react";
+/* eslint-disable react/prop-types */
+import React, { useState, memo } from "react";
 import { Camera } from "lucide-react";
 import isEqual from "react-fast-compare";
 
@@ -18,8 +19,6 @@ const PersonalHeader = ({ userInfo, socket }) => {
     userInfo?._id === currentUser?._id && setOpenPopup(!openPopup);
   };
 
-  const snackBar = useRef(null);
-
   return (
     <div className="cover position-relative">
       <span className="w-100 h-100">
@@ -27,17 +26,24 @@ const PersonalHeader = ({ userInfo, socket }) => {
           <Banner bannerUrl={userInfo?.coverPicture} />
         </div>
 
-        <UpdateAvatarBtn userInfo={userInfo} socket={socket} dispatch={dispatch} show={openPopup} onShow={handlePopup} isCover={true}>
-            <div
-              className="edit-cover d-flex align-items-center justify-content-center"
-              onClick={handlePopup}
-            >
-              <Camera size={20} className="me-2" />
-              Edit cover
-            </div>
+        <UpdateAvatarBtn
+          userInfo={userInfo}
+          socket={socket}
+          dispatch={dispatch}
+          show={openPopup}
+          onShow={handlePopup}
+          isCover={true}
+        >
+          <div
+            className="edit-cover d-flex align-items-center justify-content-center"
+            onClick={handlePopup}
+          >
+            <Camera size={20} className="me-2" />
+            Edit cover
+          </div>
         </UpdateAvatarBtn>
       </span>
-{/* 
+      {/* 
       <div
         ref={snackBar}
         id="snackbar"

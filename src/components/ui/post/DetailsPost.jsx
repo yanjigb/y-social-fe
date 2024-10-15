@@ -1,4 +1,5 @@
-import { memo } from "react";
+/* eslint-disable react/prop-types */
+import React, { memo } from "react";
 import Comments from "../comment/Comments";
 import isEqual from "react-fast-compare";
 import { Modal } from "react-bootstrap";
@@ -10,11 +11,10 @@ const DetailsPost = ({
   socket,
 
   show,
-  onHide
+  onHide,
 }) => {
   return (
     <>
-
       <Modal
         show={show}
         onHide={onHide}
@@ -24,17 +24,16 @@ const DetailsPost = ({
         className="text-black"
       >
         <Modal.Header closeButton onClick={(e) => e.stopPropagation()}>
-          <p className="fs-3 fw-bold mb-1">
-            Bài viết từ {author.username}
-          </p>
+          <p className="fs-3 fw-bold mb-1">Bài viết từ {author.username}</p>
         </Modal.Header>
 
-        <Modal.Body onClick={(e) => e.stopPropagation()} 
+        <Modal.Body
+          onClick={(e) => e.stopPropagation()}
           style={{
             background: "var(--color-white)",
             color: "var(--color-dark)",
           }}
-          >
+        >
           {children}
 
           <Comments postID={postID} author={author} socket={socket} />

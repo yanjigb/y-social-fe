@@ -1,4 +1,5 @@
-import { memo } from "react";
+/* eslint-disable react/prop-types */
+import React, { memo } from "react";
 import isEqual from "react-fast-compare";
 
 import { RouteNames } from "../../../constant/routes";
@@ -13,7 +14,7 @@ function Messages({ socket }) {
   return (
     <>
       <Header title="Login" link={RouteNames.REGISTER} />
-      <div className="messages row px-0">  
+      <div className="messages row px-0">
         <Left socket={socket} className="col-lg-2" />
         <Middle socket={socket} className="col-12 col-lg-8" />
         <Right socket={socket} className="col-md-2" />

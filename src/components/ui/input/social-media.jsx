@@ -4,7 +4,10 @@ import isEqual from "react-fast-compare";
 const SocialMediaInput = ({ icon, label, value, onChange }) => {
   return (
     <div className="d-flex flex-column align-items-start mb-4">
-      <label htmlFor={label} className="mb-2 fw-bold d-flex align-items-center fs-4 text-capitalize">
+      <label
+        htmlFor={label}
+        className="mb-2 fw-bold d-flex align-items-center fs-4 text-capitalize"
+      >
         {icon}
         {label}
       </label>

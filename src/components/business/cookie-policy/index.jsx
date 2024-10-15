@@ -1,4 +1,4 @@
-import { memo, useEffect } from "react";
+import React, { memo, useEffect } from "react";
 import isEqual from "react-fast-compare";
 
 const CookiePolicy = () => {

@@ -9,5 +9,6 @@ export const resendOtp = async (dispatch) => {
     return res.data;
   } catch (error) {
     dispatch(getOtpFailed());
+    console.log(error);
   }
 };

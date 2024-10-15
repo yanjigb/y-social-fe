@@ -1,5 +1,8 @@
+/* eslint-disable react/prop-types */
+/* eslint-disable no-unused-vars */
+/* eslint-disable react/no-children-prop */
 import io from "socket.io-client";
-import { useEffect, useRef, useState, useCallback, lazy, memo } from "react";
+import React, { useEffect, useRef, useState, useCallback, memo } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import { Info, Phone, Video } from "lucide-react";

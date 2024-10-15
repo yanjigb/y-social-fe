@@ -1,4 +1,6 @@
-import { memo, useEffect, useMemo, useState } from "react";
+/* eslint-disable react/prop-types */
+/* eslint-disable no-unsafe-optional-chaining */
+import React, { memo, useEffect, useMemo, useState } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { io } from "socket.io-client";
@@ -9,7 +11,7 @@ import LoadingPage from "../../../../common/loading/loading-page";
 import { getPostByID } from "../../../../../redux/request/postRequest";
 import { useCurrentUser, useTimeAgo } from "../../../../../hooks";
 import {
-  getPostsSaved,
+  // getPostsSaved,
   getUserByID,
   updateUser,
 } from "../../../../../redux/request/userRequest";
@@ -23,7 +25,7 @@ const Bookmark = ({
   postID,
   createdAt,
   socket,
-  handleDeletePopup = () => { },
+  handleDeletePopup = () => {},
 }) => {
   const dispatch = useDispatch();
   const [post, setPost] = useState({
@@ -41,7 +43,7 @@ const Bookmark = ({
   const formatTime = useTimeAgo;
   const navigate = useNavigate();
   const currentUser = useCurrentUser();
-  const [isOpenPreviewPost, setIsOpenPreviewPost] = useState(false)
+  const [isOpenPreviewPost, setIsOpenPreviewPost] = useState(false);
 
   const handleVisitLink = (link) => {
     navigate(link);
@@ -66,7 +68,7 @@ const Bookmark = ({
       getAuthor: (userID) => {
         getUserByID(userID, dispatch).then((data) => {
           const { username, _id, profilePicture } = data?.user;
-          setPost(prev => ({
+          setPost((prev) => ({
             ...prev,
             isExisting: true,
           }));
@@ -93,8 +95,8 @@ const Bookmark = ({
   useEffect(() => {
     getPostByID(postID, dispatch).then((data) => {
       if (data) {
-        const { desc, likes, img, video, userID } = data.data
-        setPost({ desc, likes, img, video, userID, ...data.data })
+        const { desc, likes, img, video, userID } = data.data;
+        setPost({ desc, likes, img, video, userID, ...data.data });
         handlePost.getAuthor(userID);
       } else {
         setAuthor({
@@ -107,8 +109,8 @@ const Bookmark = ({
   }, [postID, dispatch, handlePost]);
 
   const onOpenPreviewPost = () => {
-    setIsOpenPreviewPost(!isOpenPreviewPost)
-  }
+    setIsOpenPreviewPost(!isOpenPreviewPost);
+  };
 
   return (
     <>

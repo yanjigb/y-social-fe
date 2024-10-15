@@ -1,4 +1,5 @@
-import { useState, useRef, useEffect, memo } from "react";
+/* eslint-disable react/prop-types */
+import React, { useState, useRef, useEffect, memo } from "react";
 import { useDispatch } from "react-redux";
 import { io } from "socket.io-client";
 import Picker from "@emoji-mart/react";

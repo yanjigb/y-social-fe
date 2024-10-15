@@ -68,7 +68,10 @@ const PersonalNavbarProfile = () => {
 
   const renderSettingAvatar = () => {
     return (
-      <CustomBorderAvatarSetting show={active1 === "CustomBorderAvatarSetting"} onHide={handleClosePopupCustomBorderAvatar} />
+      <CustomBorderAvatarSetting
+        show={active1 === "CustomBorderAvatarSetting"}
+        onHide={handleClosePopupCustomBorderAvatar}
+      />
     );
   };
 

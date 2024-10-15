@@ -168,8 +168,8 @@ const PersonalFollow = ({ userInfo, socket }) => {
   };
 
   const handleToggleModal = () => {
-        setModalShow(!modalShow);
-  }
+    setModalShow(!modalShow);
+  };
 
   return (
     <div className="w-100 d-flex justify-content-between align-items-center flex-wrap">
@@ -177,20 +177,47 @@ const PersonalFollow = ({ userInfo, socket }) => {
         {userInfo?._id !== currentUser?._id && (
           <PersonalSendMsgBtn onClick={createNewMsg} />
         )}
-        
+
         <div className="row gap-4">
-          <FollowBtn userInfo={userInfo} socket={socket} isApprover={isApprover} isFollow={isFollow} onOpenSetting={handleOpenSetting} className="col-6" />
-          {userInfo?._id === currentUser?._id && <UpdateAvatarBtn userInfo={userInfo} socket={socket} dispatch={dispatch} title="Update Avatar" className="col-6" show={modalShow} onShow={handleToggleModal} isAvatar={true}>
-              <Button variant="primary" onClick={handleToggleModal} className="add-stories flex-grow-1 bg-transparent py-3 px-4 d-flex justify-content-center align-items-center rounded-3" style={{
-                  color: 'var(--color-dark)'
-              }}>
-                  Update Avatar
+          <FollowBtn
+            userInfo={userInfo}
+            socket={socket}
+            isApprover={isApprover}
+            isFollow={isFollow}
+            onOpenSetting={handleOpenSetting}
+            className="col-6"
+          />
+          {userInfo?._id === currentUser?._id && (
+            <UpdateAvatarBtn
+              userInfo={userInfo}
+              socket={socket}
+              dispatch={dispatch}
+              title="Update Avatar"
+              className="col-6"
+              show={modalShow}
+              onShow={handleToggleModal}
+              isAvatar={true}
+            >
+              <Button
+                variant="primary"
+                onClick={handleToggleModal}
+                className="add-stories flex-grow-1 bg-transparent py-3 px-4 d-flex justify-content-center align-items-center rounded-3"
+                style={{
+                  color: "var(--color-dark)",
+                }}
+              >
+                Update Avatar
               </Button>
-          </UpdateAvatarBtn>}
+            </UpdateAvatarBtn>
+          )}
         </div>
       </div>
 
-      <Setting close={handleClosePopup} show={active === "SETTINGS"} onHide={() => setActive("")} />
+      <Setting
+        close={handleClosePopup}
+        show={active === "SETTINGS"}
+        onHide={() => setActive("")}
+      />
     </div>
   );
 };

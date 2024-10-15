@@ -16,6 +16,7 @@ export const getAllRooms = async (dispatch) => {
     return res.data;
   } catch (error) {
     dispatch(getRoomFailed());
+    console.error(error);
   }
 };
 
@@ -27,6 +28,7 @@ export const getRoomsByUserID = async (dispatch, userID) => {
     return res.data;
   } catch (error) {
     dispatch(getRoomFailed());
+    console.error(error);
   }
 };
 
@@ -39,6 +41,7 @@ export const getCurrentRoom = async (dispatch, roomID) => {
     return res.data;
   } catch (error) {
     dispatch(getRoomFailed());
+    console.error(error);
   }
 };
 
@@ -51,5 +54,6 @@ export const createRoom = async (dispatch, roomInfo) => {
     return res.data;
   } catch (error) {
     dispatch(createRoomFailed());
+    console.error(error);
   }
 };

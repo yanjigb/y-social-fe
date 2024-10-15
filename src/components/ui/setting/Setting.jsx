@@ -1,4 +1,5 @@
-import { memo, useEffect, useRef, useState } from "react";
+/* eslint-disable react/prop-types */
+import React, { memo, useEffect, useRef, useState } from "react";
 import { UilSetting } from "@iconscout/react-unicons";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
@@ -55,7 +56,6 @@ const Setting = ({ close, onHide, show }) => {
             bio !== userInfo.bio
           ) {
             setIsChange(true);
-
           }
         }
       });
@@ -89,17 +89,17 @@ const Setting = ({ close, onHide, show }) => {
           };
 
           updateUser(updatedUser, dispatch)
-            .then((data) => {
+            .then(() => {
               toast.success("Update successfully");
             })
             .catch((err) => {
               console.error("Failed to update", err);
               toast.error("Something went wrong");
-            }).finally(() => {
+            })
+            .finally(() => {
               setActive("");
               setIsChange(false);
-            }
-            );
+            });
         }
       }
     });
@@ -148,7 +148,7 @@ const Setting = ({ close, onHide, show }) => {
         <Modal.Body
           style={{
             background: "var(--color-white)",
-            color: "var(--color-dark)"
+            color: "var(--color-dark)",
           }}
           className="p-5"
         >
@@ -156,7 +156,7 @@ const Setting = ({ close, onHide, show }) => {
             <Button
               style={{
                 background: "var(--color-white)",
-                color: "var(--color-dark)"
+                color: "var(--color-dark)",
               }}
               className="rounded-3 py-4 fs-3 col"
               onClick={() => setActive("PUBLIC")}
@@ -167,7 +167,7 @@ const Setting = ({ close, onHide, show }) => {
             <Button
               style={{
                 background: "var(--color-white)",
-                color: "var(--color-dark)"
+                color: "var(--color-dark)",
               }}
               className="rounded-3 py-4 fs-3 col"
               onClick={() => setActive("MANAGER")}
@@ -178,7 +178,7 @@ const Setting = ({ close, onHide, show }) => {
             <Button
               style={{
                 background: "var(--color-white)",
-                color: "var(--color-dark)"
+                color: "var(--color-dark)",
               }}
               className="rounded-3 py-4 fs-3"
               onClick={() => setActive("SECURE")}
@@ -189,7 +189,7 @@ const Setting = ({ close, onHide, show }) => {
             <Button
               style={{
                 background: "var(--color-white)",
-                color: "var(--color-dark)"
+                color: "var(--color-dark)",
               }}
               onClick={() => setActive("LOGOUT")}
               className="rounded-3 py-4 mt-5 fs-3 bg-danger border-0 text-white"

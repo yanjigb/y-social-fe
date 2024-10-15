@@ -41,7 +41,7 @@ const Photo = ({
   videoSrc = "",
   isVideo = false,
   postID = "",
-  link = `/post/${postID}`
+  link = `/post/${postID}`,
 }) => {
   return (
     <>

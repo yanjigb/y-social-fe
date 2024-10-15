@@ -1,4 +1,12 @@
-import { useState, useEffect, useCallback, useRef, useMemo, memo } from "react";
+/* eslint-disable react/prop-types */
+import React, {
+  useState,
+  useEffect,
+  useCallback,
+  useRef,
+  useMemo,
+  memo,
+} from "react";
 import { useDispatch } from "react-redux";
 import isEqual from "react-fast-compare";
 import { io } from "socket.io-client";

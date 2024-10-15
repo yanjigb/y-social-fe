@@ -1,4 +1,5 @@
-import { useState } from "react";
+/* eslint-disable react/prop-types */
+import React, { useState } from "react";
 import { LOGO_YANJI_SOCIAL } from "../../../assets";
 import Global from "../../../constant/global";
 import { getUserByID } from "../../../redux/request/userRequest";
@@ -12,7 +13,7 @@ const Avatar = ({
   fontSize,
   userId = "",
   size = "",
-  className
+  className,
 }) => {
   const dispatch = useDispatch();
   const [styleAvatar, setStyleAvatar] = useState("");
@@ -26,11 +27,11 @@ const Avatar = ({
   return (
     <div
       className={clsx(
-        'text-white text-uppercase w-100 h-100 d-flex justify-content-center align-items-center',
-        userId === Global.ADMIN_ID && 'border border-3 border-danger',
-        fontSize || 'fs-5',
+        "text-white text-uppercase w-100 h-100 d-flex justify-content-center align-items-center",
+        userId === Global.ADMIN_ID && "border border-3 border-danger",
+        fontSize || "fs-5",
         size || "profile-pic",
-        className
+        className,
       )}
       style={{
         border: `2px solid ${styleAvatar ? `${styleAvatar}` : "white"}`,

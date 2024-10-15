@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 const Global = {
   SOCKET_URL: process.env.REACT_APP_SOCKET_URL,
   CLOUD_UPLOAD_PRESET: process.env.REACT_APP_CLOUD_UPLOAD_PRESET,

@@ -1,4 +1,5 @@
-import { memo } from "react";
+/* eslint-disable react/prop-types */
+import React, { memo } from "react";
 import { Send, X, Image, Paperclip } from "lucide-react";
 import isEqual from "react-fast-compare";
 

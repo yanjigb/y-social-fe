@@ -1,4 +1,5 @@
-import { memo, useCallback, useEffect, useState } from "react";
+/* eslint-disable react/prop-types */
+import React, { memo, useCallback, useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import io from "socket.io-client";
 import isEqual from "react-fast-compare";
@@ -128,16 +129,19 @@ const MessageLeft = ({ socket = {}, className }) => {
   const [isExpanded, setIsExpanded] = useState(false);
 
   const onExpandMenuRoom = () => {
-    setIsExpanded(!isExpanded)
+    setIsExpanded(!isExpanded);
   };
 
   return (
     <>
       <div className={clsx("left-msg-page overflow-hidden", className)}>
-        <Button variant="primary" onClick={onExpandMenuRoom} className="w-100 px-2 rounded-3 fs-3"
+        <Button
+          variant="primary"
+          onClick={onExpandMenuRoom}
+          className="w-100 px-2 rounded-3 fs-3"
           style={{
             background: "var(--color-primary)",
-            color: "var(--color-dark)"
+            color: "var(--color-dark)",
           }}
         >
           More room
@@ -153,7 +157,7 @@ const MessageLeft = ({ socket = {}, className }) => {
           <Offcanvas.Body
             style={{
               background: "var(--color-white)",
-              color: "var(--color-dark)"
+              color: "var(--color-dark)",
             }}
           >
             <div className="left-container">

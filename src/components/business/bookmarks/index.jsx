@@ -1,4 +1,5 @@
-import { memo, useCallback, useEffect, useRef, useState } from "react";
+/* eslint-disable react/prop-types */
+import React, { memo, useCallback, useEffect, useRef, useState } from "react";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import { MoveLeft } from "lucide-react";
@@ -102,7 +103,7 @@ const BookmarkList = ({ socket }) => {
             height: "95%",
           }}
         >
-          You don't have saved anything ¯\_(ツ)_/¯
+          You don&apos;t have saved anything ¯\_(ツ)_/¯
         </div>
       )}
 

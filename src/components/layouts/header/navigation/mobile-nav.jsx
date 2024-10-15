@@ -1,122 +1,129 @@
-import { memo, useEffect, useState } from "react";
+/* eslint-disable react/prop-types */
+import React, { memo, useEffect, useState } from "react";
+// eslint-disable-next-line no-unused-vars
 import { Link, useNavigate } from "react-router-dom";
-import Form from "react-bootstrap/Form";
 import { useDispatch } from "react-redux";
-import axios from "axios";
-import { Search } from "lucide-react";
-import { useToggle } from 'usehooks-ts'
+// import axios from "axios";
+// import { Search } from "lucide-react";
+import { useToggle } from "usehooks-ts";
 import isEqual from "react-fast-compare";
-import Offcanvas from 'react-bootstrap/Offcanvas';
-import Button from 'react-bootstrap/Button';
-import ListGroup from 'react-bootstrap/ListGroup';
-import {
-    Home,
-    Bell,
-    MessageSquare,
-    Bookmark,
-    Video,
-    Palette,
-    Bolt,
-    LayoutDashboard,
-} from "lucide-react";
+import Button from "react-bootstrap/Button";
 
 import "./navigation.css";
 
-import NavBtn from "../../../../components/ui/button/navbar";
+// import NavBtn from "../../../../components/ui/button/navbar";
 import { getUserByID } from "../../../../redux/request/userRequest";
-import Global from "../../../../constant/global";
+// import Global from "../../../../constant/global";
 import { useCurrentUser } from "../../../../hooks";
 import { RouteNames } from "../../../../constant/routes";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import Sidebar from "../../sidebar";
+// import Sidebar from "../../sidebar";
 import MobileCustomTheme from "../components/mobile-custom-theme";
 import MobileSidebar from "../components/mobile-sidebar";
 
+// eslint-disable-next-line no-unused-vars
 const MobileNav = ({ title, link, isSearch = true }) => {
-    const [users, setUsers] = useState([]);
-    const [user, setUser] = useState({});
+  // eslint-disable-next-line no-unused-vars
+  const [users, setUsers] = useState([]);
+  const [user, setUser] = useState({});
 
-    const dispatch = useDispatch();
-    const navigate = useNavigate();
-    const currentUser = useCurrentUser();
-    const [active, setActive] = useState("HOME");
+  const dispatch = useDispatch();
+  // const navigate = useNavigate();
+  const currentUser = useCurrentUser();
+  // const [active, setActive] = useState("HOME");
 
-    useEffect(() => {
-        if (currentUser && !user?._id) {
-            getUserByID(currentUser._id, dispatch)
-                .then((data) => {
-                    setUser({
-                        ...data.user,
-                    });
-                })
-                .catch((error) => {
-                    console.error("Failed to fetch user:", error);
-                });
-        }
-    }, [currentUser, user?._id, dispatch]);
-
-
-    const renderSwitchBtn = () => {
-        return currentUser && <NavBtn
-            title="Create Post"
-            className="nav__btn d-flex align-items-center justify-content-center gap-4"
-            lable="#create-post"
-        />
-    };
-
-    const searchUser = async (e) => {
-        if (!e.target.value) {
-            setUsers([]);
-            return;
-        }
-
-        const value = e.target.value;
-
-        const data = await axios.get(
-            Global.SOCKET_URL +
-            `/api/v1/user/all-users/?username=${value.toLowerCase()}`,
-        );
-
-        const userList = data.data?.users;
-
-        if (userList.length > 0) {
-            setUsers(userList);
-        } else {
-            setUsers([]);
-        }
-    };
-
-    const [value, setValue] = useToggle()
-    const [toggleTheme, setToggleTheme] = useState(false);
-
-    // Just an example to use "setValue"
-    const toggleMenu = () => {
-        setValue((openMenu) => !openMenu)
+  useEffect(() => {
+    if (currentUser && !user?._id) {
+      getUserByID(currentUser._id, dispatch)
+        .then((data) => {
+          setUser({
+            ...data.user,
+          });
+        })
+        .catch((error) => {
+          console.error("Failed to fetch user:", error);
+        });
     }
+  }, [currentUser, user?._id, dispatch]);
 
-    const handleToggleTheme = () => {
-        setToggleTheme(openTheme => !openTheme)
-    }
+  // const renderSwitchBtn = () => {
+  //   return (
+  //     currentUser && (
+  //       <NavBtn
+  //         title="Create Post"
+  //         className="nav__btn d-flex align-items-center justify-content-center gap-4"
+  //         lable="#create-post"
+  //       />
+  //     )
+  //   );
+  // };
 
-    return (
-        <>
-            <nav className="py-3 text-start header-navbar">
-                <div className="d-flex flex-column h-100 px-5">
-                    <div className="d-flex justify-content-between align-items-center">
-                        <Link
-                            to={RouteNames.HOME}
-                            className="logo mb-0 d-flex align-items-center"
-                        >
-                            <span className="fs-2">Yanji Social</span>
-                        </Link>
+  // const searchUser = async (e) => {
+  //   if (!e.target.value) {
+  //     setUsers([]);
+  //     return;
+  //   }
 
-                        <Button type="button" onClick={toggleMenu} className="rounded-0 btn-focus-none border-0 shadow-none bg-transparent fs-3 text-white"><FontAwesomeIcon icon="fa-solid fa-bars" /></Button>
-                    </div>
-                    
-                    <MobileSidebar show={value} onToggleMenu={toggleMenu} onToggleTheme={handleToggleTheme} />
-                    <MobileCustomTheme toggleTheme={toggleTheme} onToggleTheme={handleToggleTheme} />
+  //   const value = e.target.value;
 
-                    {/* <Offcanvas show={toggleTheme} onHide={handleToggleTheme} placement="bottom" className="text-dark">
+  //   const data = await axios.get(
+  //     Global.SOCKET_URL +
+  //       `/api/v1/user/all-users/?username=${value.toLowerCase()}`,
+  //   );
+
+  //   const userList = data.data?.users;
+
+  //   if (userList.length > 0) {
+  //     setUsers(userList);
+  //   } else {
+  //     setUsers([]);
+  //   }
+  // };
+
+  const [value, setValue] = useToggle();
+  const [toggleTheme, setToggleTheme] = useState(false);
+
+  // Just an example to use "setValue"
+  const toggleMenu = () => {
+    setValue((openMenu) => !openMenu);
+  };
+
+  const handleToggleTheme = () => {
+    setToggleTheme((openTheme) => !openTheme);
+  };
+
+  return (
+    <>
+      <nav className="py-3 text-start header-navbar">
+        <div className="d-flex flex-column h-100 px-5">
+          <div className="d-flex justify-content-between align-items-center">
+            <Link
+              to={RouteNames.HOME}
+              className="logo mb-0 d-flex align-items-center"
+            >
+              <span className="fs-2">Yanji Social</span>
+            </Link>
+
+            <Button
+              type="button"
+              onClick={toggleMenu}
+              className="rounded-0 btn-focus-none border-0 shadow-none bg-transparent fs-3 text-white"
+            >
+              <FontAwesomeIcon icon="fa-solid fa-bars" />
+            </Button>
+          </div>
+
+          <MobileSidebar
+            show={value}
+            onToggleMenu={toggleMenu}
+            onToggleTheme={handleToggleTheme}
+          />
+          <MobileCustomTheme
+            toggleTheme={toggleTheme}
+            onToggleTheme={handleToggleTheme}
+          />
+
+          {/* <Offcanvas show={toggleTheme} onHide={handleToggleTheme} placement="bottom" className="text-dark">
                         <Offcanvas.Header closeButton>
                             <Offcanvas.Title>Offcanvas</Offcanvas.Title>
                         </Offcanvas.Header>
@@ -126,7 +133,7 @@ const MobileNav = ({ title, link, isSearch = true }) => {
                         </Offcanvas.Body>
                     </Offcanvas> */}
 
-                    {/* {isSearch && (
+          {/* {isSearch && (
                         <div className="search-bar d-flex align-items-center position-relative">
                             <Search size={15} />
                             <Form.Control
@@ -166,7 +173,7 @@ const MobileNav = ({ title, link, isSearch = true }) => {
                         </div>
                     )} */}
 
-                    {/* <div className="d-flex justify-content-end align-items-center">
+          {/* <div className="d-flex justify-content-end align-items-center">
                         {renderSwitchBtn()}
                         {currentUser && (
                             <Link
@@ -183,10 +190,10 @@ const MobileNav = ({ title, link, isSearch = true }) => {
                             </Link>
                         )}
                     </div> */}
-                </div>
-            </nav>
-        </>
-    );
+        </div>
+      </nav>
+    </>
+  );
 };
 
 export default memo(MobileNav, isEqual);

@@ -1,12 +1,36 @@
 {
-  "parserOptions": {
-    "ecmaVersion": 2020,
-    "sourceType": "module",
-    "ecmaFeatures": {
-      "jsx": true
-    }
-  },
-  "env": {
-    "es6": true
-  }
+    "env": {
+        "browser": true,
+        "commonjs": true,
+        "es2021": true
+    },
+    "extends": [
+        "eslint:recommended",
+        "prettier"
+    ],
+    "parserOptions": {
+        "ecmaVersion": 12,
+        "ecmaFeatures": {
+            "jsx": true
+        }
+    },
+    "rules": {
+        "no-console": "off",
+        "import/extensions": 0,
+        "import/no-unresolved": 0,
+        "import/prefer-default-export": "off",
+        "import/no-extraneous-dependencies": "off",
+        "react/require-default-props": "off",
+        "react/react-in-jsx-scope": "off",
+        "react/prop-types": "off",
+        "prettier/prettier": [
+            "error",
+            {
+                "embeddedLanguageFormatting": "auto"
+            }
+        ]
+    },
+    "plugins": ["eslint-plugin-prettier"],
+    "overrides": [
+    ]
 }

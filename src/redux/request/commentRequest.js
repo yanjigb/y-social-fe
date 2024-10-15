@@ -19,6 +19,7 @@ export const getAllComments = async (dispatch) => {
     return res.data;
   } catch (error) {
     dispatch(getCommentFailed());
+    console.error(error);
   }
 };
 
@@ -30,6 +31,7 @@ export const getAllCommentsByUserID = async (userID, dispatch) => {
     return res.data;
   } catch (error) {
     dispatch(getCommentFailed());
+    console.error(error);
   }
 };
 
@@ -41,6 +43,7 @@ export const getAllCommentsByPostID = async (postID, dispatch) => {
     return res.data;
   } catch (error) {
     dispatch(getCommentFailed());
+    console.error(error);
   }
 };
 
@@ -52,6 +55,7 @@ export const getCommentByID = async (commentID, dispatch) => {
     return res.data;
   } catch (error) {
     dispatch(getCommentFailed());
+    console.error(error);
   }
 };
 
@@ -63,6 +67,7 @@ export const updatePost = async (updatePost, dispatch) => {
     dispatch(updateCommentSuccess(res.data));
   } catch (error) {
     dispatch(updateCommentFailed());
+    console.error(error);
   }
 };
 
@@ -74,5 +79,6 @@ export const deleteComment = async (commentID, dispatch) => {
     return res.data;
   } catch (error) {
     dispatch(deleteCommentFailed());
+    console.error(error);
   }
 };

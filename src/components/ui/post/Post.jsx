@@ -1,4 +1,6 @@
-import { lazy, memo, useEffect, useState } from "react";
+/* eslint-disable react/no-children-prop */
+/* eslint-disable react/prop-types */
+import React, { lazy, memo, useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import {
@@ -46,7 +48,6 @@ const Post = ({
   postID,
   userID,
   createdAt,
-  updatedAt,
   desc,
   likes,
   shares,
@@ -68,7 +69,6 @@ const Post = ({
   const formatTime = useTimeAgo;
   const currentUser = useCurrentUser();
   const [openPreviewImage, setOpenPreviewImage] = useState(false);
-
 
   useEffect(() => {
     const handleClickOutside = () => {
@@ -255,7 +255,7 @@ const Post = ({
   };
 
   const handleCopyPostUrl = (e) => {
-    e.stopPropagation()
+    e.stopPropagation();
     useCopyUrl(Global.DEPLOY_URL + "post/" + postID);
   };
 
@@ -395,7 +395,7 @@ const Post = ({
 
   const onOpenPreviewImage = () => {
     setOpenPreviewImage(!openPreviewImage);
-  }
+  };
 
   const renderPost = () => {
     return (
@@ -410,8 +410,16 @@ const Post = ({
           <ParagraphWithLink text={desc} />
         </div>
         {image && (
-          <button onClick={onOpenPreviewImage} className="bg-transparent border-0">
-            <Photo postID={postID} imageSrc={image} link="#" label="Media of post" />
+          <button
+            onClick={onOpenPreviewImage}
+            className="bg-transparent border-0"
+          >
+            <Photo
+              postID={postID}
+              imageSrc={image}
+              link="#"
+              label="Media of post"
+            />
           </button>
         )}
         {video && <Photo videoSrc={video} isVideo={true} />}
@@ -434,14 +442,14 @@ const Post = ({
 
   const renderDetailsPost = () => {
     return (
-        <DetailsPost
-          children={renderPost()}
-          author={user}
-          postID={postID}
-          socket={socket}
-          show={popup === "DETAILS"}
-          onHide={handleDetailsPost}
-        />
+      <DetailsPost
+        children={renderPost()}
+        author={user}
+        postID={postID}
+        socket={socket}
+        show={popup === "DETAILS"}
+        onHide={handleDetailsPost}
+      />
     );
   };
 
@@ -472,9 +480,7 @@ const Post = ({
       <Lightbox
         open={openPreviewImage}
         close={onOpenPreviewImage}
-        slides={[
-          { src: image },
-        ]}
+        slides={[{ src: image }]}
       />
     </>
   );
