@@ -1,14 +1,15 @@
-import React, { lazy, Suspense, useEffect, useRef } from "react";
+/* eslint-disable react/react-in-jsx-scope */
+import { lazy, Suspense, useEffect, useRef } from "react";
 import { io } from "socket.io-client";
 
-import { authProtectedRoutes, publicRoutes } from "./all-routes";
-import { AuthProtected } from "./auth-protected";
-import Global from "../constant/global";
+import { Route, Routes } from "react-router-dom";
 import LoadingPage from "../components/common/loading/loading-page";
 import LoadingBrand from "../components/common/loading/loading=brand";
-const _404Page = lazy(() => import("../pages/_404"));
-import { Route, Routes } from "react-router-dom";
+import Global from "../constant/global";
 import { RouteNames } from "../constant/routes";
+import { authProtectedRoutes, publicRoutes } from "./all-routes";
+import { AuthProtected } from "./auth-protected";
+const _404Page = lazy(() => import("../pages/_404"));
 
 const Index = () => {
   const socketRef = useRef(null);

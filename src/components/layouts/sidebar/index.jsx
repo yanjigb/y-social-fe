@@ -1,21 +1,20 @@
 /* eslint-disable react/prop-types */
-import isEqual from "react-fast-compare";
-import { Link } from "react-router-dom";
-import React, { memo } from "react";
 import {
-  Home,
   Bell,
-  MessageSquare,
-  Bookmark,
-  Video,
-  Palette,
   Bolt,
+  Bookmark,
+  Home,
   LayoutDashboard,
+  MessageSquare,
+  Palette,
+  Video,
 } from "lucide-react";
-import Button from "../../ui/button/button";
+import React, { memo } from "react";
+import isEqual from "react-fast-compare";
+import Global from "../../../constant/global";
 import { RouteNames } from "../../../constant/routes";
 import { useCurrentUser } from "../../../hooks";
-import Global from "../../../constant/global";
+import Button from "../../ui/button/button";
 
 function Sidebar({ active, setActive, isReadNotification }) {
   const currentUser = useCurrentUser();
@@ -86,15 +85,15 @@ function Sidebar({ active, setActive, isReadNotification }) {
         />
       )}
       {currentUser?._id === Global.ADMIN_ID && (
-        <Link
-          to={RouteNames.ADMIN}
-          name={"ADMIN"}
+        <a
+          href={RouteNames.ADMIN}
           target="_blank"
-          className="menu-item hover-bg"
+          rel="noreferrer"
+          className="menu-item hover-bg gap-3"
         >
           <LayoutDashboard className="sidebar-icon" size={20} />
-          <h3 className="ms-3 mb-0">Admin Dashboard</h3>
-        </Link>
+          <h3 className="mb-0">Admin Dashboard</h3>
+        </a>
       )}
     </div>
   );

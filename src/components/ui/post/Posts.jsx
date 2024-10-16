@@ -1,4 +1,5 @@
 /* eslint-disable react/prop-types */
+import axios from "axios";
 import React, {
   lazy,
   memo,
@@ -7,21 +8,25 @@ import React, {
   useRef,
   useState,
 } from "react";
-import { useDispatch } from "react-redux";
-import { io } from "socket.io-client";
-import axios from "axios";
-import { Link } from "react-router-dom";
 import isEqual from "react-fast-compare";
+import { useDispatch } from "react-redux";
+import { Link } from "react-router-dom";
+import { io } from "socket.io-client";
 
 import "./style/post.css";
 
-import SocketEvent from "../../../constant/socket-event";
-import { getPostByID } from "../../../redux/request/postRequest";
 import Global from "../../../constant/global";
-import { useCurrentUser } from "../../../hooks";
 import { RouteNames } from "../../../constant/routes";
+import SocketEvent from "../../../constant/socket-event";
+import { useCurrentUser } from "../../../hooks";
+import { getPostByID } from "../../../redux/request/postRequest";
 
 const Post = lazy(() => import("./Post"));
+
+const requiredBannerStyle = {
+  height: "30rem",
+  marginTop: "0",
+};
 
 const Posts = ({ socket }) => {
   const [posts, setPosts] = useState([]);
@@ -123,11 +128,6 @@ const Posts = ({ socket }) => {
     };
   }, [posts, onIntersection]);
 
-  const requiredBannerStyle = {
-    height: "30rem",
-    marginTop: "0",
-  };
-
   const requiredBanner = (
     <>
       <div
@@ -146,8 +146,7 @@ const Posts = ({ socket }) => {
             color: "var(--color-primary)",
           }}
         >
-          {" "}
-          Login now{" "}
+          Login now
         </Link>
       </div>
     </>

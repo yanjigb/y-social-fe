@@ -124,13 +124,16 @@ const MobileSidebar = ({ show, onToggleMenu, onToggleTheme }) => {
               <h3 className="mb-0">Custom Border Avatar</h3>
             </ListGroup.Item>
             {currentUser?._id === Global.ADMIN_ID && (
-              <ListGroup.Item
-                className="py-4 border-0 shadow-sm d-flex align-items-center gap-4 mobile-sidebar-item"
-                action
-                href={RouteNames.ADMIN}
-              >
-                <LayoutDashboard className="sidebar-icon" size={20} />
-                <h3 className="mb-0">Admin Dashboard</h3>
+              <ListGroup.Item className="py-4 border-0 shadow-sm mobile-sidebar-item">
+                <a
+                  href={RouteNames.ADMIN}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="d-flex align-items-center gap-4 "
+                >
+                  <LayoutDashboard className="sidebar-icon" size={20} />
+                  <h3 className="mb-0">Admin Dashboard</h3>
+                </a>
               </ListGroup.Item>
             )}
           </ListGroup>
