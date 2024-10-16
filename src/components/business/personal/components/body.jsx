@@ -153,7 +153,7 @@ const PersonalBody = ({
 
   return (
     <>
-      <div className="row place-items-center gap-3">
+      <div className="row place-items-start gap-3">
         <div className="col">
           <div className="row p-3">
             <PersonalIntroduce
