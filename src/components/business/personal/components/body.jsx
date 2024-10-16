@@ -1,21 +1,22 @@
 /* eslint-disable react/prop-types */
-import React, {
-  useState,
-  useEffect,
-  useCallback,
-  useRef,
-  useMemo,
+import {
   memo,
+  useCallback,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
 } from "react";
-import { useDispatch } from "react-redux";
 import isEqual from "react-fast-compare";
+import { useDispatch } from "react-redux";
 import { io } from "socket.io-client";
 
 import "../styles/personalBody.css";
 
-import { PersonalIntroduce } from "../components";
-import { Post } from "../../../../components";
-import PostPopup from "../../../ui/popup/post";
+import { Avatar, Post } from "../../../../components";
+import Global from "../../../../constant/global";
+import SocketEvent from "../../../../constant/socket-event";
+import { useCurrentUser } from "../../../../hooks";
 import {
   getAllPostsByUser,
   getPostByID,
@@ -24,11 +25,9 @@ import {
   getPostsShared,
   getUserByID,
 } from "../../../../redux/request/userRequest";
-import SocketEvent from "../../../../constant/socket-event";
-import Global from "../../../../constant/global";
-import { useCurrentUser } from "../../../../hooks";
-import { Avatar } from "../../../../components";
 import TermLinks from "../../../features/term-link";
+import PostPopup from "../../../ui/popup/post/post";
+import { PersonalIntroduce } from "../components";
 
 //TODO FIX POST SHARED ALWAYS PIN
 

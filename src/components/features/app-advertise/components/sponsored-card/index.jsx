@@ -3,10 +3,10 @@ import { Earth } from "lucide-react"
 import { memo, useState } from "react"
 import isEqual from "react-fast-compare"
 import Lightbox from "yet-another-react-lightbox"
-import { Photo } from "../../ui"
+import { Photo } from "../../../../ui"
 
 /* eslint-disable react/react-in-jsx-scope */
-const AppAdvertiseCard = ({ title, description, cta }) => {
+const SponsoredCard = ({ title, description, cta }) => {
     const [isExpanded, setIsExpanded] = useState(false)
     const fullDescription = description || "demo";
     const [openPreviewImage, setOpenPreviewImage] = useState(false);
@@ -33,7 +33,7 @@ const AppAdvertiseCard = ({ title, description, cta }) => {
                 </button>
                 <div className="mt-3 flex flex-col gap-2">
                     <h2 className="font-bold text-4xl">{title}</h2>
-                    <div className="flex items-center gap-2 text-lg">Sponsored <Earth size={15} /> </div>
+                    <div className="flex items-center gap-2 text-lg opacity-60">Sponsored <Earth size={15} /> </div>
                     <div className="text-2xl flex items-start flex-col mt-4 mb-2">
                         {
                             description.length < 100
@@ -64,4 +64,4 @@ const AppAdvertiseCard = ({ title, description, cta }) => {
     )
 }
 
-export default memo(AppAdvertiseCard, isEqual)
+export default memo(SponsoredCard, isEqual)

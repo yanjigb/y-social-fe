@@ -413,7 +413,7 @@ const Post = ({
         {image && (
           <button
             onClick={onOpenPreviewImage}
-            className="bg-transparent border-0"
+            className="border-0 mx-auto bg-white w-full"
           >
             <Photo
               postID={postID}

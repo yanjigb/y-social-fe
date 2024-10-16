@@ -18,6 +18,7 @@
         }
     },
     "rules": {
+        "no-undef": "error",
         "no-console": "off",
         "import/extensions": 0,
         "import/no-unresolved": 0,

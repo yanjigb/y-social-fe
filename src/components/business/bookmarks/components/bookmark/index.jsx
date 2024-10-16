@@ -1,31 +1,32 @@
+/* eslint-disable react/react-in-jsx-scope */
 /* eslint-disable react/prop-types */
 /* eslint-disable no-unsafe-optional-chaining */
-import React, { memo, useEffect, useMemo, useState } from "react";
+import { BookmarkCheck } from "lucide-react";
+import { memo, useEffect, useMemo, useState } from "react";
+import isEqual from "react-fast-compare";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { io } from "socket.io-client";
-import { BookmarkCheck } from "lucide-react";
-import isEqual from "react-fast-compare";
 
-import LoadingPage from "../../../../common/loading/loading-page";
-import { getPostByID } from "../../../../../redux/request/postRequest";
+import { Modal } from "react-bootstrap";
+import { BG_DEFAULT_WALLPAPER_USER } from "../../../../../assets";
+import Global from "../../../../../constant/global";
 import { useCurrentUser, useTimeAgo } from "../../../../../hooks";
+import { getPostByID } from "../../../../../redux/request/postRequest";
 import {
   // getPostsSaved,
   getUserByID,
   updateUser,
 } from "../../../../../redux/request/userRequest";
-import { BG_DEFAULT_WALLPAPER_USER } from "../../../../../assets";
-import Avatar from "../../../../ui/avatar/Avatar";
-import Global from "../../../../../constant/global";
+import LoadingPage from "../../../../common/loading/loading-page";
 import { Post } from "../../../../ui";
-import { Modal } from "react-bootstrap";
+import Avatar from "../../../../ui/avatar/Avatar";
 
 const Bookmark = ({
   postID,
   createdAt,
   socket,
-  handleDeletePopup = () => {},
+  handleDeletePopup = () => { },
 }) => {
   const dispatch = useDispatch();
   const [post, setPost] = useState({
@@ -83,7 +84,9 @@ const Bookmark = ({
     [dispatch],
   );
 
-  const handleDeletePostSaved = (postID) => {
+  const handleDeletePostSaved = (postID, e) => {
+    e.stopPropagation();
+
     const updatedUser = {
       userID: currentUser._id,
       postSaved: { postID: postID },
@@ -154,7 +157,7 @@ const Bookmark = ({
                 <BookmarkCheck
                   size={20}
                   cursor="pointer"
-                  onClick={() => handleDeletePostSaved(postID)}
+                  onClick={(e) => handleDeletePostSaved(postID, e)}
                 />
               </div>
 

@@ -2,7 +2,7 @@
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { getAllAdvertise } from "../../../redux/request/advertiseRequest";
-import AppAdvertiseCard from "../app-advertise-card";
+import SponsoredCard from "./components/sponsored-card";
 const ITEMS_PER_PAGE = 20;
 
 export default function AppAdvertise() {
@@ -31,7 +31,7 @@ export default function AppAdvertise() {
     return (
         <div className="flex flex-col gap-4">
             {currentItems.map(item => (
-                <AppAdvertiseCard
+                <SponsoredCard
                     key={item.id}
                     title={item.title}
                     description={item.description}
