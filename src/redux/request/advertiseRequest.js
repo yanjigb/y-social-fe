@@ -4,6 +4,9 @@ import {
   getAdvertiseFailed,
   getAdvertiseStart,
   getAdvertiseSuccess,
+  getTrendingAdvertiseStart,
+  getTrendingAdvertiseSuccess,
+  getTrendingAdvertiseFailed,
 } from "../advertiseSlice";
 
 export const getAllAdvertise = async (dispatch) => {
@@ -23,11 +26,11 @@ export const getTrendingAdvertise = async (dispatch) => {
   dispatch(getTrendingAdvertiseStart());
 
   try {
-    const res = await advertisService.getAllAdverstise();
-    dispatch(getAdvertiseSuccess(res.data));
+    const res = await advertisService.getTrendingAdverstise();
+    dispatch(getTrendingAdvertiseSuccess(res.data));
     return res.data;
   } catch (error) {
-    dispatch(getAdvertiseFailed());
+    dispatch(getTrendingAdvertiseFailed());
     console.error(error);
   }
 };

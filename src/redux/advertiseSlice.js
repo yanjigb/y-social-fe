@@ -43,7 +43,7 @@ const advertiseSlice = createSlice({
 export const {
   getAdvertiseStart,
   getAdvertiseSuccess,
-  getAdvertiseEnd,
+  getAdvertiseFailed,
   getTrendingAdvertiseStart,
   getTrendingAdvertiseSuccess,
   getTrendingAdvertiseFailed,

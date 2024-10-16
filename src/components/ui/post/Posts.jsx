@@ -10,23 +10,19 @@ import React, {
 } from "react";
 import isEqual from "react-fast-compare";
 import { useDispatch } from "react-redux";
-import { Link } from "react-router-dom";
 import { io } from "socket.io-client";
 
 import "./style/post.css";
 
 import Global from "../../../constant/global";
-import { RouteNames } from "../../../constant/routes";
 import SocketEvent from "../../../constant/socket-event";
 import { useCurrentUser } from "../../../hooks";
 import { getPostByID } from "../../../redux/request/postRequest";
+import RequiredBanner from "./components/RequiredBanner";
+import { getAllAdvertise } from "../../../redux/request/advertiseRequest";
+import AppAdvertise from "../../features/app-advertise";
 
 const Post = lazy(() => import("./Post"));
-
-const requiredBannerStyle = {
-  height: "30rem",
-  marginTop: "0",
-};
 
 const Posts = ({ socket }) => {
   const [posts, setPosts] = useState([]);
@@ -35,6 +31,8 @@ const Posts = ({ socket }) => {
   const [hasMore, setHasMore] = useState(true);
   const [page, setPage] = useState(0);
   const currentUser = useCurrentUser();
+
+  if(!currentUser) return <RequiredBanner />
 
   const handleSocket = {
     updatePost: useCallback(
@@ -128,34 +126,15 @@ const Posts = ({ socket }) => {
     };
   }, [posts, onIntersection]);
 
-  const requiredBanner = (
-    <>
-      <div
-        className={
-          "post d-flex flex-column justify-content-center align-items-center"
-        }
-        style={requiredBannerStyle}
-      >
-        <span className="fs-1 fw-bold overflow-auto opacity-25">
-          You need to login for view posts ¯\_(ツ)_/¯
-        </span>
-        <Link
-          to={RouteNames.LOGIN}
-          className={"fs-3 fw-bold"}
-          style={{
-            color: "var(--color-primary)",
-          }}
-        >
-          Login now
-        </Link>
-      </div>
-    </>
-  );
+  useEffect(() => {
+    getAllAdvertise(dispatch).then(res => {
+      console.log(res)
+    })
+  },[])
 
   return (
     <div className="posts">
-      {currentUser
-        ? posts.map((post) => (
+      {posts.map((post) => (
             <Post
               key={post._id}
               postID={post._id}
@@ -171,8 +150,10 @@ const Posts = ({ socket }) => {
               updatedAt={post.updatedAt}
             />
           ))
-        : requiredBanner}
+        }
 
+      <AppAdvertise />
+      
       {currentUser && hasMore && (
         <div
           className="d-flex justify-content-center fs-3 fw-bold my-3"
