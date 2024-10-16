@@ -1,13 +1,33 @@
 {
   "conventionalCommits.scopes": [
-    "ui"
+    "ui",
+    "bug",
+    "conflict",
+    "enhance",
   ],
   "editor.codeActionsOnSave": {
-    "source.fixAll.eslint": "always",
-    "source.formatDocument": "always",
+    "source.fixAll": "always",
+    "source.addMissingImports": "always", // Add missing imports
+    "source.fixAll.eslint": "always",  // Fix ESLint errors
+    "source.organizeImports": "always",    // Sort imports
   },
   "eslint.ignoreUntitled": true,
-  "eslint.validate": ["javascript", "typescript"],
+  "eslint.validate": ["javascript", "javascriptreact"], // Add other languages if needed
   "eslint.format.enable": true,
   "eslint.run": "onSave",
+  "editor.formatOnSave": true,
+  "eslint.debug": true,
+  "editor.formatOnPaste": true,
+  "editor.inlineSuggest.enabled": true,
+  "[html]": {
+        "editor.defaultFormatter": "vscode.html-language-features"
+  },
+  "[javascript]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[javascriptreact]": {
+    "editor.defaultFormatter": "vscode.typescript-language-features"
+  },
+  "css.lint.emptyRules": "error",  
+  "files.eol": "\n", // Use LF line endings (recommended)
 }
