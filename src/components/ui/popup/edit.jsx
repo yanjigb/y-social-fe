@@ -254,7 +254,7 @@ const EditPopup = ({
         {!isLoading ? (
           <input
             type="submit"
-            className="w-100 py-3 border-0 rounded fs-4 fw-bold mt-4"
+            className="w-100 form__status py-3 border-0 rounded fs-4 fw-bold mt-4"
             value="Update post"
           />
         ) : (

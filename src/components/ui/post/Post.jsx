@@ -21,19 +21,15 @@ import { BG_DEFAULT_WALLPAPER_USER } from "../../../assets";
 
 import "./style/post.css";
 
+import ParagraphWithLink from "components/features/paragraph-with-link";
+import EditPopup from "components/ui/popup/edit";
 import Global from "constant/global";
 import { NotiType } from "constant/notification";
 import { useCopyUrl, useCurrentUser, useTimeAgo } from "hooks";
+import { pushNewNotification } from "redux/request/notificationRequest";
+import { deletePost, likePost, sharePost } from "redux/request/postRequest";
+import { getUserByID, updateUser } from "redux/request/userRequest";
 import Lightbox from "yet-another-react-lightbox";
-import { pushNewNotification } from "../../../redux/request/notificationRequest";
-import {
-  deletePost,
-  likePost,
-  sharePost,
-} from "../../../redux/request/postRequest";
-import { getUserByID, updateUser } from "../../../redux/request/userRequest";
-import ParagraphWithLink from "../../features/paragraph-with-link";
-import EditPopup from "../../ui/popup/edit";
 import Avatar from "../avatar/Avatar";
 import ConfirmDialog from "../dialog/confirm-dialog";
 import { Photo } from "../media";
@@ -70,6 +66,8 @@ const Post = ({
   const formatTime = useTimeAgo;
   const currentUser = useCurrentUser();
   const [openPreviewImage, setOpenPreviewImage] = useState(false);
+  const [isExpanded, setIsExpanded] = useState(false);
+  const truncatedDescription = desc.slice(0, 100) + "...";
 
   useEffect(() => {
     const handleClickOutside = () => {
@@ -408,12 +406,30 @@ const Post = ({
             maxHeight: "44rem",
           }}
         >
-          <ParagraphWithLink text={desc} />
+          {desc.length < 100 ? (
+            <ParagraphWithLink text={desc} />
+          ) : (
+            <>
+              <p>
+                {isExpanded ? (
+                  <ParagraphWithLink text={desc} />
+                ) : (
+                  truncatedDescription
+                )}
+              </p>
+              <button
+                onClick={() => setIsExpanded(!isExpanded)}
+                className="text-blue-500 text-lg hover:text-blue-700 font-medium focus:outline-none"
+              >
+                {isExpanded ? "Show Less" : "Read More"}
+              </button>
+            </>
+          )}
         </div>
         {image && (
           <button
             onClick={onOpenPreviewImage}
-            className="border-0 mx-auto bg-white w-full"
+            className="border-0 [&_.photo]:bg-gray-100 mx-auto w-full h-full"
           >
             <Photo
               postID={postID}

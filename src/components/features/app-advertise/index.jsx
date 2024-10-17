@@ -1,43 +1,41 @@
+/* eslint-disable react/prop-types */
 /* eslint-disable react/react-in-jsx-scope */
+import clsx from "clsx";
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
-import { getAllAdvertise } from "../../../redux/request/advertiseRequest";
+import { getAllAdvertise } from "redux/request/advertiseRequest";
 import SponsoredCard from "./components/sponsored-card";
-const ITEMS_PER_PAGE = 20;
 
-export default function AppAdvertise() {
+export default function AppAdvertise({ className }) {
   const dispatch = useDispatch();
-  const [currentPage, setCurrentPage] = useState(1);
-  const [advertiseList, setAdvertiseList] = useState([]);
+  const [randomAdvertise, setRandomAdvertise] = useState({});
+
+  const fetchAdvertiseList = async () => {
+    try {
+      const res = await getAllAdvertise(dispatch);
+
+      if (res.length > 0) {
+        const randomIndex = Math.floor(Math.random() * res.length);
+        setRandomAdvertise(res[randomIndex]);
+      }
+    } catch (error) {
+      console.error("Error fetching advertiseList:", error);
+    }
+  };
 
   useEffect(() => {
-    const fetchAdvertiseList = async () => {
-      try {
-        const res = await getAllAdvertise(dispatch);
-        setAdvertiseList(res); // Store all fetched ads
-      } catch (error) {
-        console.error("Error fetching advertiseList:", error);
-      }
-    };
-
     fetchAdvertiseList();
-  }, [dispatch]);
-
-  const currentItems = advertiseList.slice(
-    (currentPage - 1) * ITEMS_PER_PAGE,
-    currentPage * ITEMS_PER_PAGE,
-  );
+  }, []);
 
   return (
-    <div className="flex flex-col gap-4">
-      {currentItems.map((item) => (
-        <SponsoredCard
-          key={item.id}
-          title={item.title}
-          description={item.description}
-          cta={item.cta}
-        />
-      ))}
+    <div className={clsx("flex flex-col gap-4", className)}>
+      <SponsoredCard
+        key={randomAdvertise.id}
+        title={randomAdvertise.title}
+        description={randomAdvertise.description}
+        cta={randomAdvertise.cta}
+        media_content={randomAdvertise.media_content}
+      />
     </div>
   );
 }
