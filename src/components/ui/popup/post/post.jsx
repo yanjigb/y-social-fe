@@ -7,16 +7,12 @@ import { io } from "socket.io-client";
 
 import "./styles/postPopup.css";
 
-import Global from "../../../../constant/global";
-import { NotiType } from "../../../../constant/notification";
-import {
-  useCurrentUser,
-  useFollowerList,
-  useUploadImage,
-} from "../../../../hooks";
-import { pushNewNotification } from "../../../../redux/request/notificationRequest";
-import { uploadPost } from "../../../../redux/request/postRequest";
-import { getUserByID } from "../../../../redux/request/userRequest";
+import Global from "constant/global";
+import { NotiType } from "constant/notification";
+import { useCurrentUser, useFollowerList, useUploadImage } from "hooks";
+import { pushNewNotification } from "redux/request/notificationRequest";
+import { uploadPost } from "redux/request/postRequest";
+import { getUserByID } from "redux/request/userRequest";
 import Action from "./components/form/action";
 import Attachments from "./components/form/attachments";
 import Author from "./components/form/author";

@@ -3,7 +3,7 @@
 import data from "@emoji-mart/data";
 import Picker from "@emoji-mart/react";
 import { Image, Laugh } from "lucide-react";
-import { memo, useEffect } from "react";
+import { memo } from "react";
 import isEqual from "react-fast-compare";
 
 const Attachments = ({
@@ -15,7 +15,7 @@ const Attachments = ({
   onChooseEmoji,
 }) => {
   return (
-    <div className="d-flex">
+    <div className="d-flex mt-2">
       <UploadImage
         onOpenImgFile={onOpenImgFile}
         uploadImgRef={uploadImgRef}
@@ -58,7 +58,7 @@ const AddEmoji = ({ active, onActive, onChooseEmoji }) => {
   return (
     <span
       style={{ fontSize: "1.8rem" }}
-      className="ms-3 position-relative text-white"
+      className="ms-3 position-relative text-white z-10"
     >
       <Laugh
         size={20}

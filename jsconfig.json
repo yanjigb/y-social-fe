@@ -22,7 +22,7 @@
             "@services/*": ["services/*"],
             "@providers/*": ["providers/*"],
             "@hooks/*": ["hooks/*"],
-            "@styles/*": ["styles/*"],
+            "@styles/*": ["styles/*"]
         }
     },
     "exclude": ["node_modules"],
