@@ -32,7 +32,7 @@ const Posts = ({ socket }) => {
   const [page, setPage] = useState(0);
   const currentUser = useCurrentUser();
 
-  if(!currentUser) return <RequiredBanner />
+  if (!currentUser) return <RequiredBanner />;
 
   const handleSocket = {
     updatePost: useCallback(
@@ -127,33 +127,32 @@ const Posts = ({ socket }) => {
   }, [posts, onIntersection]);
 
   useEffect(() => {
-    getAllAdvertise(dispatch).then(res => {
-      console.log(res)
-    })
-  },[])
+    getAllAdvertise(dispatch).then((res) => {
+      console.log(res);
+    });
+  }, []);
 
   return (
     <div className="posts">
       {posts.map((post) => (
-            <Post
-              key={post._id}
-              postID={post._id}
-              image={post.img}
-              video={post.video}
-              userID={post.userID}
-              desc={post.desc}
-              likes={post.likes}
-              shares={post.shares}
-              comments={post.comments}
-              socket={socket}
-              createdAt={post.createdAt}
-              updatedAt={post.updatedAt}
-            />
-          ))
-        }
+        <Post
+          key={post._id}
+          postID={post._id}
+          image={post.img}
+          video={post.video}
+          userID={post.userID}
+          desc={post.desc}
+          likes={post.likes}
+          shares={post.shares}
+          comments={post.comments}
+          socket={socket}
+          createdAt={post.createdAt}
+          updatedAt={post.updatedAt}
+        />
+      ))}
 
       <AppAdvertise />
-      
+
       {currentUser && hasMore && (
         <div
           className="d-flex justify-content-center fs-3 fw-bold my-3"

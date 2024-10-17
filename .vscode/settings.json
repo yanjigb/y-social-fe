@@ -4,6 +4,7 @@
     "bug",
     "conflict",
     "enhance",
+    "feature",
   ],
   "editor.codeActionsOnSave": {
     "source.fixAll": "always",
@@ -26,7 +27,7 @@
         "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
   "[javascriptreact]": {
-    "editor.defaultFormatter": "vscode.typescript-language-features"
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
   "css.lint.emptyRules": "error",  
   "files.eol": "\n", // Use LF line endings (recommended)

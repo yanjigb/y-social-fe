@@ -21,10 +21,10 @@ import { BG_DEFAULT_WALLPAPER_USER } from "../../../assets";
 
 import "./style/post.css";
 
+import Global from "constant/global";
+import { NotiType } from "constant/notification";
+import { useCopyUrl, useCurrentUser, useTimeAgo } from "hooks";
 import Lightbox from "yet-another-react-lightbox";
-import Global from "../../../constant/global";
-import { NotiType } from "../../../constant/notification";
-import { useCopyUrl, useCurrentUser, useTimeAgo } from "../../../hooks";
 import { pushNewNotification } from "../../../redux/request/notificationRequest";
 import {
   deletePost,

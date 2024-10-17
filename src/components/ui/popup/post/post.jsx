@@ -174,7 +174,11 @@ const PostPopup = ({ onPopup, extendClass, socket }) => {
         }}
       >
         <Author currentUser={currentUser} onPopup={onPopup} user={user} />
-        <Content content={content} user={user} onChangeContent={handleChangeContent} />
+        <Content
+          content={content}
+          user={user}
+          onChangeContent={handleChangeContent}
+        />
         <Attachments
           onOpenImgFile={handleUploadImgFile}
           uploadImgRef={uploadImg}
@@ -183,8 +187,17 @@ const PostPopup = ({ onPopup, extendClass, socket }) => {
           onChooseEmoji={handleSendEmoji}
           onUploadImage={handleImageUpload}
         />
-        <Media imageSrc={imageSrc} videoSrc={videoSrc} onDeleteImage={handleDeleteImage} />
-        <Action isLoading={isLoading} isEmptyContent={content} isImageSrc={imageSrc} isVideoSrc={videoSrc} />
+        <Media
+          imageSrc={imageSrc}
+          videoSrc={videoSrc}
+          onDeleteImage={handleDeleteImage}
+        />
+        <Action
+          isLoading={isLoading}
+          isEmptyContent={content}
+          isImageSrc={imageSrc}
+          isVideoSrc={videoSrc}
+        />
       </form>
     </div>
   );
