@@ -1,23 +1,22 @@
 /* eslint-disable no-unsafe-optional-chaining */
 /* eslint-disable react/prop-types */
-import React from "react";
-import { Link } from "react-router-dom";
-import { useState, useEffect, memo } from "react";
-import { useDispatch } from "react-redux";
 import { CheckCircle2 } from "lucide-react";
+import { memo, useEffect, useState } from "react";
 import isEqual from "react-fast-compare";
+import { useDispatch } from "react-redux";
+import { Link } from "react-router-dom";
 
 import { getUserByID } from "../../../../../redux/request/userRequest";
 
 import { LOGO_YANJI_SOCIAL } from "../../../../../assets";
 
 // SETTINGS
-import { Avatar, CustomTheme, Setting } from "../../../../ui";
-import PostPopup from "../../../../ui/popup/post";
-import { useCurrentUser } from "../../../../../hooks";
-import { RouteNames } from "../../../../../constant/routes";
 import { LocalStorageKeys } from "../../../../../constant/local-storage-key";
+import { RouteNames } from "../../../../../constant/routes";
+import { useCurrentUser } from "../../../../../hooks";
 import Sidebar from "../../../../layouts/sidebar";
+import { Avatar, CustomTheme, Setting } from "../../../../ui";
+import PostPopup from "../../../../ui/popup/post/post";
 import { UserInitialize } from "../../constant/initialize";
 import { MENU_NAME } from "../../constant/menu";
 

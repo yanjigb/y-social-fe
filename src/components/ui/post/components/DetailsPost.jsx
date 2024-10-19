@@ -1,8 +1,8 @@
 /* eslint-disable react/prop-types */
 import React, { memo } from "react";
-import Comments from "../comment/Comments";
 import isEqual from "react-fast-compare";
 import { Modal } from "react-bootstrap";
+import { Comments } from "../../comment";
 
 const DetailsPost = ({
   children,

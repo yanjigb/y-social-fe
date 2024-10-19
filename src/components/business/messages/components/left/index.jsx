@@ -1,22 +1,23 @@
+/* eslint-disable react/react-in-jsx-scope */
 /* eslint-disable react/prop-types */
-import React, { memo, useCallback, useEffect, useState } from "react";
+import { memo, useCallback, useEffect, useState } from "react";
+import isEqual from "react-fast-compare";
 import { useDispatch } from "react-redux";
 import io from "socket.io-client";
-import isEqual from "react-fast-compare";
 
+import Global from "../../../../../constant/global";
+import SocketEvent from "../../../../../constant/socket-event";
+import { useCurrentUser } from "../../../../../hooks";
 import {
-  getRoomsByUserID,
   getCurrentRoom,
+  getRoomsByUserID,
 } from "../../../../../redux/request/roomRequest";
 import { getUserByID } from "../../../../../redux/request/userRequest";
-import SocketEvent from "../../../../../constant/socket-event";
-import Global from "../../../../../constant/global";
-import { useCurrentUser } from "../../../../../hooks";
 import Conversation from "../conversation";
 
-import "../../styles/messageLeft.css";
-import { Button, Offcanvas } from "react-bootstrap";
 import clsx from "clsx";
+import { Button, Offcanvas } from "react-bootstrap";
+import "../../styles/messageLeft.css";
 
 const MessageLeft = ({ socket = {}, className }) => {
   const [rooms, setRooms] = useState([]);
@@ -141,7 +142,7 @@ const MessageLeft = ({ socket = {}, className }) => {
           className="w-100 px-2 rounded-3 fs-3"
           style={{
             background: "var(--color-primary)",
-            color: "var(--color-dark)",
+            color: "white !important",
           }}
         >
           More room

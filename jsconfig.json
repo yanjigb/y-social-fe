@@ -1,3 +1,30 @@
 {
-    "exclude": ["node_modules", "**/node_modules/*"]
+    "compilerOptions": {
+        "target": "es6",
+        "allowJs": true,
+        "skipLibCheck": true,
+        "strict": true,
+        "noEmit": true,
+        "resolveJsonModule": true,
+        "moduleResolution": "bundler",
+        "jsx": "react",
+        "incremental": true,
+        "baseUrl": "./src",
+        "paths": {
+            "@*": ["*"],
+            "@components/*": ["components/*"],
+            "@constant/*": ["constant/*"],
+            "@utils/*": ["utils/*"],
+            "@config/*": ["config/*"],
+            "@pages/*": ["pages/*"],
+            "@redux/*": ["redux/*"],
+            "@routes/*": ["routes/*"],
+            "@services/*": ["services/*"],
+            "@providers/*": ["providers/*"],
+            "@hooks/*": ["hooks/*"],
+            "@styles/*": ["styles/*"]
+        }
+    },
+    "exclude": ["node_modules"],
+    "include": ["**/*.js", "**/*.jsx", "src"]
 }

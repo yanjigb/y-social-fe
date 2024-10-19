@@ -12,12 +12,15 @@
         "plugin:react/jsx-runtime"
     ],
     "parserOptions": {
-        "ecmaVersion": 12,
         "ecmaFeatures": {
             "jsx": true
-        }
+        },
+        "ecmaVersion": "latest",
+        "sourceType": "module",
+        "project": "./jsconfig.json"
     },
     "rules": {
+        "no-undef": "error",
         "no-console": "off",
         "import/extensions": 0,
         "import/no-unresolved": 0,
@@ -32,10 +35,12 @@
     },
     "settings": {
         "react": {
-        "version": "detect" // Automatically detect the React version
+            "version": "detect" // Automatically detect the React version
         }
     },
-    "plugins": ["react", "eslint-plugin-prettier"],
-    "overrides": [
-    ]
+    "plugins": [
+        "react",
+        "eslint-plugin-prettier"
+    ],
+    "overrides": []
 }

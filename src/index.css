@@ -1,6 +1,9 @@
 @import "./styles/responsive/small-laptop/small-laptop.css";
 @import "./styles/responsive/big-tablet/big-tablet.css";
 @import "./styles/responsive/mobile/mobile.css";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 *,
 *::before,

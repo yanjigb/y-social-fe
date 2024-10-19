@@ -1,3 +1,5 @@
+/* eslint-disable react/react-in-jsx-scope */
+/* eslint-disable react/prop-types */
 import { Link } from "react-router-dom";
 import {
   LazyLoadImage,
@@ -5,6 +7,7 @@ import {
 } from "react-lazy-load-image-component";
 import { memo } from "react";
 import isEqual from "react-fast-compare";
+import clsx from "clsx";
 
 const photoStyles = {
   width: "calc(100%)",
@@ -25,12 +28,11 @@ const videoProps = {
   loop: true,
 };
 
-const lazyLoadImageProps = (label, imageSrc) => {
+const lazyLoadImageProps = (label, imageSrc, className) => {
   return {
     alt: label,
     src: imageSrc,
-    effect: "blur",
-    className: "w-100 h-100",
+    className: clsx("w-100 h-100", className),
     height: "100%",
   };
 };
@@ -41,6 +43,7 @@ const Photo = ({
   videoSrc = "",
   isVideo = false,
   postID = "",
+  className = "",
   link = `/post/${postID}`,
 }) => {
   return (
@@ -56,7 +59,7 @@ const Photo = ({
         </div>
       ) : (
         <Link to={link} className="photo" style={photoStyles}>
-          <LazyLoadImage {...lazyLoadImageProps(label, imageSrc)} />
+          <LazyLoadImage {...lazyLoadImageProps(label, imageSrc, className)} />
         </Link>
       )}
     </>

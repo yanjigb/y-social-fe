@@ -1,3 +1,5 @@
+/* eslint-disable react/react-in-jsx-scope */
+/* eslint-disable react/prop-types */
 import clsx from "clsx";
 import { memo } from "react";
 import isEqual from "react-fast-compare";
@@ -14,8 +16,6 @@ function InputStatus({
 }) {
   return (
     <div
-      // className={`create-post align-items-center mb-4 ${currentUser === undefined ? "d-none" : "d-flex"
-      //     }`}
       className={clsx(
         "create-post align-items-center mb-4",
         {
@@ -44,7 +44,7 @@ function InputStatus({
           onClick={onPopup}
           id="caption"
         >
-          What's in your mind, {currentUser?.username || " user"}?
+          What&apos;s in your mind, {currentUser?.username || " user"}?
         </div>
       </div>
 
