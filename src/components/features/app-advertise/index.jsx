@@ -30,11 +30,13 @@ export default function AppAdvertise({ className }) {
   return (
     <div className={clsx("flex flex-col gap-4", className)}>
       <SponsoredCard
-        key={randomAdvertise.id}
+        key={randomAdvertise._id}
+        id={randomAdvertise._id}
         title={randomAdvertise.title}
         description={randomAdvertise.description}
         cta={randomAdvertise.cta}
         media_content={randomAdvertise.media_content}
+        link_action={randomAdvertise.link_action}
       />
     </div>
   );

@@ -37,6 +37,32 @@ const advertiseSlice = createSlice({
       state.advertise.isFetching = false;
       state.advertise.error = true;
     },
+    updateAdvertiseImpressionsStart: (state) => {
+      state.advertise.advertiseData = {};
+      state.advertise.isFetching = true;
+    },
+    updateAdvertiseImpressionsSuccess: (state, action) => {
+      state.advertise.isFetching = false;
+      state.advertise.advertiseData = action.payload;
+      state.advertise.success = true;
+    },
+    updateAdvertiseImpressionsFailed: (state) => {
+      state.advertise.isFetching = false;
+      state.advertise.error = true;
+    },
+    updateAdvertiseClicksStart: (state) => {
+      state.advertise.advertiseData = {};
+      state.advertise.isFetching = true;
+    },
+    updateAdvertiseClicksSuccess: (state, action) => {
+      state.advertise.isFetching = false;
+      state.advertise.advertiseData = action.payload;
+      state.advertise.success = true;
+    },
+    updateAdvertiseClicksFailed: (state) => {
+      state.advertise.isFetching = false;
+      state.advertise.error = true;
+    },
   },
 });
 
@@ -47,6 +73,12 @@ export const {
   getTrendingAdvertiseStart,
   getTrendingAdvertiseSuccess,
   getTrendingAdvertiseFailed,
+  updateAdvertiseImpressionsStart,
+  updateAdvertiseImpressionsSuccess,
+  updateAdvertiseImpressionsFailed,
+  updateAdvertiseClicksStart,
+  updateAdvertiseClicksSuccess,
+  updateAdvertiseClicksFailed,
 } = advertiseSlice.actions;
 
 export default advertiseSlice.reducer;
