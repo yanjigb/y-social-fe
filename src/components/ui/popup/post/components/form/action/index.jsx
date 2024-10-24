@@ -7,7 +7,7 @@ const Action = ({ isLoading, isEmptyContent, isImageSrc, isVideoSrc }) => {
   return !isLoading ? (
     <input
       type="submit"
-      className="w-100 form__status text-white py-3 border-0 rounded fs-4 fw-bold mt-4"
+      className="w-100 form__status disabled:cursor-not-allowed text-white py-3 border-0 rounded fs-4 fw-bold mt-4"
       value="Post"
       disabled={!isEmptyContent && !isImageSrc && !isVideoSrc}
     />

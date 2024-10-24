@@ -42,11 +42,9 @@ const BackgroundTheme = () => {
   };
 
   return (
-    <div className="background">
-      <div className="background">
-        <h4>Background</h4>
+    <div className="background flex flex-col gap-3">
+        <h4 className="font-bold fs-4">Background</h4>
         {renderBgMenu()}
-      </div>
     </div>
   );
 };

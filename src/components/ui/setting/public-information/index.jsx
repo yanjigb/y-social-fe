@@ -18,8 +18,8 @@ function PublicInformation({
       aria-labelledby="contained-modal-title-vcenter"
       size="lg"
     >
-      <Modal.Header closeButton className="text-black">
-        <h2>Public Information</h2>
+      <Modal.Header closeButton className="text-black fs-3">
+        <h3>Public Information</h3>
       </Modal.Header>
 
       <Modal.Body
@@ -29,15 +29,15 @@ function PublicInformation({
         }}
         className="d-flex flex-column gap-3"
       >
-        <div className="d-flex justify-content-between flex-column flex-lg-row gap-2">
+        <div className="d-flex justify-content-between flex-column flex-lg-row gap-3">
           <div className="d-flex flex-grow-1 flex-column align-items-start">
-            <label htmlFor="firstname" className="mb-2 fs-3">
+            <label htmlFor="firstname" className="mb-2 fs-4">
               Firstname
             </label>
             <input
               type="text"
               id="firstname"
-              className="w-100 p-2 px-3 fs-4"
+              className="w-100 p-2 px-3 fs-5 text-black !bg-slate-100 border-none"
               style={{
                 borderRadius: "0.5rem",
               }}
@@ -53,13 +53,13 @@ function PublicInformation({
             />
           </div>
           <div className="d-flex flex-grow-1 flex-column align-items-start">
-            <label htmlFor="lastname" className="mb-2 fs-3">
+            <label htmlFor="lastname" className="mb-2 fs-4">
               Lastname
             </label>
             <input
               type="text"
               id="lastname"
-              className="w-100 p-2 px-3 fs-4"
+              className="w-100 p-2 px-3 fs-5 text-black !bg-slate-100 border-none"
               style={{
                 borderRadius: "0.5rem",
               }}
@@ -76,13 +76,13 @@ function PublicInformation({
           </div>
         </div>
         <div className="d-flex flex-column align-items-start">
-          <label htmlFor="nickname" className="fs-3 mb-2">
+          <label htmlFor="nickname" className="fs-4 mb-2">
             Nickname ( @{userInfo?.username} )
           </label>
           <input
             type="text"
             id="nickname"
-            className="w-100 p-2 px-3 fs-4"
+            className="w-100 p-2 px-3 fs-5 text-black !bg-slate-100 border-none"
             style={{
               borderRadius: "0.5rem",
             }}
@@ -97,13 +97,13 @@ function PublicInformation({
           />
         </div>
         <div className="d-flex flex-column align-items-start">
-          <label htmlFor="bio" className="mb-2 fs-3">
+          <label htmlFor="bio" className="mb-2 fs-4">
             Bio
           </label>
           <textarea
             type="text"
             id="bio"
-            className="w-100 p-2 px-3 fs-4"
+            className="w-100 p-2 px-3 fs-5 text-black !bg-slate-100 border-none"
             style={{
               borderRadius: "0.5rem",
               height: "7rem",
@@ -120,18 +120,24 @@ function PublicInformation({
         </div>
       </Modal.Body>
 
-      <Modal.Footer>
+      <Modal.Footer
+        className="flex items-center gap-2"
+        style={{
+          background: "var(--color-white)",
+          color: "var(--color-dark)",
+        }}
+      >
         <Button
           onClick={onHide}
-          className="rounded-3 fs-3"
-          variant="outline-secondary text-danger"
+          className="rounded-3 fs-5"
+          variant="outline-secondary text-danger hover:bg-white bg-white"
           type="button"
         >
           Close
         </Button>
         <Button
           onClick={onUpdateUser}
-          className="rounded-3 fs-3"
+          className="rounded-3 fs-5"
           style={{
             background: "var(--color-primary)",
           }}

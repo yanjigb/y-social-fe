@@ -1,6 +1,7 @@
 /* eslint-disable react/prop-types */
 import { useIntersectionObserver } from "@uidotdev/usehooks";
 import SponsoredBadge from "components/ui/sponsored-badge";
+import { ADVERTISE_STATUS } from "constant/advertise";
 import { memo, useEffect, useState } from "react";
 import isEqual from "react-fast-compare";
 import { useDispatch } from "react-redux";
@@ -21,6 +22,7 @@ const SponsoredCard = ({
   cta,
   media_content,
   link_action,
+  status,
 }) => {
   const [isExpanded, setIsExpanded] = useState(false);
   const fullDescription = description || "";
@@ -67,6 +69,11 @@ const SponsoredCard = ({
   if (!title || !description || !cta) return <Skeleton />;
 
   const truncatedDescription = description.slice(0, 100) + "...";
+
+  if(status === ADVERTISE_STATUS.SUSPENDED 
+    || status === ADVERTISE_STATUS.SCHEDULE) {
+      return null;
+    }
 
   return (
     <>

@@ -34,6 +34,7 @@ import Avatar from "../avatar/Avatar";
 import ConfirmDialog from "../dialog/confirm-dialog";
 import { Photo } from "../media";
 import ActionBtn from "./components/ActionBtn";
+import PostSkeleton from "./components/skeleton/post-skeleton";
 const DetailsPost = lazy(() => import("./components/DetailsPost"));
 
 // TODO CHECK SPAM IN LIKE, SHARE, COMMENT
@@ -68,6 +69,8 @@ const Post = ({
   const [openPreviewImage, setOpenPreviewImage] = useState(false);
   const [isExpanded, setIsExpanded] = useState(false);
   const truncatedDescription = desc.slice(0, 100) + "...";
+
+  if(!postID) return <PostSkeleton />;
 
   useEffect(() => {
     const handleClickOutside = () => {
@@ -398,7 +401,7 @@ const Post = ({
 
   const renderPost = () => {
     return (
-      <div key={postID} className="post mb-4 position-relative">
+      <div className="post mb-4 position-relative">
         <div className="head">{renderTitle()}</div>
         <div
           className="caption fs-3 my-3 overflow-auto"

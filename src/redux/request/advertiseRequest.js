@@ -45,7 +45,7 @@ export const handleUpdateClicks = async (id, dispatch) => {
   dispatch(updateAdvertiseClicksStart());
 
   try {
-    const res = await advertisService.updateImpression(id);
+    const res = await advertisService.updateClicks(id);
     dispatch(updateAdvertiseClicksSuccess(res.data));
     return res.data;
   } catch (error) {

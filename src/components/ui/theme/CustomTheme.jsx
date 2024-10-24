@@ -12,7 +12,7 @@ const CustomTheme = () => {
         }
       }}
     >
-      <h2>Customize your view</h2>
+      <h3 className="fs-3 font-bold">Customize your view</h3>
       <p className="text-muted">
         Manage your font size, color, and background.
       </p>

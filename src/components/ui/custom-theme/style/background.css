@@ -8,8 +8,7 @@
 }
 
 .choose-bg > div {
-  padding: var(--card-padding);
-
+  padding: 1rem;
   width: 100%;
 
   display: flex;

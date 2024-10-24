@@ -1,13 +1,14 @@
+/* eslint-disable react/react-in-jsx-scope */
 import { memo, useRef, useState } from "react";
+import isEqual from "react-fast-compare";
 import { useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
-import isEqual from "react-fast-compare";
 
 import { loginUser } from "../../../../redux/request/authRequest";
 
-import "../auth.css";
 import { RouteNames } from "../../../../constant/routes";
 import Header from "../../../layouts/header";
+import "../auth.css";
 
 const Login = () => {
   const pwd = useRef(null);

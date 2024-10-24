@@ -51,8 +51,8 @@ const FontSizeTheme = () => {
   };
 
   return (
-    <div className="font-size">
-      <h4>Font Size</h4>
+    <div className="font-size flex flex-col gap-3">
+      <h4 className="font-bold fs-4">Font Size</h4>
       {renderFontsizeMenu()}
     </div>
   );

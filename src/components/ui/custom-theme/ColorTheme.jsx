@@ -49,8 +49,8 @@ const ColorTheme = ({ className = "" }) => {
   };
 
   return (
-    <div className={clsx("color", className)}>
-      <h4>Color</h4>
+    <div className={clsx("color flex flex-col gap-3", className)}>
+      <h4 className="font-bold fs-4">Color</h4>
       {renderColorThemeMenu()}
     </div>
   );

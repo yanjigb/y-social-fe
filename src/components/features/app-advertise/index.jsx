@@ -16,6 +16,7 @@ export default function AppAdvertise({ className }) {
 
       if (res.length > 0) {
         const randomIndex = Math.floor(Math.random() * res.length);
+        console.log(randomIndex)
         setRandomAdvertise(res[randomIndex]);
       }
     } catch (error) {
@@ -37,6 +38,7 @@ export default function AppAdvertise({ className }) {
         cta={randomAdvertise.cta}
         media_content={randomAdvertise.media_content}
         link_action={randomAdvertise.link_action}
+        status={randomAdvertise.status}
       />
     </div>
   );
