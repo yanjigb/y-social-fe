@@ -1,43 +1,11 @@
-import { useEffect, useState, memo } from "react";
-import { Link } from "react-router-dom";
-import { useDispatch } from "react-redux";
+/* eslint-disable react/react-in-jsx-scope */
+import { memo, useEffect, useState } from "react";
 import isEqual from "react-fast-compare";
+import { useDispatch } from "react-redux";
 
-import TermLinks from "../../../../features/term-link";
-import { Avatar } from "../../../../../components";
 import { useCurrentUser, useFollowingList } from "../../../../../hooks";
-
-const followingListStyle = {
-  maxHeight: "500px",
-  overflowY: "auto",
-};
-
-const renderFollowingList = (user) => {
-  return user.map((user) => (
-    <li key={user?._id} className="hover-bg">
-      <Link
-        to={`/user/${user?._id}`}
-        className="d-flex align-items-center fs-5 text-white w-full p-2 px-3 rounded-3 border border-1"
-        key={user?._id}
-      >
-        <div className="profile-pic d-flex justify-content-center align-items-center me-3">
-          <Avatar
-            userId={user?._id}
-            imageSrc={user?.profilePicture}
-            label={user?.username}
-          />
-        </div>
-        <span
-          style={{
-            color: "var(--color-primary)",
-          }}
-        >
-          {user?.username}
-        </span>
-      </Link>
-    </li>
-  ));
-};
+import TermLinks from "../../../../features/term-link";
+import FollowingList from "./components/following-list";
 
 const HomeRight = () => {
   const [user, setUser] = useState([]);
@@ -55,19 +23,8 @@ const HomeRight = () => {
 
   return (
     <div className="right">
-      <h4 className="border-bottom pb-3 mb-3 px-0">Following</h4>
-
-      {currentUser && (
-        <div
-          className="sidebar p-3 overflowXHidden mb-3"
-          style={followingListStyle}
-        >
-          <ul className="p-2 mb-0 gap-3 d-flex flex-column">
-            {renderFollowingList(user)}
-          </ul>
-        </div>
-      )}
-
+      <h3 className="border-bottom pb-3 mb-3 px-0 text-lg">Following</h3>
+      <FollowingList user={user} currentUser={currentUser} />
       <TermLinks />
     </div>
   );

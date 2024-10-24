@@ -1,3 +1,4 @@
+/* eslint-disable react/react-in-jsx-scope */
 import { memo } from "react";
 import isEqual from "react-fast-compare";
 

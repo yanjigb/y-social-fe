@@ -1,31 +1,27 @@
+/* eslint-disable react/react-in-jsx-scope */
 /* eslint-disable no-unsafe-optional-chaining */
 /* eslint-disable react/prop-types */
-import React from "react";
-import { Link } from "react-router-dom";
-import { useState, useEffect, memo } from "react";
-import { useDispatch } from "react-redux";
-import { CheckCircle2 } from "lucide-react";
+import { memo, useEffect, useState } from "react";
 import isEqual from "react-fast-compare";
+import { useDispatch } from "react-redux";
 
 import { getUserByID } from "../../../../../redux/request/userRequest";
 
-import { LOGO_YANJI_SOCIAL } from "../../../../../assets";
 
 // SETTINGS
-import { Avatar, CustomTheme, Setting } from "../../../../ui";
-import PostPopup from "../../../../ui/popup/post";
-import { useCurrentUser } from "../../../../../hooks";
-import { RouteNames } from "../../../../../constant/routes";
+import Sidebar from "components/layouts/sidebar";
 import { LocalStorageKeys } from "../../../../../constant/local-storage-key";
-import Sidebar from "../../../../layouts/sidebar";
-import { UserInitialize } from "../../constant/initialize";
+import { useCurrentUser } from "../../../../../hooks";
+import { CustomTheme, Setting } from "../../../../ui";
+import PostPopup from "../../../../ui/popup/post/post";
 import { MENU_NAME } from "../../constant/menu";
+import SmallProfile from "./components/small-profile";
 
 const HomeLeft = ({ socket, isReadNotification }) => {
   const [active, setActive] = useState(MENU_NAME.HOME);
   const [avatar, setAvatar] = useState("");
   const [popup, setPopup] = useState(false);
-  const [user, setUser] = useState(UserInitialize);
+  const [user, setUser] = useState();
   const dispatch = useDispatch();
   const currentUser = useCurrentUser();
 
@@ -77,13 +73,6 @@ const HomeLeft = ({ socket, isReadNotification }) => {
 
   const renderSettingPopup = () => {
     return (
-      // <div
-      //   className="customize-theme"
-      //   hidden={active !== MENU_NAME.SETTINGS}
-      //   onClick={() => setActive(MENU_NAME.HOME)}
-      // >
-      //   <Setting close={handleClosePopup} />
-      // </div>
       <Setting
         onHide={handleOpenSettingProfile}
         show={active === MENU_NAME.SETTINGS}
@@ -111,54 +100,79 @@ const HomeLeft = ({ socket, isReadNotification }) => {
   return (
     <>
       <div className="left animate__animated animate__bounceInLeft">
-        <Link
-          to={currentUser ? `/user/${user?._id}` : RouteNames.HOME}
-          className="profile d-flex align-items-center"
-          title="Truy cập trang cá nhân"
-        >
-          <div className="profile-pic">
-            <Avatar
-              imageSrc={currentUser ? user.profilePicture : LOGO_YANJI_SOCIAL}
-              label={user.username}
-              userId={user?._id}
+            <SmallProfile 
+              isReadNotification={isReadNotification} 
+              user={user} 
+              activeSidebar={active} 
+              onActiveSidebar={setActive} 
+              handlePopup={handlePopup} 
             />
-          </div>
-
-          <div className="handle">
-            <h4 className="d-flex align-items-center">
-              {currentUser ? `${user.username}` : `user`}
-              {user.isVerify && (
-                <CheckCircle2 size={15} className="ms-2 text-primary" />
-              )}
-            </h4>
-            <p className="text-muted m-0">
-              @{currentUser ? user.username : "user"}
-            </p>
-          </div>
-        </Link>
-
-        {/* SIDEBAR */}
-        <Sidebar
-          active={active}
-          setActive={setActive}
-          isReadNotification={isReadNotification}
-        />
-        {/* END OF SIDEBAR */}
-
-        <label
-          htmlFor="create-post"
-          className="btn btn-primary mt-3 py-3 d-none d-lg-block"
-          onClick={handlePopup}
-        >
-          Create Post
-        </label>
+            <Sidebar
+                active={active}
+                setActive={setActive}
+                isReadNotification={isReadNotification}
+            />
+            <label
+                htmlFor="create-post"
+                className="btn btn-primary mt-3 py-3 d-none d-lg-block"
+                onClick={handlePopup}
+            >
+                Create Post
+            </label>
       </div>
-
       {renderCustomThemePopup()}
       {renderPostPopup()}
       {renderSettingPopup()}
     </>
   );
 };
+
+// const SmallProfile = ({ currentUser, user, isReadNotification, activeSidebar, onActiveSidebar, handlePopup }) => {
+//   return (
+//     <div className="left animate__animated animate__bounceInLeft">
+//         <Link
+//           to={currentUser ? `/user/${user?._id}` : RouteNames.HOME}
+//           className="profile d-flex align-items-center"
+//           title="Truy cập trang cá nhân"
+//         >
+//           <div className="profile-pic">
+//             <Avatar
+//               imageSrc={currentUser ? user.profilePicture : LOGO_YANJI_SOCIAL}
+//               label={user.username}
+//               userId={user?._id}
+//             />
+//           </div>
+
+//           <div className="handle">
+//             <h4 className="d-flex align-items-center fs-4">
+//               {currentUser ? `${user.username}` : `user`}
+//               {user.isVerify && (
+//                 <CheckCircle2 size={15} className="ms-2 text-primary" />
+//               )}
+//             </h4>
+//             <p className="text-muted m-0">
+//               @{currentUser ? user.username : "user"}
+//             </p>
+//           </div>
+//         </Link>
+
+//         {/* SIDEBAR */}
+//         <Sidebar
+//           active={activeSidebar}
+//           setActive={onActiveSidebar}
+//           isReadNotification={isReadNotification}
+//         />
+//         {/* END OF SIDEBAR */}
+
+//         <label
+//           htmlFor="create-post"
+//           className="btn btn-primary mt-3 py-3 d-none d-lg-block"
+//           onClick={handlePopup}
+//         >
+//           Create Post
+//         </label>
+//       </div>
+//   )
+// }
 
 export default memo(HomeLeft, isEqual);

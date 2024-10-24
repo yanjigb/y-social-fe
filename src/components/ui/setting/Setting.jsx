@@ -158,7 +158,7 @@ const Setting = ({ close, onHide, show }) => {
                 background: "var(--color-white)",
                 color: "var(--color-dark)",
               }}
-              className="rounded-3 py-4 fs-3 col"
+              className="rounded-3 py-4 fs-4 col"
               onClick={() => setActive("PUBLIC")}
             >
               Public information
@@ -169,7 +169,7 @@ const Setting = ({ close, onHide, show }) => {
                 background: "var(--color-white)",
                 color: "var(--color-dark)",
               }}
-              className="rounded-3 py-4 fs-3 col"
+              className="rounded-3 py-4 fs-4 col"
               onClick={() => setActive("MANAGER")}
             >
               Manager account
@@ -180,7 +180,7 @@ const Setting = ({ close, onHide, show }) => {
                 background: "var(--color-white)",
                 color: "var(--color-dark)",
               }}
-              className="rounded-3 py-4 fs-3"
+              className="rounded-3 py-4 fs-4"
               onClick={() => setActive("SECURE")}
             >
               Security and Data
@@ -192,7 +192,7 @@ const Setting = ({ close, onHide, show }) => {
                 color: "var(--color-dark)",
               }}
               onClick={() => setActive("LOGOUT")}
-              className="rounded-3 py-4 mt-5 fs-3 bg-danger border-0 text-white"
+              className="rounded-3 py-4 mt-3 fs-4 bg-danger border-0 text-white"
             >
               Logout
             </Button>

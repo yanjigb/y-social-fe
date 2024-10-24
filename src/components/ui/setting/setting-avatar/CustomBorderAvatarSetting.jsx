@@ -1,18 +1,19 @@
+/* eslint-disable react/react-in-jsx-scope */
 /* eslint-disable react/prop-types */
-import React, { memo, useEffect, useRef, useState } from "react";
-import { useDispatch } from "react-redux";
-import toast from "react-hot-toast";
+import { memo, useEffect, useRef, useState } from "react";
 import isEqual from "react-fast-compare";
+import toast from "react-hot-toast";
+import { useDispatch } from "react-redux";
 
-import "../setting-avatar/style/style.css";
-import { getUserByID, updateUser } from "../../../../redux/request/userRequest";
-import {
-  useCurrentUser,
-  getValueColorVariable,
-  getColorCode,
-} from "../../../../hooks";
-import { colorButton } from "./data";
 import { Button, Modal } from "react-bootstrap";
+import {
+  getColorCode,
+  getValueColorVariable,
+  useCurrentUser,
+} from "../../../../hooks";
+import { getUserByID, updateUser } from "../../../../redux/request/userRequest";
+import "../setting-avatar/style/style.css";
+import { colorButton } from "./data";
 
 const saveBtnStye = {
   cursor: "pointer",

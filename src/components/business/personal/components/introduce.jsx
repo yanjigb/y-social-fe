@@ -1,4 +1,5 @@
-import { memo, useCallback, useEffect, useState } from "react";
+/* eslint-disable react/prop-types */
+/* eslint-disable react/react-in-jsx-scope */
 import {
   faGithub,
   faInstagram,
@@ -8,18 +9,19 @@ import {
   faTwitter,
   faYoutube,
 } from "@fortawesome/free-brands-svg-icons";
+import { memo, useCallback, useEffect, useState } from "react";
+import isEqual from "react-fast-compare";
 import { useDispatch } from "react-redux";
 import { io } from "socket.io-client";
-import isEqual from "react-fast-compare";
 
 import "../styles/personalIntroduce.css";
 
-import { getUserByID } from "../../../../redux/request/userRequest";
 import { SocialBio } from "../../../../components";
-import SocketEvent from "../../../../constant/socket-event";
 import Global from "../../../../constant/global";
-import { useCurrentUser } from "../../../../hooks";
 import { RouteNames } from "../../../../constant/routes";
+import SocketEvent from "../../../../constant/socket-event";
+import { useCurrentUser } from "../../../../hooks";
+import { getUserByID } from "../../../../redux/request/userRequest";
 
 const PersonalIntroduce = ({
   onUpdateBioPopup,

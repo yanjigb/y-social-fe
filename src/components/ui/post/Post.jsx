@@ -1,43 +1,41 @@
+/* eslint-disable react/react-in-jsx-scope */
 /* eslint-disable react/no-children-prop */
 /* eslint-disable react/prop-types */
-import React, { lazy, memo, useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
-import { Link } from "react-router-dom";
 import {
   Bookmark,
   BookmarkCheck,
-  MoreVertical,
-  Trash,
-  Pencil,
-  ClipboardList,
   CheckCircle2,
+  ClipboardList,
+  MoreVertical,
+  Pencil,
+  Trash,
 } from "lucide-react";
-import toast from "react-hot-toast";
-import io from "socket.io-client";
+import { lazy, memo, useEffect, useState } from "react";
 import isEqual from "react-fast-compare";
+import toast from "react-hot-toast";
+import { useDispatch } from "react-redux";
+import { Link } from "react-router-dom";
+import io from "socket.io-client";
 
 import { BG_DEFAULT_WALLPAPER_USER } from "../../../assets";
 
 import "./style/post.css";
 
-import {
-  deletePost,
-  likePost,
-  sharePost,
-} from "../../../redux/request/postRequest";
-import { getUserByID, updateUser } from "../../../redux/request/userRequest";
-import { useTimeAgo, useCopyUrl, useCurrentUser } from "../../../hooks";
-import ParagraphWithLink from "../../features/paragraph-with-link";
-import EditPopup from "../../ui/popup/edit";
-import { Photo } from "../media";
-import { pushNewNotification } from "../../../redux/request/notificationRequest";
-import { NotiType } from "../../../constant/notification";
-import Avatar from "../avatar/Avatar";
-import Global from "../../../constant/global";
-import ActionBtn from "./ActionBtn";
-import ConfirmDialog from "../dialog/confirm-dialog";
+import ParagraphWithLink from "components/features/paragraph-with-link";
+import EditPopup from "components/ui/popup/edit";
+import Global from "constant/global";
+import { NotiType } from "constant/notification";
+import { useCopyUrl, useCurrentUser, useTimeAgo } from "hooks";
+import { pushNewNotification } from "redux/request/notificationRequest";
+import { deletePost, likePost, sharePost } from "redux/request/postRequest";
+import { getUserByID, updateUser } from "redux/request/userRequest";
 import Lightbox from "yet-another-react-lightbox";
-const DetailsPost = lazy(() => import("./DetailsPost"));
+import Avatar from "../avatar/Avatar";
+import ConfirmDialog from "../dialog/confirm-dialog";
+import { Photo } from "../media";
+import ActionBtn from "./components/ActionBtn";
+import PostSkeleton from "./components/skeleton/post-skeleton";
+const DetailsPost = lazy(() => import("./components/DetailsPost"));
 
 // TODO CHECK SPAM IN LIKE, SHARE, COMMENT
 // TODO FIX POPUP WHEN DELETE POST NOT WORK CORRECTLY
@@ -69,6 +67,10 @@ const Post = ({
   const formatTime = useTimeAgo;
   const currentUser = useCurrentUser();
   const [openPreviewImage, setOpenPreviewImage] = useState(false);
+  const [isExpanded, setIsExpanded] = useState(false);
+  const truncatedDescription = desc.slice(0, 100) + "...";
+
+  if(!postID) return <PostSkeleton />;
 
   useEffect(() => {
     const handleClickOutside = () => {
@@ -399,7 +401,7 @@ const Post = ({
 
   const renderPost = () => {
     return (
-      <div key={postID} className="post mb-4 position-relative">
+      <div className="post mb-4 position-relative">
         <div className="head">{renderTitle()}</div>
         <div
           className="caption fs-3 my-3 overflow-auto"
@@ -407,12 +409,30 @@ const Post = ({
             maxHeight: "44rem",
           }}
         >
-          <ParagraphWithLink text={desc} />
+          {desc.length < 100 ? (
+            <ParagraphWithLink text={desc} />
+          ) : (
+            <>
+              <p>
+                {isExpanded ? (
+                  <ParagraphWithLink text={desc} />
+                ) : (
+                  truncatedDescription
+                )}
+              </p>
+              <button
+                onClick={() => setIsExpanded(!isExpanded)}
+                className="text-blue-500 text-lg hover:text-blue-700 font-medium focus:outline-none"
+              >
+                {isExpanded ? "Show Less" : "Read More"}
+              </button>
+            </>
+          )}
         </div>
         {image && (
           <button
             onClick={onOpenPreviewImage}
-            className="bg-transparent border-0"
+            className="border-0 [&_.photo]:bg-gray-100 mx-auto w-full h-full"
           >
             <Photo
               postID={postID}

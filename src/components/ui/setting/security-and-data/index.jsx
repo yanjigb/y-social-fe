@@ -22,12 +22,11 @@ function SecurityAndData({ show, onHide }) {
       <Modal
         show={show}
         onHide={onHide}
-        size="lg"
         aria-labelledby="contained-modal-title-vcenter"
         centered
       >
-        <Modal.Header closeButton className="text-black">
-          <h2>Security and Data</h2>
+        <Modal.Header closeButton className="text-black fs-3">
+          <h3>Security and Data</h3>
         </Modal.Header>
 
         <Modal.Body
@@ -38,8 +37,8 @@ function SecurityAndData({ show, onHide }) {
           className="py-4"
         >
           <div className="d-flex flex-column align-items-end">
-            <h3 className="fs-3 fw-bold mb-2 w-100">Download your data</h3>
-            <p className="text-start align-self-start fs-4">
+            <h4 className="fs-4 fw-bold mb-2 w-100">Download your data</h4>
+            <p className="text-start align-self-start fs-5">
               Bạn có thể yêu cầu tải xuống thông tin Yanji Social của mình bất
               kỳ lúc nào. Yêu cầu của bạn sẽ được nhà cung cấp bên thứ ba của
               chúng tôi là Yanji Auth xác minh.
@@ -47,7 +46,7 @@ function SecurityAndData({ show, onHide }) {
 
             <div
               role="button"
-              className="p-3 text-white hover-bg fs-3"
+              className="p-3 text-white hover-bg fs-5 mt-3 w-full text-center"
               style={{
                 background: "var(--color-primary)",
                 borderRadius: "0.5rem",

@@ -10,23 +10,18 @@ import React, {
 } from "react";
 import isEqual from "react-fast-compare";
 import { useDispatch } from "react-redux";
-import { Link } from "react-router-dom";
 import { io } from "socket.io-client";
 
 import "./style/post.css";
 
-import Global from "../../../constant/global";
-import { RouteNames } from "../../../constant/routes";
-import SocketEvent from "../../../constant/socket-event";
-import { useCurrentUser } from "../../../hooks";
-import { getPostByID } from "../../../redux/request/postRequest";
+import AppAdvertise from "components/features/app-advertise";
+import Global from "constant/global";
+import SocketEvent from "constant/socket-event";
+import { useCurrentUser } from "hooks";
+import { getPostByID } from "redux/request/postRequest";
+import RequiredBanner from "./components/RequiredBanner";
 
 const Post = lazy(() => import("./Post"));
-
-const requiredBannerStyle = {
-  height: "30rem",
-  marginTop: "0",
-};
 
 const Posts = ({ socket }) => {
   const [posts, setPosts] = useState([]);
@@ -35,6 +30,8 @@ const Posts = ({ socket }) => {
   const [hasMore, setHasMore] = useState(true);
   const [page, setPage] = useState(0);
   const currentUser = useCurrentUser();
+
+  if (!currentUser) return <RequiredBanner />;
 
   const handleSocket = {
     updatePost: useCallback(
@@ -128,60 +125,49 @@ const Posts = ({ socket }) => {
     };
   }, [posts, onIntersection]);
 
-  const requiredBanner = (
-    <>
-      <div
-        className={
-          "post d-flex flex-column justify-content-center align-items-center"
-        }
-        style={requiredBannerStyle}
-      >
-        <span className="fs-1 fw-bold overflow-auto opacity-25">
-          You need to login for view posts ¯\_(ツ)_/¯
-        </span>
-        <Link
-          to={RouteNames.LOGIN}
-          className={"fs-3 fw-bold"}
-          style={{
-            color: "var(--color-primary)",
-          }}
-        >
-          Login now
-        </Link>
-      </div>
-    </>
-  );
-
   return (
     <div className="posts">
-      {currentUser
-        ? posts.map((post) => (
-            <Post
-              key={post._id}
-              postID={post._id}
-              image={post.img}
-              video={post.video}
-              userID={post.userID}
-              desc={post.desc}
-              likes={post.likes}
-              shares={post.shares}
-              comments={post.comments}
-              socket={socket}
-              createdAt={post.createdAt}
-              updatedAt={post.updatedAt}
-            />
-          ))
-        : requiredBanner}
-
-      {currentUser && hasMore && (
-        <div
-          className="d-flex justify-content-center fs-3 fw-bold my-3"
-          ref={loadingRef}
-        >
-          Loading...
-        </div>
-      )}
+      <AppAdvertise className="mb-4" />
+      <PostList postList={posts} socket={socket} />
+      <LoadingBar
+        currentUser={currentUser}
+        hasMore={hasMore}
+        loadingRef={loadingRef}
+      />
     </div>
+  );
+};
+
+const PostList = ({ postList, socket }) => {
+  return postList.map((post) => (
+    <Post
+      key={post._id}
+      postID={post._id}
+      image={post.img}
+      video={post.video}
+      userID={post.userID}
+      desc={post.desc}
+      likes={post.likes}
+      shares={post.shares}
+      comments={post.comments}
+      socket={socket}
+      createdAt={post.createdAt}
+      updatedAt={post.updatedAt}
+    />
+  ));
+};
+
+const LoadingBar = ({ currentUser, hasMore, loadingRef }) => {
+  return (
+    currentUser &&
+    hasMore && (
+      <div
+        className="d-flex justify-content-center fs-3 fw-bold my-3"
+        ref={loadingRef}
+      >
+        Loading...
+      </div>
+    )
   );
 };
 

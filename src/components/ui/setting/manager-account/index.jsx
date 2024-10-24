@@ -30,8 +30,8 @@ function ManagerAccount({
       aria-labelledby="contained-modal-title-vcenter"
       centered
     >
-      <Modal.Header closeButton className="text-black">
-        <h2>Manage Account</h2>
+      <Modal.Header closeButton className="text-black fs-3">
+        <h3>Manage Account</h3>
       </Modal.Header>
 
       <Modal.Body
@@ -42,14 +42,14 @@ function ManagerAccount({
         className="d-flex gap-3 flex-column"
       >
         <div className="d-flex flex-column align-items-start">
-          <label className="mb-2 fs-3" htmlFor="email">
+          <label className="mb-2 fs-4" htmlFor="email">
             Email (private)
           </label>
           <input
             type="email"
             placeholder="Email"
             id="email"
-            className="p-2 px-3 w-100 fs-4"
+            className="p-2 px-3 w-100 fs-5"
             style={{
               borderRadius: "0.5rem",
             }}
@@ -64,13 +64,13 @@ function ManagerAccount({
         </div>
 
         <div className="d-flex flex-column align-items-start">
-          <label className="mb-2 fs-3" htmlFor="Password">
+          <label className="mb-2 fs-4" htmlFor="Password">
             Password
           </label>
           <input
             type="password"
             id="Password"
-            className="p-2 px-3 w-100 fs-4"
+            className="p-2 px-3 w-100 fs-5"
             style={{
               borderRadius: "0.5rem",
             }}
@@ -106,18 +106,20 @@ function ManagerAccount({
         </div>
       </Modal.Body>
 
-      <Modal.Footer>
+      <Modal.Footer
+        className="flex items-center gap-2"
+      >
         <Button
           onClick={onHide}
-          className="rounded-3 fs-3"
-          variant="outline-secondary text-danger"
+          className="rounded-3 fs-5"
+          variant="outline-secondary text-danger hover:bg-white bg-white"
           type="button"
         >
           Close
         </Button>
         <Button
           onClick={onUpdateUser}
-          className="rounded-3 fs-3"
+          className="rounded-3 fs-5"
           style={{
             background: "var(--color-primary)",
           }}

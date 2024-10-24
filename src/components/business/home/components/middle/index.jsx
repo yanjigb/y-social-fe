@@ -1,17 +1,18 @@
+/* eslint-disable react/react-in-jsx-scope */
 /* eslint-disable react/prop-types */
 // import { Link } from "react-router-dom";
-import React, { Suspense, lazy, memo, useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
+import { Suspense, lazy, memo, useEffect, useState } from "react";
 import isEqual from "react-fast-compare";
+import { useDispatch } from "react-redux";
 
-import { getUserByID } from "../../../../../redux/request/userRequest";
+import { getUserByID } from "redux/request/userRequest";
 
-import { useCurrentUser } from "../../../../../hooks";
+import { useCurrentUser } from "hooks";
 // import { Avatar } from "../../../../../components";
-import PostPopup from "../../../../ui/popup/post";
+import PostPopup from "components/ui/popup/post/post";
 // import { RouteNames } from "../../../../../constant/routes";
-import LoadingPage from "../../../../common/loading/loading-page";
 import clsx from "clsx";
+import LoadingPage from "components/common/loading/loading-page";
 import InputStatus from "./components/input-status";
 const Posts = lazy(() => import("../../../../../components/ui/post/Posts"));
 
