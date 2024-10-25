@@ -114,7 +114,7 @@ const MessageFooter = ({
         {isEdit && renderLabelEditMessage()}
         <input
           type="text"
-          className="rounded py-2 px-3 fs-4"
+          className="rounded py-2 px-3 fs-4 text-black"
           placeholder="Text your message here..."
           maxLength="3500"
           style={{
