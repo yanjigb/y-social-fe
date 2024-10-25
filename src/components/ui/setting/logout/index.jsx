@@ -7,13 +7,12 @@ function Logout({ onLogout, show, onHide }) {
   return (
     <Modal
       show={show}
-      size="lg"
-      aria-labelledby="contained-modal-title-vcenter"
-      centered
+      size="sm"
+      aria-labelledby="contained-modal-title-center"
       onHide={onHide}
     >
       <Modal.Header closeButton>
-        <h2 className="fw-bold text-black">Are you sure to Sign out now ?</h2>
+        <h4 className="fw-bold text-black fs-4">Are you sure to logout now ?</h4>
       </Modal.Header>
 
       <Modal.Body>
@@ -21,7 +20,7 @@ function Logout({ onLogout, show, onHide }) {
           role="button"
           onClick={onLogout}
           variant="danger"
-          className="rounded-3 w-100 py-4 fs-3 fw-bold text-uppercase"
+          className="rounded-3 w-100 py-3 fs-5 fw-bold text-uppercase"
         >
           Logout
         </Button>
