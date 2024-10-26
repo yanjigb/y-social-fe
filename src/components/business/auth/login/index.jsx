@@ -44,7 +44,7 @@ const Login = () => {
           type="text"
           placeholder="username"
           onChange={(e) => setUsername(e.target.value)}
-          className="border border-dark"
+          className="border border-dark text-black"
           id="username"
         />
       </div>
@@ -70,7 +70,7 @@ const Login = () => {
             type="password"
             placeholder="password"
             onChange={(e) => setPassword(e.target.value)}
-            className="border border-dark"
+            className="border border-dark text-black"
             ref={pwd}
             id="pwd"
           />

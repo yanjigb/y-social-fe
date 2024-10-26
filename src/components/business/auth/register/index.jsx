@@ -1,3 +1,4 @@
+/* eslint-disable react/react-in-jsx-scope */
 import { useState, useRef, useEffect, memo } from "react";
 import { useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
@@ -148,7 +149,7 @@ const Register = () => {
             autoComplete="off"
             value={username}
             onBlurCapture={handleCheckUsername}
-            className="border border-dark"
+            className="border border-dark text-black"
           />
           <p
             id="uidnote"
@@ -191,7 +192,7 @@ const Register = () => {
             onBlur={() => setEmailFocus(false)}
             autoComplete="off"
             value={email}
-            className="border border-dark"
+            className="border border-dark text-black"
           />
           <p
             id="emailnote"
@@ -232,7 +233,7 @@ const Register = () => {
             aria-describedby="pwdnote"
             onFocus={() => setPwdFocus(true)}
             onBlur={() => setPwdFocus(false)}
-            className="border border-dark"
+            className="border border-dark text-black"
           />
           <p
             id="pwdnote"
@@ -288,7 +289,7 @@ const Register = () => {
             aria-describedby="confirm-note"
             onFocus={() => setMatchFocus(true)}
             onBlur={() => setMatchFocus(false)}
-            className="border border-dark"
+            className="border border-dark text-black"
           />
           <p
             id="confirmnote"
