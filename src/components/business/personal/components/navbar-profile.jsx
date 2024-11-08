@@ -1,3 +1,4 @@
+/* eslint-disable react/react-in-jsx-scope */
 import { useEffect, useState, useRef, memo } from "react";
 import { CSVLink } from "react-csv";
 import { Link, useNavigate, useParams } from "react-router-dom";

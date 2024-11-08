@@ -138,7 +138,7 @@ const PersonalIntroduce = ({
           <p className="inline-block text-break">{socialBio?.bio}</p>
         </div>
         {currentUser?._id === userInfo?._id && (
-          <button className="mb-4" onClick={() => onUpdateBioPopup()}>
+          <button className="mb-4 mt-2" onClick={() => onUpdateBioPopup()}>
             Edit bio
           </button>
         )}
