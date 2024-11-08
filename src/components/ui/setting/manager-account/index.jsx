@@ -49,7 +49,7 @@ function ManagerAccount({
             type="email"
             placeholder="Email"
             id="email"
-            className="p-2 px-3 w-100 fs-5"
+            className="p-2 px-3 w-100 fs-5 dark:text-black"
             style={{
               borderRadius: "0.5rem",
             }}
@@ -70,7 +70,7 @@ function ManagerAccount({
           <input
             type="password"
             id="Password"
-            className="p-2 px-3 w-100 fs-5"
+            className="p-2 px-3 w-100 fs-5 dark:text-black"
             style={{
               borderRadius: "0.5rem",
             }}
@@ -106,9 +106,7 @@ function ManagerAccount({
         </div>
       </Modal.Body>
 
-      <Modal.Footer
-        className="flex items-center gap-2"
-      >
+      <Modal.Footer className="flex items-center gap-2">
         <Button
           onClick={onHide}
           className="rounded-3 fs-5"
