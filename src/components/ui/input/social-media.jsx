@@ -26,7 +26,7 @@ const SocialMediaInput = ({ icon, label, value, onChange }) => {
           value={value}
           onChange={onChange}
           type="text"
-          className="p-2 border-0 w-100"
+          className="p-2 border-0 w-100 text-dark"
           id={label}
           maxLength={100}
         />

@@ -8,7 +8,7 @@ const PrivacyPolicy = () => {
 
   return (
     <div className="fs-4" style={{ padding: "8rem" }}>
-      <h2>
+      <h2 className="fs-2 font-bold mb-2">
         Privacy Policy for{" "}
         <span className="highlight preview_company_name">Yanji Social</span>
       </h2>
@@ -40,14 +40,14 @@ const PrivacyPolicy = () => {
         via channels other than this website.
       </p>
       <p>
-        <strong>Consent</strong>
+        <>Consent</>
       </p>
       <p>
         By using our website, you hereby consent to our Privacy Policy and agree
         to its terms.
       </p>
       <p>
-        <strong>Information we collect</strong>
+        <p className="fs-3 font-bold mt-4 mb-2">Information we collect</p>
       </p>
       <p>
         The personal information that you are asked to provide, and the reasons
@@ -66,7 +66,7 @@ const PrivacyPolicy = () => {
         address, and telephone number.
       </p>
       <p>
-        <strong>How we use your information</strong>
+        <p className="fs-3 font-bold mt-4 mb-2">How we use your information</p>
       </p>
       <p>We use the information we collect in various ways, including to:</p>
       <ul>
@@ -84,7 +84,7 @@ const PrivacyPolicy = () => {
         <li>Find and prevent fraud</li>
       </ul>
       <p>
-        <strong>Log Files</strong>
+        <p className="fs-3 font-bold mt-4 mb-2">Log Files</p>
       </p>
       <p>
         <span className="highlight preview_website_name">Yanji Social</span>{" "}
@@ -146,7 +146,9 @@ const PrivacyPolicy = () => {
         </li>
       </ul>
       <p>
-        <strong>Advertising Partners Privacy Policies</strong>
+        <p className="fs-3 font-bold mt-4 mb-2">
+          Advertising Partners Privacy Policies
+        </p>
       </p>
       <p>
         You may consult this list to find the Privacy Policy for each of the
@@ -171,7 +173,7 @@ const PrivacyPolicy = () => {
         advertisers.
       </p>
       <p>
-        <strong>Third-Party Privacy Policies</strong>
+        <p className="fs-3 font-bold mt-4 mb-2">Third-Party Privacy Policies</p>
       </p>
       <p>
         <span className="highlight preview_website_name">Yanji Social</span>'s
@@ -189,9 +191,9 @@ const PrivacyPolicy = () => {
         websites. What Are Cookies?
       </p>
       <p>
-        <strong>
+        <p className="fs-3 font-bold mt-4 mb-2">
           CCPA Privacy Policy (Do Not Sell My Personal Information)
-        </strong>
+        </p>
       </p>
       <p>
         Under the CCPA, among other rights, California consumers have the right
@@ -215,7 +217,9 @@ const PrivacyPolicy = () => {
         like to exercise any of these rights, please contact us.
       </p>
       <p>
-        <strong>GDPR Privacy Policy (Data Protection Rights)</strong>
+        <p className="fs-3 font-bold mt-4 mb-2">
+          GDPR Privacy Policy (Data Protection Rights)
+        </p>
       </p>
       <p>
         We would like to make sure you are fully aware of all of your data
@@ -253,7 +257,7 @@ const PrivacyPolicy = () => {
         like to exercise any of these rights, please contact us.
       </p>
       <p>
-        <strong>Children&apos;s Information</strong>
+        <p className="fs-3 font-bold mt-4 mb-2">Children&apos;s Information</p>
       </p>
       <p>
         Another part of our priority is adding protection for children while

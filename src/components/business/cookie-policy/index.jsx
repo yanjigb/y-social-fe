@@ -8,7 +8,9 @@ const CookiePolicy = () => {
 
   return (
     <div className="fs-4" style={{ padding: "8rem" }}>
-      <h2>Cookie Policy of Yanji Social</h2>
+      <h2 className="fs-2 font-bold mt-4 mb-2">
+        Cookie Policy of Yanji Social
+      </h2>
 
       <p>Welcome to Yanji Social.</p>
 
@@ -51,7 +53,7 @@ const CookiePolicy = () => {
         please review it frequently.
       </p>
 
-      <h3>How We Use Cookies</h3>
+      <h3 className="fs-3 font-bold mt-4 mb-2">How We Use Cookies</h3>
 
       <p>
         At our website, "Social Media," we use cookies for various purposes.
@@ -62,9 +64,9 @@ const CookiePolicy = () => {
         in accordance with this policy.
       </p>
 
-      <h4>Types of Cookies We Use</h4>
+      <h4 className="fs-4 font-bold mt-4 mb-2">Types of Cookies We Use</h4>
 
-      <h5>Essential Cookies</h5>
+      <h5 className="fs-5 font-bold mt-4 mb-2">Essential Cookies</h5>
 
       <p>
         These cookies are necessary for the proper functioning of our website.
@@ -133,7 +135,9 @@ const CookiePolicy = () => {
         rights, please refer to our Privacy Policy.
       </p>
 
-      <h3>How to Manage and Delete Cookies</h3>
+      <h3 className="fs-3 font-bold mt-4 mb-2">
+        How to Manage and Delete Cookies
+      </h3>
 
       <p>
         Most web browsers allow you to manage your cookie preferences. You can
