@@ -1,3 +1,4 @@
+/* eslint-disable react/react-in-jsx-scope */
 import { memo, useEffect } from "react";
 import isEqual from "react-fast-compare";
 
@@ -8,7 +9,7 @@ const TermAndService = () => {
 
   return (
     <div className="fs-4" style={{ padding: "8rem" }}>
-      <h2>
+      <h2 className="fs-2 font-bold mb-2">
         <strong>Terms and Services</strong>
       </h2>
 
@@ -42,7 +43,7 @@ const TermAndService = () => {
       </p>
 
       <h3>
-        <strong>Cookies</strong>
+        <p className="fs-3 font-bold mt-4 mb-2">Cookies</p>
       </h3>
 
       <p>
@@ -59,7 +60,7 @@ const TermAndService = () => {
       </p>
 
       <h3>
-        <strong>License</strong>
+        <p className="fs-3 font-bold mt-4 mb-2">License</p>
       </h3>
 
       <p>
@@ -135,7 +136,7 @@ const TermAndService = () => {
       </p>
 
       <h3>
-        <strong>Hyperlinking to our Content</strong>
+        <p className="fs-3 font-bold mt-4 mb-2">Hyperlinking to our Content</p>
       </h3>
 
       <p>
@@ -226,7 +227,7 @@ const TermAndService = () => {
       </p>
 
       <h3>
-        <strong>iFrames</strong>
+        <>iFrames</>
       </h3>
 
       <p>
@@ -236,7 +237,7 @@ const TermAndService = () => {
       </p>
 
       <h3>
-        <strong>Content Liability</strong>
+        <p className="fs-3 font-bold mt-4 mb-2">Content Liability</p>
       </h3>
 
       <p>
@@ -249,7 +250,7 @@ const TermAndService = () => {
       </p>
 
       <h3>
-        <strong>Reservation of Rights</strong>
+        <p className="fs-3 font-bold mt-4 mb-2">Reservation of Rights</p>
       </h3>
 
       <p>
@@ -262,7 +263,7 @@ const TermAndService = () => {
       </p>
 
       <h3>
-        <strong>Removal of links from our website</strong>
+        <p className="fs-3 font-bold mt-4 mb-2">Removal of links from our website</p>
       </h3>
 
       <p>
@@ -280,7 +281,7 @@ const TermAndService = () => {
       </p>
 
       <h3>
-        <strong>Disclaimer</strong>
+        <p className="fs-3 font-bold mt-4 mb-2">Disclaimer</p>
       </h3>
 
       <p>
