@@ -13,11 +13,11 @@ export default function AppAdvertise({ className }) {
   const fetchAdvertiseList = async () => {
     try {
       const res = await getAllAdvertise(dispatch);
+      const activeAds = res.filter((ad) => ad.status === "active");
 
-      if (res.length > 0) {
-        const randomIndex = Math.floor(Math.random() * res.length);
-        console.log(randomIndex)
-        setRandomAdvertise(res[randomIndex]);
+      if (activeAds.length > 0) {
+        const randomIndex = Math.floor(Math.random() * activeAds.length);
+        setRandomAdvertise(activeAds[randomIndex]);
       }
     } catch (error) {
       console.error("Error fetching advertiseList:", error);
@@ -39,6 +39,7 @@ export default function AppAdvertise({ className }) {
         media_content={randomAdvertise.media_content}
         link_action={randomAdvertise.link_action}
         status={randomAdvertise.status}
+        userID={randomAdvertise.userID}
       />
     </div>
   );
