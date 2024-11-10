@@ -17,6 +17,7 @@ import Lightbox from "yet-another-react-lightbox";
 import useCurrentUser from "../../../../../hooks/useCurrentUser";
 import { Avatar, Photo } from "../../../../ui";
 import Skeleton from "./skeleton";
+import rehypeRaw from "rehype-raw";
 
 /* eslint-disable react/react-in-jsx-scope */
 const SponsoredCard = ({
@@ -67,9 +68,7 @@ const SponsoredCard = ({
 
   useEffect(() => {
     if (entry?.isIntersecting) {
-      console.log("Ad is in view!");
       handleImpressions();
-      // Here you would call your impression tracking function
     }
   }, [entry]);
 
@@ -169,12 +168,18 @@ const SponsoredCard = ({
             <SponsoredBadge />
             <div className="text-2xl flex items-start flex-col mt-4">
               {description.length < 100 ? (
-                <ReactMarkdown className="prose prose-lg">
+                <ReactMarkdown
+                  rehypePlugins={[rehypeRaw]}
+                  className="prose prose-lg"
+                >
                   {description}
                 </ReactMarkdown>
               ) : (
                 <>
-                  <ReactMarkdown className="prose prose-lg">
+                  <ReactMarkdown
+                    rehypePlugins={[rehypeRaw]}
+                    className="prose prose-lg"
+                  >
                     {isExpanded
                       ? description
                       : description.slice(0, 100) + "..."}
@@ -192,7 +197,7 @@ const SponsoredCard = ({
 
           <button
             onClick={handleRedirectLink}
-            className="text-2xl w-full mt-2 py-3 bg-blue-500 text-white font-semibold rounded-lg hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75 transition-colors duration-200"
+            className="text-2xl w-full py-3 bg-blue-500 text-white font-semibold rounded-lg hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75 transition-colors duration-200"
           >
             {cta}
           </button>
