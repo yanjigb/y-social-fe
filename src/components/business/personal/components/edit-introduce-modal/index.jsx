@@ -1,59 +1,29 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable react/react-in-jsx-scope */
-// import {
-//   faGithub,
-//   faInstagram,
-//   faLinkedin,
-//   faPinterest,
-//   faTwitch,
-//   faTwitter,
-//   faYoutube,
-// } from "@fortawesome/free-brands-svg-icons";
-// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { memo } from "react";
-import { Button, Modal } from "react-bootstrap";
+import { memo, useState } from "react";
+import { Button, Modal, Tab, Tabs } from "react-bootstrap";
 import isEqual from "react-fast-compare";
+import Hobbies from "./hobbies";
 import SocialMediaFieldList from "./social-media-field-list";
-// import SocialMediaInput from "../../../../ui/input/social-media";
 
-function EditIntroduce({
+const EditIntroduce = ({
   show,
   onToggle,
   title,
   onUpdate,
   userInfo,
-  onChangeSocialLink,
-}) {
-  // const renderContentUpdateIntroduce = () => {
-  //   const socialMediaFields = [
-  //     { icon: faLinkedin, label: "linkedin" },
-  //     { icon: faGithub, label: "github" },
-  //     { icon: faInstagram, label: "insta" },
-  //     { icon: faPinterest, label: "pinterest" },
-  //     { icon: faYoutube, label: "youtube" },
-  //     { icon: faTwitter, label: "twitter" },
-  //     { icon: faTwitch, label: "twitch" },
-  //   ];
+  onChangeIntroduce,
+}) => {
+  const TabItemList = [
+    { key: 'Hobbies', component: <Hobbies hobbies={userInfo.hobbies} onChangeHobbies={onChangeIntroduce} /> },
+    { key: 'Social', component: <SocialMediaFieldList userInfo={userInfo} onChangeSocialLink={onChangeIntroduce} /> },
+  ]
 
-  //   return (
-  //     <div
-  //       className="text-white overflow-auto pe-3 w-100"
-  //       style={{
-  //         maxHeight: "40rem",
-  //       }}
-  //     >
-  //       {socialMediaFields.map(({ icon, label }) => (
-  //         <SocialMediaInput
-  //           key={label}
-  //           icon={<FontAwesomeIcon icon={icon} className="me-2" />}
-  //           label={label}
-  //           value={userInfo[label]}
-  //           onChange={onChangeSocialLink}
-  //         />
-  //       ))}
-  //     </div>
-  //   );
-  // };
+  const [activeKey, setActiveKey] = useState(TabItemList[0].key);
+
+  const onSelectTab = (key) => {
+    setActiveKey(key);
+  }
 
   return (
     <Modal
@@ -68,7 +38,18 @@ function EditIntroduce({
         <Modal.Title id="contained-modal-title-vcenter">{title}</Modal.Title>
       </Modal.Header>
       <Modal.Body className="bg-black">
-        <SocialMediaFieldList userInfo={userInfo} onChangeSocialLink={onChangeSocialLink} />
+        <Tabs
+          activeKey={activeKey}
+          onSelect={onSelectTab}
+          className="mb-3 [&>.nav-item>button]:text-white"
+          fill
+        >
+          {TabItemList.map((item) => (
+            <Tab key={item.key} eventKey={item.key} title={<span className="fs-4 text-capitalize font-bold">{item.key}</span>}>
+              {item.component}
+            </Tab>
+          ))}
+        </Tabs>
       </Modal.Body>
       <Modal.Footer className="bg-black flex gap-2">
         <Button
