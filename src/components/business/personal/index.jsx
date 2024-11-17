@@ -1,31 +1,32 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable react/react-in-jsx-scope */
 import { memo, useEffect, useState } from "react";
+import isEqual from "react-fast-compare";
 import { useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
 import { io } from "socket.io-client";
-import isEqual from "react-fast-compare";
 
 import "./styles/personal.css";
 
 import { getUserByID, updateUser } from "../../../redux/request/userRequest";
 
+import { PhotosUser } from "../../../components";
+import _404Page from "../_404";
 import {
   PersonalBody,
   PersonalGeneralInfo,
   PersonalHeader,
   PersonalNavbarProfile,
 } from "./components";
-import _404Page from "../_404";
-import { PhotosUser } from "../../../components";
 
-import Global from "../../../constant/global";
-import { useCurrentUser } from "../../../hooks";
-import { RouteNames } from "../../../constant/routes";
+import toast from "react-hot-toast";
 import Header from "../../../components/layouts/header";
-import { UserInitialize } from "./constant/initialize";
+import Global from "../../../constant/global";
+import { RouteNames } from "../../../constant/routes";
+import { useCurrentUser } from "../../../hooks";
 import EditBioModal from "./components/edit-bio-modal";
 import EditIntroduceModal from "./components/edit-introduce-modal";
+import { UserInitialize } from "./constant/initialize";
 
 const Personal = ({ socket }) => {
   const { userID: userRoute } = useParams();
@@ -102,6 +103,7 @@ const Personal = ({ socket }) => {
           .then(() => {
             socket = io(Global.SOCKET_URL);
             socket.emit("update-user", updatedUser);
+            toast.success("Updated Successfully")
           })
           .catch((err) => {
             console.error("Failed to update user", err);
@@ -125,6 +127,7 @@ const Personal = ({ socket }) => {
         twitter,
         twitch,
         bio,
+        hobbies,
       } = data.user;
 
       if (
@@ -134,7 +137,8 @@ const Personal = ({ socket }) => {
         pinterest !== userInfo.pinterest ||
         youtube !== userInfo.youtube ||
         twitter !== userInfo.twitter ||
-        twitch !== userInfo.twitch
+        twitch !== userInfo.twitch ||
+        hobbies !== userInfo.hobbies
       ) {
         let updatedUser = {
           userID: currentUser._id,
@@ -146,26 +150,14 @@ const Personal = ({ socket }) => {
           twitter: userInfo.twitter,
           twitch: userInfo.twitch,
           bio,
+          hobbies: userInfo.hobbies,
         };
-
-        if (userInfo.insta.length === 0) {
-          updatedUser = {
-            userID: currentUser._id,
-            insta: "",
-            linkedin: userInfo.linkedin,
-            github: userInfo.github,
-            pinterest: userInfo.pinterest,
-            youtube: userInfo.youtube,
-            twitter: userInfo.twitter,
-            twitch: userInfo.twitch,
-            bio: userInfo.bio,
-          };
-        }
 
         updateUser(updatedUser, dispatch)
           .then(() => {
             socket = io(Global.SOCKET_URL);
             socket.emit("update-user", updatedUser);
+            toast.success("Updated Successfully")
           })
           .catch((err) => {
             console.error("Failed to update user", err);
@@ -185,8 +177,7 @@ const Personal = ({ socket }) => {
     }));
   };
 
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
+  const handleInputChange = (name, value) => {
     setUserInfo((prevUser) => ({ ...prevUser, [name]: value }));
   };
 
@@ -227,7 +218,7 @@ const Personal = ({ socket }) => {
         onToggle={toggleModal}
         userInfo={userInfo}
         show={active === "UPDATE_INTRODUCE"}
-        onChangeSocialLink={handleInputChange}
+        onChangeIntroduce={handleInputChange}
       />
     </div>
   ) : (

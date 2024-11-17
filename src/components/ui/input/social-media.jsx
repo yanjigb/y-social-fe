@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import React, { memo } from "react";
 import isEqual from "react-fast-compare";
 
@@ -24,7 +25,7 @@ const SocialMediaInput = ({ icon, label, value, onChange }) => {
         <input
           name={label}
           value={value}
-          onChange={onChange}
+          onChange={(e) => onChange(e.target.name, e.target.value)}
           type="text"
           className="p-2 border-0 w-100 text-dark"
           id={label}

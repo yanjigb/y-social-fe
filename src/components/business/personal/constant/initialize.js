@@ -16,5 +16,6 @@ export const UserInitialize = {
   postShared: [],
   blackList: [],
   postSaved: [],
+  hobbies: "",
   isVerify: false,
 };
