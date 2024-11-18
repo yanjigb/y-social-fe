@@ -127,7 +127,7 @@ const Posts = ({ socket }) => {
 
   return (
     <div className="posts">
-      <AppAdvertise className="mb-4" />
+      <AppAdvertise userID={currentUser._id} className="mb-4" />
       <PostList postList={posts} socket={socket} />
       <LoadingBar
         currentUser={currentUser}
