@@ -13,11 +13,11 @@ import {
   handleUpdateImpressions,
 } from "redux/request/advertiseRequest";
 import { getUserByID } from "redux/request/userRequest";
+import rehypeRaw from "rehype-raw";
 import Lightbox from "yet-another-react-lightbox";
 import useCurrentUser from "../../../../../hooks/useCurrentUser";
 import { Avatar, Photo } from "../../../../ui";
 import Skeleton from "./skeleton";
-import rehypeRaw from "rehype-raw";
 
 /* eslint-disable react/react-in-jsx-scope */
 const SponsoredCard = ({
