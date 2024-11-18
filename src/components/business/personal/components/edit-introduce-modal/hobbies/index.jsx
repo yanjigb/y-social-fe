@@ -8,10 +8,23 @@ import { HobbiesList } from "../constants";
 
 const Hobbies = ({ hobbies, onChangeHobbies }) => {
     const [selectedBadge, setSelectedBadge] = useState(hobbies);
+    
 
     const handleBadgeClick = (badge) => {
-        setSelectedBadge(badge.label);
-        onChangeHobbies("hobbies", badge.label);
+        const isSelected = selectedBadge.includes(badge.label);
+        
+        // Prevent removing the last hobby
+        if (isSelected) {
+            if (selectedBadge.length > 1) {
+                const newSelectedBadges = selectedBadge.filter(label => label !== badge.label);
+                setSelectedBadge(newSelectedBadges);
+                onChangeHobbies("hobbies", newSelectedBadges);
+            }
+        } else {
+            const newSelectedBadges = [...selectedBadge, badge.label];
+            setSelectedBadge(newSelectedBadges);
+            onChangeHobbies("hobbies", newSelectedBadges);
+        }
     };
 
     return (
@@ -19,7 +32,7 @@ const Hobbies = ({ hobbies, onChangeHobbies }) => {
             {HobbiesList.map((badge, index) => (
                 <Button
                     key={index}
-                    variant={selectedBadge === badge.label ? "primary" : "outline-secondary"}
+                    variant={selectedBadge.includes(badge.label) ? "primary" : "outline-secondary"}
                     onClick={() => handleBadgeClick(badge)}
                 >
                     <Badge

@@ -24,7 +24,7 @@ export default function AppAdvertise({ userID, className }) {
   const fetchAdvertiseList = async () => {
     try {
       const res = await getAllAdvertise(dispatch);
-      const activeAds = res.filter((ad) => ad.status === "active" && ad.topic === user.hobbies);
+      const activeAds = res.filter((ad) => ad.status === "active" && user.hobbies?.includes(ad.topic));
 
       if (activeAds.length > 0) {
         const sortedAds = activeAds.sort((a, b) => b.score - a.score).slice(0, 10);
