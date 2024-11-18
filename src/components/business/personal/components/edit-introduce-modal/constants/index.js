@@ -7,7 +7,7 @@ import {
   faTwitter,
   faYoutube,
 } from "@fortawesome/free-brands-svg-icons";
-import { faFutbol, faPlane, faUtensils, faMusic, faBook, faGamepad, faPalette } from "@fortawesome/free-solid-svg-icons";
+import { faFutbol, faPlane, faUtensils, faMusic, faBook, faGamepad, faPalette, faMicrochip } from "@fortawesome/free-solid-svg-icons";
 
 export const SocialMediaPlatformList = [
   { icon: faLinkedin, label: "linkedin" },
@@ -27,4 +27,5 @@ export const HobbiesList = [
   { label: "Reading", icon: faBook, value: "Reading"},
   { label: "Gaming", icon: faGamepad, value: "Gaming"},
   { label: "Art", icon: faPalette, value: "Art"},
+  { label: "Tech", icon: faMicrochip, value: "Tech"},
 ];
