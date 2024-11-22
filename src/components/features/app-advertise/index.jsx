@@ -25,9 +25,24 @@ export default function AppAdvertise({ userID, className }) {
     try {
       const res = await getAllAdvertise(dispatch);
       const activeAds = res.filter((ad) => ad.status === "active" && user.hobbies?.includes(ad.topic));
+      const MAX_AD_COUNT = 10;
 
       if (activeAds.length > 0) {
-        const sortedAds = activeAds.sort((a, b) => b.score - a.score).slice(0, 10);
+        // const sortedAds = activeAds.sort((a, b) => b.score - a.score).slice(0, MAX_AD_COUNT);
+        const sortedAds = activeAds.sort((a, b) => {
+          // Sort by score first, then by budget, and finally by creation date
+          if (b.score === a.score) {
+            if (b.budget === a.budget) {
+              // Sort by creation date if scores and budgets are equal
+              return new Date(b.createdAt) - new Date(a.createdAt);
+            }
+            // Sort by budget
+            return b.budget - a.budget;
+          }
+
+          // Sort by score
+          return b.score - a.score;
+        }).slice(0, MAX_AD_COUNT);
 
         if (sortedAds.length > 0) {
           const randomIndex = Math.floor(Math.random() * sortedAds.length);
@@ -45,7 +60,9 @@ export default function AppAdvertise({ userID, className }) {
     fetchAdvertiseList();
   }, [user.hobbies]);
 
-  return randomAdvertise ? (
+  if (!randomAdvertise) return null;
+
+  return (
     <div className={clsx("flex flex-col gap-4", className)}>
       <SponsoredCard
         key={randomAdvertise._id}
@@ -59,5 +76,5 @@ export default function AppAdvertise({ userID, className }) {
         userID={randomAdvertise.userID}
       />
     </div>
-  ) : null;
+  );
 }
