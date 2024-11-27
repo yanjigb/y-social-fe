@@ -1,5 +1,8 @@
 /* eslint-disable no-undef */
 const path = require("path");
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const ESLintPlugin = require('eslint-webpack-plugin');
+
 module.exports = {
   resolve: {
     alias: {
@@ -17,4 +20,12 @@ module.exports = {
       "@providers": path.resolve(__dirname, "src/providers"),
     },
   },
+  plugins: [
+    new HtmlWebpackPlugin({
+      // HTML Webpack Plugin configuration
+    }),
+    new ESLintPlugin({
+      
+    }),
+  ],
 };
