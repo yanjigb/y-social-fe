@@ -1,5 +1,4 @@
-
-import React, { memo } from "react";
+import { memo } from "react";
 import isEqual from "react-fast-compare";
 
 const SocialLink = ({ id, title, link, isLast }) => {
