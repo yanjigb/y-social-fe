@@ -1,6 +1,3 @@
-/* eslint-disable react/react-in-jsx-scope */
-/* eslint-disable no-unsafe-optional-chaining */
-
 import { memo, useEffect, useState } from "react";
 import isEqual from "react-fast-compare";
 import { useDispatch } from "react-redux";
@@ -10,10 +7,10 @@ import { getUserByID } from "../../../../../redux/request/userRequest";
 
 // SETTINGS
 import Sidebar from "components/layouts/sidebar";
-import { LocalStorageKeys } from "../../../../../constant/local-storage-key";
-import { useCurrentUser } from "../../../../../hooks";
-import { CustomTheme, Setting } from "../../../../ui";
-import PostPopup from "../../../../ui/popup/post/post";
+import { CustomTheme, Setting } from "components/ui";
+import PostPopup from "components/ui/popup/post/post";
+import { LocalStorageKeys } from "constant/local-storage-key";
+import { useCurrentUser } from "hooks";
 import { MENU_NAME } from "../../constant/menu";
 import SmallProfile from "./components/small-profile";
 
@@ -46,7 +43,9 @@ const HomeLeft = ({ socket, isReadNotification }) => {
   useEffect(() => {
     currentUser &&
       getUserByID(currentUser._id, dispatch).then((data) => {
-        const { _id, profilePicture, username, isVerify } = data?.user;
+        if (!data?.user) return;
+
+        const { _id, profilePicture, username, isVerify } = data.user;
         setUser({
           _id: _id,
           profilePicture: profilePicture,
@@ -126,53 +125,5 @@ const HomeLeft = ({ socket, isReadNotification }) => {
     </>
   );
 };
-
-// const SmallProfile = ({ currentUser, user, isReadNotification, activeSidebar, onActiveSidebar, handlePopup }) => {
-//   return (
-//     <div className="left animate__animated animate__bounceInLeft">
-//         <Link
-//           to={currentUser ? `/user/${user?._id}` : RouteNames.HOME}
-//           className="profile d-flex align-items-center"
-//           title="Truy cập trang cá nhân"
-//         >
-//           <div className="profile-pic">
-//             <Avatar
-//               imageSrc={currentUser ? user.profilePicture : LOGO_YANJI_SOCIAL}
-//               label={user.username}
-//               userId={user?._id}
-//             />
-//           </div>
-
-//           <div className="handle">
-//             <h4 className="d-flex align-items-center fs-4">
-//               {currentUser ? `${user.username}` : `user`}
-//               {user.isVerify && (
-//                 <CheckCircle2 size={15} className="ms-2 text-primary" />
-//               )}
-//             </h4>
-//             <p className="text-muted m-0">
-//               @{currentUser ? user.username : "user"}
-//             </p>
-//           </div>
-//         </Link>
-
-//         {/* SIDEBAR */}
-//         <Sidebar
-//           active={activeSidebar}
-//           setActive={onActiveSidebar}
-//           isReadNotification={isReadNotification}
-//         />
-//         {/* END OF SIDEBAR */}
-
-//         <label
-//           htmlFor="create-post"
-//           className="btn btn-primary mt-3 py-3 d-none d-lg-block"
-//           onClick={handlePopup}
-//         >
-//           Create Post
-//         </label>
-//       </div>
-//   )
-// }
 
 export default memo(HomeLeft, isEqual);

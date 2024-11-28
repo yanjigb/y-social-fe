@@ -54,7 +54,7 @@
     "add-dev": "yarn add --dev --production=false",
     "eject": "react-scripts eject",
     "report": "pnpm run build --withReport true",
-    "dev": "cross-env SKIP_PREFLIGHT_CHECK=true react-scripts start",
+    "dev": "cross-env SKIP_PREFLIGHT_CHECK=true react-scripts start --force",
     "build": "react-scripts build",
     "start:dev": "webpack-dev-server --mode development --open --hot",
     "build:dev": "webpack --mode production",
