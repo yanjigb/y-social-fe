@@ -1,4 +1,4 @@
-/* eslint-disable react/prop-types */
+
 import React, { memo, useRef } from "react";
 import { Modal } from "react-bootstrap";
 import { CSVLink } from "react-csv";

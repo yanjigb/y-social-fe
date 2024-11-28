@@ -1,4 +1,4 @@
-/* eslint-disable react/prop-types */
+
 import React, { memo } from "react";
 import { Repeat, MessageSquare, Heart } from "lucide-react";
 import isEqual from "react-fast-compare";

@@ -1,4 +1,4 @@
-/* eslint-disable react/prop-types */
+
 import React, { useState } from "react";
 import { LOGO_YANJI_SOCIAL } from "../../../assets";
 import Global from "../../../constant/global";

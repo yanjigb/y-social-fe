@@ -1,10 +1,10 @@
 import { lazy } from "react";
+import { RouteNames } from "../constant/routes";
 import {
   CookiePolicyPage,
   PrivacyPolicyPage,
   TermAndServicePage,
 } from "../pages";
-import { RouteNames } from "../constant/routes";
 
 const Homepage = lazy(() => import("../pages/home"));
 const MessagesPage = lazy(() => import("../pages/messages"));
@@ -68,4 +68,5 @@ const publicRoutes = [
   { path: RouteNames.EXPLORE, component: ExplorePage },
 ];
 
-export { publicRoutes, authProtectedRoutes };
+export { authProtectedRoutes, publicRoutes };
+

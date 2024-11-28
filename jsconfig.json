@@ -7,7 +7,7 @@
         "noEmit": true,
         "resolveJsonModule": true,
         "moduleResolution": "bundler",
-        "jsx": "react",
+        "jsx": "react-jsx",
         "incremental": true,
         "baseUrl": "./src",
         "paths": {

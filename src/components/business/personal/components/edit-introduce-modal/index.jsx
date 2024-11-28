@@ -1,4 +1,4 @@
-/* eslint-disable react/prop-types */
+
 /* eslint-disable react/react-in-jsx-scope */
 import { memo, useState } from "react";
 import { Button, Modal, Tab, Tabs } from "react-bootstrap";

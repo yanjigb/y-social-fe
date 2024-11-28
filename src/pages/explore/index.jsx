@@ -1,6 +1,5 @@
-import React from "react";
-import Header from "../../components/layouts/header";
 import Explore from "../../components/business/explore";
+import Header from "../../components/layouts/header";
 import { RouteNames } from "../../constant/routes";
 
 function ExplorePage() {

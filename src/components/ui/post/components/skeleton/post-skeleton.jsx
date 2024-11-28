@@ -1,5 +1,3 @@
-import React from "react";
-
 export default function PostSkeleton() {
     return (
         <div className="mb-4 position-relative animate-pulse">

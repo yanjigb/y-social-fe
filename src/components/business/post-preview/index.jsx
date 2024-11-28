@@ -1,5 +1,5 @@
 /* eslint-disable react/no-children-prop */
-/* eslint-disable react/prop-types */
+
 import React, { memo, useCallback, useEffect, useRef, useState } from "react";
 import { useParams } from "react-router-dom";
 import { useDispatch } from "react-redux";

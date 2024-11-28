@@ -1,4 +1,3 @@
-import React from "react";
 import { RouteNames } from "./routes";
 import Home from "../components/business/home";
 

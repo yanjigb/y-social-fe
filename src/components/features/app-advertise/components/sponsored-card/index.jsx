@@ -1,4 +1,4 @@
-/* eslint-disable react/prop-types */
+
 import { useIntersectionObserver } from "@uidotdev/usehooks";
 import SponsoredBadge from "components/ui/sponsored-badge";
 import { ADVERTISE_STATUS } from "constant/advertise";

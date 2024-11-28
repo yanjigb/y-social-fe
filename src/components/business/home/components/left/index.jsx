@@ -1,6 +1,6 @@
 /* eslint-disable react/react-in-jsx-scope */
 /* eslint-disable no-unsafe-optional-chaining */
-/* eslint-disable react/prop-types */
+
 import { memo, useEffect, useState } from "react";
 import isEqual from "react-fast-compare";
 import { useDispatch } from "react-redux";
@@ -100,25 +100,25 @@ const HomeLeft = ({ socket, isReadNotification }) => {
   return (
     <>
       <div className="left animate__animated animate__bounceInLeft">
-            <SmallProfile 
-              isReadNotification={isReadNotification} 
-              user={user} 
-              activeSidebar={active} 
-              onActiveSidebar={setActive} 
-              handlePopup={handlePopup} 
-            />
-            <Sidebar
-                active={active}
-                setActive={setActive}
-                isReadNotification={isReadNotification}
-            />
-            <label
-                htmlFor="create-post"
-                className="btn btn-primary mt-3 py-3 d-none d-lg-block"
-                onClick={handlePopup}
-            >
-                Create Post
-            </label>
+        <SmallProfile
+          isReadNotification={isReadNotification}
+          user={user}
+          activeSidebar={active}
+          onActiveSidebar={setActive}
+          handlePopup={handlePopup}
+        />
+        <Sidebar
+          active={active}
+          setActive={setActive}
+          isReadNotification={isReadNotification}
+        />
+        <label
+          htmlFor="create-post"
+          className="btn btn-primary mt-3 py-3 d-none d-lg-block"
+          onClick={handlePopup}
+        >
+          Create Post
+        </label>
       </div>
       {renderCustomThemePopup()}
       {renderPostPopup()}

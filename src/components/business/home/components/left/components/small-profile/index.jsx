@@ -1,4 +1,4 @@
-/* eslint-disable react/prop-types */
+
 /* eslint-disable react/react-in-jsx-scope */
 import { LOGO_YANJI_SOCIAL } from "assets"
 import { Avatar } from "components/ui"
@@ -12,7 +12,7 @@ import Skeleton from "./skeleton"
 
 const SmallProfile = ({ user }) => {
     const currentUser = useCurrentUser();
-    if(!currentUser || !user) return <Skeleton />
+    if (!currentUser || !user) return <Skeleton />
 
     return (
         <Link

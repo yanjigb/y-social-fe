@@ -1,5 +1,5 @@
 /* eslint-disable react/react-in-jsx-scope */
-/* eslint-disable react/prop-types */
+
 import { memo, useCallback, useEffect, useState } from "react";
 import isEqual from "react-fast-compare";
 import { useDispatch } from "react-redux";

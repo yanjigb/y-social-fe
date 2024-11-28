@@ -1,4 +1,4 @@
-/* eslint-disable react/prop-types */
+
 import React, { memo, useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Form from "react-bootstrap/Form";
@@ -75,7 +75,7 @@ const DesktopNav = ({ title, link, isSearch = true }) => {
 
     const data = await axios.get(
       Global.SOCKET_URL +
-        `/api/v1/user/all-users/?username=${value.toLowerCase()}`,
+      `/api/v1/user/all-users/?username=${value.toLowerCase()}`,
     );
 
     const userList = data.data?.users;
@@ -149,9 +149,8 @@ const DesktopNav = ({ title, link, isSearch = true }) => {
               <Link
                 aria-label="Avatar user"
                 to={currentUser ? `/user/${user?._id}` : RouteNames.HOME}
-                className={`profile-pic ms-4 ${
-                  Global.ADMIN_ID === currentUser?._id ? "" : "bg-light"
-                } text-white`}
+                className={`profile-pic ms-4 ${Global.ADMIN_ID === currentUser?._id ? "" : "bg-light"
+                  } text-white`}
               >
                 <Avatar
                   imageSrc={user?.profilePicture}

@@ -1,5 +1,5 @@
 /* eslint-disable react/react-in-jsx-scope */
-/* eslint-disable react/prop-types */
+
 import { Link } from "react-router-dom";
 import {
   LazyLoadImage,

@@ -1,4 +1,4 @@
-/* eslint-disable react/prop-types */
+
 import React, { memo, useRef, useState } from "react";
 import { ListGroup, Offcanvas } from "react-bootstrap";
 import isEqual from "react-fast-compare";

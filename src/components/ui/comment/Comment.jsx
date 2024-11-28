@@ -1,15 +1,15 @@
 /* eslint-disable no-constant-binary-expression */
-/* eslint-disable react/prop-types */
-import React, { useEffect, useState } from "react";
+
+import { Trash } from "lucide-react";
+import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import { io } from "socket.io-client";
-import { Trash } from "lucide-react";
 
-import { getUserByID } from "../../../redux/request/userRequest";
-import { deleteComment } from "../../../redux/request/commentRequest";
-import { useCurrentUser, useTimeAgo } from "../../../hooks";
 import Global from "../../../constant/global";
+import { useCurrentUser, useTimeAgo } from "../../../hooks";
+import { deleteComment } from "../../../redux/request/commentRequest";
+import { getUserByID } from "../../../redux/request/userRequest";
 import Avatar from "../avatar/Avatar";
 
 const Comment = ({

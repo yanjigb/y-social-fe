@@ -1,6 +1,6 @@
-/* eslint-disable react/prop-types */
+
 import axios from "axios";
-import React, {
+import {
   lazy,
   memo,
   useCallback,

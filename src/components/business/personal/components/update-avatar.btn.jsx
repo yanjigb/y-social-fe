@@ -1,4 +1,4 @@
-/* eslint-disable react/prop-types */
+
 // import clsx from "clsx";
 import React, { memo, useState } from "react";
 import isEqual from "react-fast-compare";

@@ -1,5 +1,5 @@
 /* eslint-disable react/react-in-jsx-scope */
-/* eslint-disable react/prop-types */
+
 import clsx from "clsx";
 import { memo } from "react";
 import isEqual from "react-fast-compare";
@@ -26,7 +26,7 @@ function InputStatus({
       )}
     >
       {
-        currentUser ? 
+        currentUser ?
           <StatusBar currentUser={currentUser} user={user} onPopup={onPopup} />
           : <StatusBarSKeleton />
       }

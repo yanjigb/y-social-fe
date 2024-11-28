@@ -1,4 +1,4 @@
-/* eslint-disable react/prop-types */
+
 import React, { memo } from "react";
 import isEqual from "react-fast-compare";
 import { LazyLoadImage } from "react-lazy-load-image-component";

@@ -1,4 +1,4 @@
-/* eslint-disable react/prop-types */
+
 import React, { memo, useEffect, useRef, useState } from "react";
 import { UilSetting } from "@iconscout/react-unicons";
 import { useDispatch } from "react-redux";

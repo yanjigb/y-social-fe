@@ -1,4 +1,4 @@
-/* eslint-disable react/prop-types */
+
 /* eslint-disable react/no-children-prop */
 import React, { memo, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
