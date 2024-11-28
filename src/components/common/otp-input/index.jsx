@@ -1,18 +1,18 @@
-/* eslint-disable react/prop-types */
-import React, { memo, useEffect, useState } from "react";
-import OtpInput from "react-otp-input";
-import { useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
-import isEqual from "react-fast-compare";
 
-import { updateUser } from "../../../redux/request/userRequest";
-import { resendOtp } from "../../../redux/request/otpRequest";
-import { RouteNames } from "../../../constant/routes";
+import { memo, useEffect, useState } from "react";
+import isEqual from "react-fast-compare";
+import OtpInput from "react-otp-input";
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
+
 import { LocalStorageKeys } from "../../../constant/local-storage-key";
+import { RouteNames } from "../../../constant/routes";
+import { resendOtp } from "../../../redux/request/otpRequest";
+import { updateUser } from "../../../redux/request/userRequest";
 
 const OTPInput = ({
   otp = "",
-  onChangeOtp = () => {},
+  onChangeOtp = () => { },
   verifyCode = "",
   userID = "",
   onSetVerifyCode,

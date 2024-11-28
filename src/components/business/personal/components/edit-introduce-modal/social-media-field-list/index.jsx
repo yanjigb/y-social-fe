@@ -1,10 +1,10 @@
-/* eslint-disable react/prop-types */
+
 /* eslint-disable react/react-in-jsx-scope */
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { memo } from "react";
 import isEqual from "react-fast-compare";
 import SocialMediaInput from "../../../../../ui/input/social-media";
 import { SocialMediaPlatformList } from "../constants";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const SocialMediaFieldList = ({ userInfo, onChangeSocialLink }) => {
     return (

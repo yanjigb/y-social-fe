@@ -1,6 +1,6 @@
-import React, { memo } from "react";
+import { memo } from "react";
 import isEqual from "react-fast-compare";
-import { FontSizeTheme, ColorTheme, BackgroundTheme } from "../custom-theme";
+import { BackgroundTheme, ColorTheme, FontSizeTheme } from "../custom-theme";
 
 const CustomTheme = () => {
   return (

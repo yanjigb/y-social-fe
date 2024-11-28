@@ -7,7 +7,7 @@ import {
   faTwitter,
   faYoutube,
 } from "@fortawesome/free-brands-svg-icons";
-import { faFutbol, faPlane, faUtensils, faMusic, faBook, faGamepad, faPalette, faMicrochip } from "@fortawesome/free-solid-svg-icons";
+import { faBook, faFutbol, faGamepad, faMicrochip, faMusic, faPalette, faPlane, faUtensils } from "@fortawesome/free-solid-svg-icons";
 
 export const SocialMediaPlatformList = [
   { icon: faLinkedin, label: "linkedin" },

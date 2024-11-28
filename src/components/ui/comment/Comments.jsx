@@ -1,17 +1,17 @@
-/* eslint-disable react/prop-types */
-import React, { useCallback, useEffect, useState } from "react";
+
+import { Send } from "lucide-react";
+import { useCallback, useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { io } from "socket.io-client";
-import { Send } from "lucide-react";
 
-import { commentPost } from "../../../redux/request/postRequest";
-import { getAllCommentsByPostID } from "../../../redux/request/commentRequest";
-import { pushNewNotification } from "../../../redux/request/notificationRequest";
-import { getUserByID } from "../../../redux/request/userRequest";
+import Global from "../../../constant/global";
 import { NotiType } from "../../../constant/notification";
 import SocketEvent from "../../../constant/socket-event";
-import Global from "../../../constant/global";
 import { useCurrentUser } from "../../../hooks";
+import { getAllCommentsByPostID } from "../../../redux/request/commentRequest";
+import { pushNewNotification } from "../../../redux/request/notificationRequest";
+import { commentPost } from "../../../redux/request/postRequest";
+import { getUserByID } from "../../../redux/request/userRequest";
 import Avatar from "../avatar/Avatar";
 import Comment from "./Comment";
 

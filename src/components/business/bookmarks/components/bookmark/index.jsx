@@ -1,5 +1,5 @@
 /* eslint-disable react/react-in-jsx-scope */
-/* eslint-disable react/prop-types */
+
 /* eslint-disable no-unsafe-optional-chaining */
 import { BookmarkCheck } from "lucide-react";
 import { memo, useEffect, useMemo, useState } from "react";
@@ -26,7 +26,7 @@ const Bookmark = ({
   postID,
   createdAt,
   socket,
-  handleDeletePopup = () => {},
+  handleDeletePopup = () => { },
 }) => {
   const dispatch = useDispatch();
   const [post, setPost] = useState({

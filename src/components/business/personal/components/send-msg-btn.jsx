@@ -1,5 +1,3 @@
-/* eslint-disable react/prop-types */
-import React from "react";
 import { Link } from "react-router-dom";
 import { Mail } from "lucide-react";
 import isEqual from "react-fast-compare";

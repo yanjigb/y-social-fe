@@ -1,4 +1,4 @@
-/* eslint-disable react/prop-types */
+
 /* eslint-disable react/react-in-jsx-scope */
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { memo, useState } from "react";
@@ -8,11 +8,11 @@ import { HobbiesList } from "../constants";
 
 const Hobbies = ({ hobbies, onChangeHobbies }) => {
     const [selectedBadge, setSelectedBadge] = useState(hobbies);
-    
+
 
     const handleBadgeClick = (badge) => {
         const isSelected = selectedBadge.includes(badge.label);
-        
+
         // Prevent removing the last hobby
         if (isSelected) {
             if (selectedBadge.length > 1) {

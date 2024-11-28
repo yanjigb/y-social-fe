@@ -1,5 +1,5 @@
 /* eslint-disable no-unsafe-optional-chaining */
-/* eslint-disable react/prop-types */
+
 import React, { useEffect, useState, memo } from "react";
 import { useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
@@ -106,9 +106,8 @@ const NotificationCard = ({ sender, type, isRead, createdAt }) => {
 
   return (
     <div
-      className={`fs-4 animate__animated animate__fadeIn d-flex align-items-center p-3 position-relative ${
-        !isRead && "bg-dark text-white"
-      } my-2`}
+      className={`fs-4 animate__animated animate__fadeIn d-flex align-items-center p-3 position-relative ${!isRead && "bg-dark text-white"
+        } my-2`}
       style={notificationCardStyle}
       onClick={handleNotificationClick}
       data-card
@@ -122,9 +121,8 @@ const NotificationCard = ({ sender, type, isRead, createdAt }) => {
             style={{
               color: "var(--color-dark)",
             }}
-            className={`d-flex align-items-center fw-bold w-100 ${
-              !isRead && "bg-dark text-white"
-            }`}
+            className={`d-flex align-items-center fw-bold w-100 ${!isRead && "bg-dark text-white"
+              }`}
           >
             {handleTypeNotification(formatTypeNotification)}
             <div className="d-flex align-items-center justify-content-between w-100">
@@ -146,9 +144,8 @@ const NotificationCard = ({ sender, type, isRead, createdAt }) => {
         <div data-content>
           <Link
             to={`/user/${notiInfo.senderName ? sender : "404"}`}
-            className={`fw-bold me-1 sender-notification ${
-              !isRead && "bg-dark text-white"
-            } ${!notiInfo.senderName && "text-danger"}`}
+            className={`fw-bold me-1 sender-notification ${!isRead && "bg-dark text-white"
+              } ${!notiInfo.senderName && "text-danger"}`}
           >
             {notiInfo.senderName || "This user not exist"}
           </Link>

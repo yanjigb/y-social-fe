@@ -1,4 +1,4 @@
-/* eslint-disable react/prop-types */
+
 /* eslint-disable react/react-in-jsx-scope */
 import { memo, useEffect, useState } from "react";
 import isEqual from "react-fast-compare";

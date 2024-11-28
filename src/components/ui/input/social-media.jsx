@@ -1,5 +1,5 @@
-/* eslint-disable react/prop-types */
-import React, { memo } from "react";
+
+import { memo } from "react";
 import isEqual from "react-fast-compare";
 
 const SocialMediaInput = ({ icon, label, value, onChange }) => {

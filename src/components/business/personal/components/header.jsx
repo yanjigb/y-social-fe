@@ -1,4 +1,4 @@
-/* eslint-disable react/prop-types */
+
 import React, { useState, memo } from "react";
 import { Camera } from "lucide-react";
 import isEqual from "react-fast-compare";

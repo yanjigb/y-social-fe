@@ -1,6 +1,6 @@
 /* eslint-disable react/react-in-jsx-scope */
 /* eslint-disable react/no-children-prop */
-/* eslint-disable react/prop-types */
+
 import {
   Bookmark,
   BookmarkCheck,
@@ -35,6 +35,7 @@ import ConfirmDialog from "../dialog/confirm-dialog";
 import { Photo } from "../media";
 import ActionBtn from "./components/ActionBtn";
 import PostSkeleton from "./components/skeleton/post-skeleton";
+
 const DetailsPost = lazy(() => import("./components/DetailsPost"));
 
 // TODO CHECK SPAM IN LIKE, SHARE, COMMENT
@@ -70,7 +71,7 @@ const Post = ({
   const [isExpanded, setIsExpanded] = useState(false);
   const truncatedDescription = desc.slice(0, 100) + "...";
 
-  if(!postID) return <PostSkeleton />;
+  if (!postID) return <PostSkeleton />;
 
   useEffect(() => {
     const handleClickOutside = () => {

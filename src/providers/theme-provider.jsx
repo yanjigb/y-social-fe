@@ -1,12 +1,12 @@
-/* eslint-disable react/prop-types */
-import React, { createContext, useEffect, useMemo, useState } from "react";
-import { TextColorMap, BackgroundMap, FONT_SIZE_MAP } from "../constant/theme";
+
+import { createContext, useEffect, useMemo, useState } from "react";
 import { LocalStorageKeys } from "../constant/local-storage-key";
+import { BackgroundMap, FONT_SIZE_MAP, TextColorMap } from "../constant/theme";
 
 const ThemeContext = createContext({
-  setBgColors: () => {},
-  setTextColors: () => {},
-  setFontSizes: () => {},
+  setBgColors: () => { },
+  setTextColors: () => { },
+  setFontSizes: () => { },
 });
 
 const ThemeProvider = ({ children }) => {

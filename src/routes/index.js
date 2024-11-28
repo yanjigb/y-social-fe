@@ -9,6 +9,7 @@ import Global from "../constant/global";
 import { RouteNames } from "../constant/routes";
 import { authProtectedRoutes, publicRoutes } from "./all-routes";
 import { AuthProtected } from "./auth-protected";
+
 const _404Page = lazy(() => import("../pages/_404"));
 
 const Index = () => {

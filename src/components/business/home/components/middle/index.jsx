@@ -1,5 +1,5 @@
 /* eslint-disable react/react-in-jsx-scope */
-/* eslint-disable react/prop-types */
+
 // import { Link } from "react-router-dom";
 import { Suspense, lazy, memo, useEffect, useState } from "react";
 import isEqual from "react-fast-compare";
@@ -14,6 +14,7 @@ import PostPopup from "components/ui/popup/post/post";
 import clsx from "clsx";
 import LoadingPage from "components/common/loading/loading-page";
 import InputStatus from "./components/input-status";
+
 const Posts = lazy(() => import("../../../../../components/ui/post/Posts"));
 
 const HomeMiddle = ({ socket, className }) => {

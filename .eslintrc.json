@@ -1,14 +1,13 @@
 {
     "env": {
         "browser": true,
-        "commonjs": true,
-        "es2021": true
+        "es2021": true,
+        "node": true
     },
     "extends": [
         "eslint:recommended",
         "prettier",
         "react-app",
-        "plugin:react/recommended",
         "plugin:react/jsx-runtime"
     ],
     "parserOptions": {
@@ -30,17 +29,42 @@
         "react/react-in-jsx-scope": "off",
         "react/prop-types": "off",
         "react/no-unescaped-entities": "off",
-        "react-hooks/rules-of-hooks": "warn", // Enforces the rules of hooks
-        "react-hooks/exhaustive-deps": "warn" // Warns about missing dependencies in hooks
+        "simple-import-sort/imports": "warn",
+        "import/no-duplicates": "warn",
+        "import/first": "error",
+        "react-hooks/rules-of-hooks": "warn",
+        "react-hooks/exhaustive-deps": "warn", // Warns about missing dependencies in hooks
+        "@stylistic/js/indent": [
+            "warn",
+            2
+        ],
+        "no-unused-vars": "warn"
     },
     "settings": {
         "react": {
-            "version": "detect" // Automatically detect the React version
+            "version": "18.2.0"
         }
     },
     "plugins": [
         "react",
-        "eslint-plugin-prettier"
+        "prettier",
+        "simple-import-sort",
+        "import",
+        "@stylistic/js"
     ],
-    "overrides": []
+    "overrides": [
+        {
+            "files": [
+                "**/*.jsx",
+                "**/*.js"
+            ],
+            "rules": {
+                "react/no-unescaped-entities": "off",
+                "no-unused-vars": "warn",
+                "react-hooks/rules-of-hooks": "warn",
+                "react-hooks/exhaustive-deps": "warn",
+                "react/react-in-jsx-scope": "off"
+            }
+        }
+    ]
 }

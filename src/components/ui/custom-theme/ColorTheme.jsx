@@ -1,4 +1,4 @@
-/* eslint-disable react/prop-types */
+
 import React, { memo } from "react";
 import "./style/color.css";
 

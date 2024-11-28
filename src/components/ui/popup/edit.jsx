@@ -1,4 +1,4 @@
-/* eslint-disable react/prop-types */
+
 import React, { memo, useRef, useState } from "react";
 import { useDispatch } from "react-redux";
 import Picker from "@emoji-mart/react";

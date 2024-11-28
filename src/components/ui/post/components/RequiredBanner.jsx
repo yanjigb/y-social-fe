@@ -1,6 +1,7 @@
 /* eslint-disable react/react-in-jsx-scope */
 import { Link } from "react-router-dom";
 import { RouteNames } from "../../../../constant/routes";
+
 const requiredBannerStyle = {
   height: "30rem",
   marginTop: "0",

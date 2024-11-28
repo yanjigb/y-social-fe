@@ -4,8 +4,8 @@ import { Link } from "react-router-dom";
 import { BG_NOT_FOUND } from "../../../assets";
 import { RouteNames } from "../../../constant/routes";
 
-import "./_404.css";
 import { memo } from "react";
+import "./_404.css";
 
 function _404() {
   return (

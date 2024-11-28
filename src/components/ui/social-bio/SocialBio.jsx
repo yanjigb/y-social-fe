@@ -1,4 +1,4 @@
-/* eslint-disable react/prop-types */
+
 import React, { memo } from "react";
 import isEqual from "react-fast-compare";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";

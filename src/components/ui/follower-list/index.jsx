@@ -1,4 +1,4 @@
-/* eslint-disable react/prop-types */
+
 import React, { memo, useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { X } from "lucide-react";

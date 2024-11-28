@@ -1,4 +1,4 @@
-/* eslint-disable react/prop-types */
+
 
 import { ClipboardList, Pencil, Trash } from "lucide-react";
 import { memo } from "react";

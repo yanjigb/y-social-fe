@@ -1,5 +1,3 @@
-/* eslint-disable react/prop-types */
-import React from "react";
 import { Palette } from "lucide-react";
 import { memo } from "react";
 import { Offcanvas } from "react-bootstrap";
