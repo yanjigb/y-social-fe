@@ -1,7 +1,6 @@
-
-import React, { memo } from "react";
-import isEqual from "react-fast-compare";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { memo } from "react";
+import isEqual from "react-fast-compare";
 
 const SocialBio = ({ icon, link, username }) => {
   return (
