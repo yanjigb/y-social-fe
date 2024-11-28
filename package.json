@@ -3,8 +3,6 @@
   "version": "0.1.0",
   "private": false,
   "dependencies": {
-    "@cloudinary/react": "^1.11.2",
-    "@cloudinary/url-gen": "^1.10.1",
     "@emoji-mart/data": "^1.1.2",
     "@emoji-mart/react": "^1.1.1",
     "@fortawesome/fontawesome-svg-core": "^6.2.1",
@@ -22,7 +20,6 @@
     "@uidotdev/usehooks": "^2.4.1",
     "animate.css": "^4.1.1",
     "axios": "^1.2.1",
-    "cloudinary-react": "^1.8.1",
     "clsx": "^2.1.1",
     "emoji-mart": "^5.5.2",
     "get-youtube-id": "^1.0.1",
@@ -56,7 +53,7 @@
   "scripts": {
     "add-dev": "yarn add --dev --production=false",
     "eject": "react-scripts eject",
-    "report": "npm run build --withReport true",
+    "report": "pnpm run build --withReport true",
     "dev": "cross-env SKIP_PREFLIGHT_CHECK=true react-scripts start",
     "build": "react-scripts build",
     "start:dev": "webpack-dev-server --mode development --open --hot",
@@ -75,7 +72,9 @@
       "eslint:recommended",
       "prettier"
     ],
-    "plugins": ["import"],
+    "plugins": [
+      "import"
+    ],
     "rules": {
       "no-console": "off",
       "react/prop-types": "off",
@@ -96,11 +95,8 @@
     ]
   },
   "devDependencies": {
-    "@babel/core": "^7.24.3",
     "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
     "@babel/plugin-transform-private-property-in-object": "^7.25.9",
-    "@babel/preset-env": "^7.24.3",
-    "@babel/preset-react": "^7.24.1",
     "@eslint/js": "^9.12.0",
     "@stylistic/eslint-plugin-js": "^2.11.0",
     "cross-env": "^7.0.3",
@@ -116,12 +112,12 @@
     "globals": "^15.11.0",
     "html-webpack-plugin": "^5.6.3",
     "husky": "^9.0.11",
-    "nano-staged": "^0.8.0",
     "prettier": "^3.4.0",
     "prettier-plugin-organize-imports": "^4.1.0",
     "prettier-plugin-tailwindcss": "^0.6.9",
     "rehype-raw": "^7.0.0",
-    "tailwindcss": "^3.4.14"
+    "tailwindcss": "^3.4.14",
+    "webpack-cli": "^5.1.4"
   },
   "husky": {
     "hooks": {
