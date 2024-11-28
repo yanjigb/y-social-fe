@@ -35,6 +35,7 @@ export default [
       "import/newline-after-import": "warn",
       "react-hooks/rules-of-hooks": "warn",
       "react-hooks/exhaustive-deps": "warn",
+      "no-unsafe-optional-chaining": "warn",
     },
     settings: {
       react: {
