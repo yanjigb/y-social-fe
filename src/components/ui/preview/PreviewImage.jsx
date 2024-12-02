@@ -1,5 +1,4 @@
-
-import React, { memo } from "react";
+import { memo } from "react";
 import { LOGO_YANJI_SOCIAL } from "../../../assets";
 import isEqual from "react-fast-compare";
 import clsx from "clsx";
@@ -12,8 +11,8 @@ const PreviewImage = ({ imgSrc, width, heigth, className }) => {
       role="img"
       decoding="async"
       alt="preview_image"
-      width={200}
-      height={200}
+      width="100%"
+      height="100%"
       style={{
         aspectRatio: "16/9",
         width: width,

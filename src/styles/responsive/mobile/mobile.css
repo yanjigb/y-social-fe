@@ -6,11 +6,6 @@
     width: 130%;
   }
 
-  .customize-theme {
-    width: 130vw !important;
-    height: 113vh !important;
-  }
-
   .customize-theme .card {
     width: 120vw !important;
   }

@@ -1,10 +1,4 @@
 @media screen and (max-width: 768px) {
-  .left {
-    /* width: 5rem; */
-
-    /* z-index: 5; */
-  }
-
   main .container .left .profile {
     display: none !important;
   }
@@ -22,28 +16,6 @@
   main .container {
     gap: 1rem;
     grid-template-columns: 5rem auto 30vw;
-  }
-
-  .left {
-    /* width: 5rem; */
-
-    /* z-index: 5; */
-  }
-
-  main .container .left .profile {
-    /* display: none !important; */
-  }
-
-  .sidebar h3 {
-    /* display: none !important; */
-  }
-
-  .left .btn {
-    /* display: none; */
-  }
-
-  .customize-theme .card {
-    width: 92vw !important;
   }
 
   /* =========================== notification POPUP =========================== */
